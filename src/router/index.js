@@ -1,7 +1,8 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
 
-const routes = [
+export const constantRoutes = [
+  // constantRoutes 固定路由
   {
     path: "/",
     name: "Home",
@@ -18,9 +19,18 @@ const routes = [
   },
 ];
 
+export const asyncRoutes = [
+  {
+    path: "/aboutAsync",
+    name: "AboutAsync",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/AboutAsync.vue"),
+  },
+];
+
 const router = createRouter({
   history: createWebHashHistory(),
-  routes,
+  routes: constantRoutes,
 });
 
 export default router;
