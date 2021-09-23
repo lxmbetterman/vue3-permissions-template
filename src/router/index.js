@@ -25,6 +25,18 @@ export const asyncRoutes = [
     name: "AboutAsync",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutAsync.vue"),
+    children: [
+      {
+        path: "test1",
+        component: () => import("../views/Test1.vue"),
+        name: "test1",
+      },
+      {
+        path: "test2",
+        component: () => import("../views/Test2.vue"),
+        name: "test2",
+      },
+    ],
   },
 ];
 
