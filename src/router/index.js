@@ -1,40 +1,63 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import Layout from '@/components/Layout/Default'
+
+// import Home from '../views/Home.vue'
 
 export const constantRoutes = [
   // constantRoutes 固定路由
+
+  // {
+  //   path: '/login',
+  //   name: 'About',
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () =>
+  //     import(/* webpackChunkName: "about" */ '../views/About.vue')
+  // },
   {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
+    path: '/login',
+    name: 'Login',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue')
+      import(/* webpackChunkName: "about" */ '../views/NoPermissionPage/Login.vue')
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/index',
+    name: 'IndexDic',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/Index'),
+        name: 'Index',
+        meta: { title: '首页', icon: '' }
+      },
+      {
+        path: 'about',
+        component: () => import('@/views/About'),
+        name: 'About',
+        meta: { title: '', icon: '' }
+      }
+    ]
   }
 ]
 
 export const asyncRoutes = [
   {
-    path: '/aboutAsync',
-    name: 'AboutAsync',
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/AboutAsync.vue'),
+    path: '/asyc',
+    component: Layout,
+    redirect: '/asyc/asycAbout',
+    name: 'AsycDic',
     children: [
       {
-        path: 'test1',
-        component: () => import('../views/Test1.vue'),
-        name: 'test1'
-      },
-      {
-        path: 'test2',
-        component: () => import('../views/Test2.vue'),
-        name: 'test2'
+        path: 'asycAbout',
+        component: () => import('@/views/AsycAbout'),
+        name: 'AsycAbout',
+        meta: { title: '', icon: '' }
       }
     ]
   }
@@ -53,6 +76,13 @@ export function resetRouter() {
 
 export function getAllRoutes() {
   return router.getRoutes()
+}
+
+export function addAyscRoutes(routes) {
+  // 所有的路有应该
+  routes.map(eachRoute => {
+    router.addRoute(eachRoute)
+  })
 }
 
 export default router

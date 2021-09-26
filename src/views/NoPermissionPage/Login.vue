@@ -1,11 +1,10 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <p>Home page</p>
-    <el-button type="primary" @click="addRoute">动态添加路由</el-button>
+    <p>Login page</p>
+    <!-- <el-button type="primary" @click="addRoute">动态添加路由</el-button> -->
     <el-button type="primary" @click="handleLogin">点击登录</el-button>
-    <el-button type="primary" @click="getAllRoutes">checkAllroutes</el-button>
-    <el-button type="primary" @click="resetRoutes">resetRoutes</el-button>
+    <!-- <el-button type="primary" @click="getAllRoutes">checkAllroutes</el-button>
+    <el-button type="primary" @click="resetRoutes">resetRoutes</el-button> -->
 
   </div>
 </template>
@@ -25,13 +24,15 @@ export default {
       router.addRoute(asyncRoutes[0])
     },
     handleLogin() {
+      console.log(getAllRoutes(), 'all routes')
       this.$store.dispatch('user/login')
         .then(() => {
-          this.$router.push({ path: '/aboutAsync' })
-          this.loading = false
+          // 添加异步路由
+          this.addRoute() // 测试简单数据
+          this.$router.push({ path: '/asyc/asycAbout' })
+          console.log(getAllRoutes(), 'logined all routes ')
         })
         .catch(() => {
-          this.loading = false
         })
     },
     getAllRoutes() {
@@ -43,3 +44,6 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+
+</style>
