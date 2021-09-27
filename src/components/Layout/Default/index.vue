@@ -58,6 +58,7 @@
                 <router-link to="/">Index</router-link> |
                 <router-link to="/about">About</router-link>|
                 <router-link to="/asyc/asycAbout">AsycAbout</router-link>|
+                <router-link to="/asyc2/asycAbout2">AsycAbout2</router-link>|
                 <el-button @click="loginOut">退出登录</el-button>
             </el-header>
             <el-main>

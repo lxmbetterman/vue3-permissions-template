@@ -60,6 +60,20 @@ export const asyncRoutes = [
         meta: { title: '', icon: '' }
       }
     ]
+  },
+  {
+    path: '/asyc2',
+    component: Layout,
+    redirect: '/asyc2/asycAbout2',
+    name: 'AsycDic2',
+    children: [
+      {
+        path: 'asycAbout2',
+        component: () => import('@/views/AsycAbout2'),
+        name: 'AsycAbout2',
+        meta: { title: '', icon: '' }
+      }
+    ]
   }
 ]
 
@@ -78,9 +92,9 @@ export function getAllRoutes() {
   return router.getRoutes()
 }
 
-export function addAyscRoutes(routes) {
+export function addAyscRoutes() {
   // 所有的路有应该
-  routes.map(eachRoute => {
+  asyncRoutes.map(eachRoute => {
     router.addRoute(eachRoute)
   })
 }

@@ -1,4 +1,4 @@
-import router, { asyncRoutes } from './router'
+import router, { addAyscRoutes } from './router'
 import store from './store'
 // import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
@@ -11,7 +11,6 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
-  // start progress bar
   NProgress.start()
   const hasToken = getToken()
 
@@ -28,7 +27,8 @@ router.beforeEach(async(to, from, next) => {
       } else {
         try {
           await store.dispatch('user/getInfo')
-          router.addRoute(asyncRoutes[0])
+          // router.addRoute(asyncRoutes[0])
+          addAyscRoutes()
           // 刷新之后动态路由是没有加载的
           next({ ...to, replace: true }) // 刷新页面后，确保异步页面不留白
         } catch (error) {
