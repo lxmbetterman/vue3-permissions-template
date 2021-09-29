@@ -14,11 +14,17 @@
 // @ is an alias to /src
 import router from '@/router/index.js'
 import { asyncRoutes, getAllRoutes, resetRouter, addAyscRoutes } from '@/router/index.js'
+import https from '@/utils/aixosInstance'
 export default {
   name: 'Home',
   components: {},
+  inject: ['$http'],
   mounted() {
-    console.log(router)
+    // console.log(router)
+    console.log(this.$http === https, 'this')
+    this.$http.get('/login').then(res => {
+      console.log(res)
+    })
   },
   methods: {
     addRoute() {
@@ -42,6 +48,9 @@ export default {
     },
     resetRoutes() {
       resetRouter()
+    },
+    test() {
+      console.log(this, 'kkkk')
     }
   }
 }

@@ -6,6 +6,16 @@
   </div> -->
   <router-view />
 </template>
+<script>
+import $http from './utils/aixosInstance'
+export default {
+  provide() {
+    return {
+      $http
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 
