@@ -4,29 +4,42 @@
     <!-- <el-button type="primary" @click="addRoute">动态添加路由</el-button> -->
     <el-button type="primary" @click="handleLogin">点击登录</el-button>
     <el-button type="primary" @click="getAllRoutes">checkAllroutes</el-button>
-    <!--
-    <el-button type="primary" @click="resetRoutes">resetRoutes</el-button> -->
+
+    <el-button type="primary" @click="test">test Aixoscancel</el-button>
+    <el-button type="primary" @click="cancel">取消cancel</el-button>
 
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+import store from '@/store'
+
 // @ is an alias to /src
 import router from '@/router/index.js'
 import { asyncRoutes, getAllRoutes, resetRouter, addAyscRoutes } from '@/router/index.js'
-import https from '@/utils/aixosInstance'
+import { ref } from 'vue'
+// import _axiosPromiseArr from '@/utils/test'
+
 export default {
   name: 'Home',
   components: {},
   inject: ['$http'],
   mounted() {
     // console.log(router)
-    console.log(this.$http === https, 'this')
-    this.$http.get('/login').then(res => {
-      console.log(res)
-    })
+    // console.log(this.$http === https, 'this')
+
+  },
+  setup(props) {
+    const CancelToken = ref(null)
+    const source = ref(null) // { cancel, token }
+    return {
+      CancelToken,
+      source
+    }
   },
   methods: {
+
     addRoute() {
       router.addRoute(asyncRoutes[0])
     },
@@ -50,7 +63,34 @@ export default {
       resetRouter()
     },
     test() {
-      console.log(this, 'kkkk')
+      // const CancelToken = axios.CancelToken
+      // const source = CancelToken.source() // { cancel, token }
+
+      // // console.log(this.source, 'source')
+      // this.CancelToken = axios.CancelToken
+      // this.source = this.CancelToken.source()
+
+      this.$http.get('/login').then(res => {
+        console.log(res)
+      }).catch(
+        function(thrown) {
+          if (axios.isCancel(thrown)) {
+            console.log('Request canceled', thrown.message)
+          } else {
+            // handle error
+          }
+        }
+      )
+    },
+    // cancel() {
+    //   console.log('开始取消')
+    //   console.log(this.source)
+    //   this.source.cancel('执行this.source.cancel')
+    // }
+    cancel() {
+      console.log('开始取消')
+      console.log(store.getters.apiCtlPool, 'apiCtlPool')
+      store.getters.apiCtlPool['/login#get']('sssss')
     }
   }
 }

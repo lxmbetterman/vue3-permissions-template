@@ -15,6 +15,11 @@ aixosInstance.interceptors.request.use(
     if (store.getters.token) {
       config.headers['X-Token'] = getToken()
     }
+    const key = config.url + '#' + config.method
+    config.cancelToken = new axios.CancelToken(cancel => { // Cancellation 的第二种方式
+      store.dispatch('axiosStatus/handle_apiCtlPool', { key, cancel })
+    })
+    console.log(config, 'config')
     return config
   },
   error => {
@@ -27,13 +32,11 @@ aixosInstance.interceptors.request.use(
 aixosInstance.interceptors.response.use(
   response => response,
   error => {
-    console.log('err' + error) // for debug
-    // Message({
-    //   message: error.message,
-    //   type: 'error',
-    //   duration: 5 * 1000
-    // })
-    return Promise.reject(error)
+    if (axios.isCancel(error)) {
+      console.log('Request canceled！！！！', error.message) // 取消请求的处理，删除 piCtlPool中的key
+    } else {
+      return Promise.reject(error)
+    }
   }
 )
 export default aixosInstance

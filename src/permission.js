@@ -5,6 +5,7 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/cookieToken' // get token from cookie
 // import getPageTitle from '@/utils/get-page-title'
+import { toRaw } from '@vue/reactivity'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -23,6 +24,11 @@ router.beforeEach(async(to, from, next) => {
       // 判断是否根据token 获取了用户的登录信息 这里初步判断是否有用户名
       const hasUserInfo = store.getters.name !== ''
       if (hasUserInfo) {
+        // 取消上一个页面的axios请求
+        for (var key in toRaw(store.getters.apiCtlPool)) {
+          console.log(key, '-key')
+          store.getters.apiCtlPool[key](`${key} 请求取消了`) //
+        }
         next()
       } else {
         try {

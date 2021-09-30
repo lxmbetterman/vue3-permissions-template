@@ -13,3 +13,7 @@ Mock.mock('/dev-api/login', {
       }
 // data里的属性看不懂，需要详细看语法规范,博客链接:https://www.jianshu.com/p/4579f40e6108
 })
+
+Mock.setup({
+  timeout: '1000-3000' // 表示响应时间介于 200 和 600 毫秒之间，默认值是'10-100'。
+})
