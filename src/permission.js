@@ -25,10 +25,15 @@ router.beforeEach(async(to, from, next) => {
       const hasUserInfo = store.getters.name !== ''
       if (hasUserInfo) {
         // 取消上一个页面的axios请求
-        for (var key in toRaw(store.getters.apiCtlPool)) {
+        for (var key in toRaw(store.getters.apiCtrlPool)) {
           console.log(key, '-key')
-          store.getters.apiCtlPool[key](`${key} 请求取消了`) //
+          store.getters.apiCtrlPool[key] && store.getters.apiCtrlPool[key](key) //
+          // 删除key  ...
+
+          // 重置loading
         }
+        // 页面跳转需要充值loading吗？不需要，正常完成和取消请求的api都会在response拦截重置loading
+        // store.dispatch('apiPool/handle_apiLoadingPool', { key, value: false }) // 完成正常请求 设置为非loading状态
         next()
       } else {
         try {

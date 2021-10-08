@@ -7,51 +7,44 @@
 
     <el-button type="primary" @click="test">test Aixoscancel</el-button>
     <el-button type="primary" @click="cancel">取消cancel</el-button>
+    <el-button type="primary" @click="showLoading" :loading="$store.getters.apiLoadingPool['/test/axios#get']">showLoading</el-button>
 
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import store from '@/store'
 
 // @ is an alias to /src
 import router from '@/router/index.js'
 import { asyncRoutes, getAllRoutes, resetRouter, addAyscRoutes } from '@/router/index.js'
-import { ref } from 'vue'
-// import _axiosPromiseArr from '@/utils/test'
 
 export default {
   name: 'Home',
   components: {},
-  inject: ['$http'],
+  inject: ['$http'], // 依赖注入的方式使用axios对象
+  // computed: {
+  //   count() {
+  //     // return this.$store.state.count
+  //   }
+  // },
   mounted() {
-    // console.log(router)
-    // console.log(this.$http === https, 'this')
 
-  },
-  setup(props) {
-    const CancelToken = ref(null)
-    const source = ref(null) // { cancel, token }
-    return {
-      CancelToken,
-      source
-    }
   },
   methods: {
-
     addRoute() {
       router.addRoute(asyncRoutes[0])
     },
     handleLogin() {
-      console.log(getAllRoutes(), 'all routes')
+      // console.log(getAllRoutes(), 'all routes')
       this.$store.dispatch('user/login')
         .then(() => {
           // 添加异步路由
           // this.addRoute() // 测试简单数据
           addAyscRoutes()
           this.$router.push({ path: '/asyc/asycAbout' })
-          console.log(getAllRoutes(), 'logined all routes ')
+          // console.log(getAllRoutes(), 'logined all routes ')
         })
         .catch(() => {
         })
@@ -63,34 +56,25 @@ export default {
       resetRouter()
     },
     test() {
-      // const CancelToken = axios.CancelToken
-      // const source = CancelToken.source() // { cancel, token }
-
-      // // console.log(this.source, 'source')
-      // this.CancelToken = axios.CancelToken
-      // this.source = this.CancelToken.source()
-
-      this.$http.get('/login').then(res => {
-        console.log(res)
-      }).catch(
-        function(thrown) {
-          if (axios.isCancel(thrown)) {
-            console.log('Request canceled', thrown.message)
-          } else {
-            // handle error
-          }
+      // /dev-api/login   /test/axios
+      this.$http.get('/test/axios', {
+        params: {
+          doNotCancle: false, // 不能取消
+          markLoading: true
+        },
+        data: {
         }
-      )
+      }
+      ).then(res => {
+        console.log(res)
+      }).catch()
     },
-    // cancel() {
-    //   console.log('开始取消')
-    //   console.log(this.source)
-    //   this.source.cancel('执行this.source.cancel')
-    // }
     cancel() {
       console.log('开始取消')
-      console.log(store.getters.apiCtlPool, 'apiCtlPool')
-      store.getters.apiCtlPool['/login#get']('sssss')
+      store.getters.apiCtrlPool['/test/axios#get']('/test/axios#get') // 手动取消传入key
+    },
+    showLoading() {
+      console.log(store.getters.apiLoadingPool)
     }
   }
 }

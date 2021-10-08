@@ -1,7 +1,7 @@
 // 引入mockjs
 import Mock from 'mockjs'
-// 使用mockjs模拟数据
-Mock.mock('/dev-api/login', {
+// 使用mockjs模拟数据 RegExp('/dev-api/login' + '.*')
+Mock.mock(RegExp('/dev-api/login' + '.*'), {
   'ret': 0,
   'data':
       {
@@ -15,5 +15,5 @@ Mock.mock('/dev-api/login', {
 })
 
 Mock.setup({
-  timeout: '1000-3000' // 表示响应时间介于 200 和 600 毫秒之间，默认值是'10-100'。
+  timeout: '2000-4000' // 表示响应时间介于 200 和 600 毫秒之间，默认值是'10-100'。
 })
