@@ -8,10 +8,12 @@
 </template>
 <script>
 import $http from './utils/aixosInstance'
+import $utils from '@/utils/utils'
+console.log($utils, 'testUtils')
 export default {
   provide() {
     return {
-      $http
+      $http, $utils
     }
   }
 }

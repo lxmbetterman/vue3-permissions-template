@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <p>Login page</p>
+    <p>Login page{{$utils.testUtils()}}</p>
     <!-- <el-button type="primary" @click="addRoute">动态添加路由</el-button> -->
     <el-button type="primary" @click="handleLogin">点击登录</el-button>
     <el-button type="primary" @click="getAllRoutes">checkAllroutes</el-button>
@@ -23,7 +23,7 @@ import { asyncRoutes, getAllRoutes, resetRouter, addAyscRoutes } from '@/router/
 export default {
   name: 'Home',
   components: {},
-  inject: ['$http'], // 依赖注入的方式使用axios对象
+  inject: ['$http', '$utils'], // 依赖注入的方式使用axios对象
   // computed: {
   //   count() {
   //     // return this.$store.state.count
@@ -43,7 +43,7 @@ export default {
           // 添加异步路由
           // this.addRoute() // 测试简单数据
           addAyscRoutes()
-          this.$router.push({ path: '/asyc/asycAbout' })
+          this.$router.push({ path: '/' })
           // console.log(getAllRoutes(), 'logined all routes ')
         })
         .catch(() => {
@@ -75,6 +75,7 @@ export default {
     },
     showLoading() {
       console.log(store.getters.apiLoadingPool)
+      console.log(store.getters.apiCtrlPool, 'apiCtrlPool')
     }
   }
 }

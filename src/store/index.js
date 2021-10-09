@@ -8,7 +8,7 @@ const modulesFiles = require.context('./modules', true, /\.js$/)
 // it will auto require all vuex module from modules file
 // array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
 const modules = modulesFiles.keys().reduce((modules, modulePath) => {
-  console.log(modules, modulePath)
+  // console.log(modules, modulePath)
   // set './app.js' => 'app'
   const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
   const value = modulesFiles(modulePath)
