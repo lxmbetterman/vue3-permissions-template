@@ -15,21 +15,19 @@ aixosInstance.interceptors.request.use(
       config.headers['X-Token'] = getToken()
     }
     const key = config.url + '#' + config.method
+
     // doNotCancle:true(默认能取消请求) 标记需要能够手动取消异步请求的api
     if (!config.params.doNotCancle) {
       config.cancelToken = new axios.CancelToken(async(cancel) => { // Cancellation 的第二种方式
         // 如果 apiCtrlPool 里有相同的key的cancel，先执行这个cancel
         await store.dispatch('apiPool/excute_RepeatedCancleFunc', key) // 取消连续点击的重复请求
-        // markLoading：标记需要loading状态的Api
-        // if (config.params.markLoading) {
-        //   store.dispatch('apiPool/handle_apiLoadingPool', { key, value: false })// 设置为loading状态
-        // }
 
         // 记录key到apiCtrlPool 或者 删除key
         await store.dispatch('apiPool/handle_apiCtrlPool', { key, cancel })
-        // markLoading：标记需要loading状态的Api
       })
     }
+
+    // markLoading：标记需要loading状态的Api
     if (config.params.markLoading) {
       store.dispatch('apiPool/handle_apiLoadingPool', { key, value: true })// 设置为loading状态
     }
@@ -56,17 +54,16 @@ aixosInstance.interceptors.response.use(
   },
   error => {
     // 非正常结束的请求分为: 1手动取消 / 2请求过程错误两种情况
+
     if (axios.isCancel(error)) {
-      // 1判断是否是手动cancle 造成的error，通过message传入key 来设置apiCtrlPool和apiLoadingPool中对于的key
+      // 1 判断是否是手动cancle 造成的error，通过message传入key 来设置apiCtrlPool和apiLoadingPool中对于的key
       console.log('Request canceled！！！！', error.message) // 取消请求的处理，删除 piCtlPool中的key
       store.dispatch('apiPool/handle_apiLoadingPool', { key: error.message, value: false }) // 设置为非loading状态
 
       return Promise.reject(error)
     } else {
-      // error中含有config？
-      // 2请求过程错误 error中包含config信息，需要设置apiCtrlPool和apiLoadingPool中对于的key
+      // 2 请求过程错误 error中包含config信息，需要设置apiCtrlPool和apiLoadingPool中对于的key
       if (error.response) { // 服务器出错的情况（有响应）error.response 有config数据
-        console.log(error.response, 'error.response')
         const config = error.response.config
         if (config.params.markLoading) {
           const key = `${config.url}#${config.method}`

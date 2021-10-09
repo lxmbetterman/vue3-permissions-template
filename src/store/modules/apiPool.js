@@ -40,7 +40,7 @@ const actions = {
   excute_RepeatedCancleFunc({ state }, key) { // 发起请求时执行
     return new Promise((resolve) => {
       const theCancleFunc = state.apiCtrlPool[key]
-      theCancleFunc && theCancleFunc(`重复请求: ${key} 请求取消了`) //
+      theCancleFunc && theCancleFunc(key) // key === message
       resolve()
     })
   },

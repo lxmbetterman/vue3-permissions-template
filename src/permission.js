@@ -26,13 +26,12 @@ router.beforeEach(async(to, from, next) => {
       if (hasUserInfo) {
         // 取消上一个页面的axios请求
         for (var key in toRaw(store.getters.apiCtrlPool)) {
-          console.log(key, '-key')
           store.getters.apiCtrlPool[key] && store.getters.apiCtrlPool[key](key) //
-          // 删除key  ...
-
+          // 取消请求后需要删除key吗，可以暂时不用删除key  ...
+          store.dispatch('apiPool/handle_apiCtrlPool', { key, cancel: null }) //  cancel === null就 delete key
           // 重置loading
         }
-        // 页面跳转需要充值loading吗？不需要，正常完成和取消请求的api都会在response拦截重置loading
+        // 页面跳转需要重置loading吗？不需要，正常完成和取消请求的api都会在response拦截重置loading
         // store.dispatch('apiPool/handle_apiLoadingPool', { key, value: false }) // 完成正常请求 设置为非loading状态
         next()
       } else {
@@ -57,11 +56,9 @@ router.beforeEach(async(to, from, next) => {
 
     if (whiteList.indexOf(to.path) !== -1) {
       // in the free login whitelist, go directly
-      // alert(1)
       next()
     } else {
       // other pages that do not have permission to access are redirected to the login page.
-      // alert(2)
       next(`/login`)
       NProgress.done()
     }
