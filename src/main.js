@@ -9,9 +9,12 @@ import 'element-plus/dist/index.css'
 import './permission'
 import '../Mock/index.js'
 
+import '@/repository/select.js'
+
 const app = createApp(App)
 app.use(ElementPlus)
 // app.use(axiosPlugin)
 app.use(store).use(router).mount('#app')
 // console.log(app, 'app')
 console.log(process.env, 'process.env')
+
