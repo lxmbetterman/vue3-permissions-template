@@ -22,6 +22,8 @@
       >
     </el-option>
   </el-select>
+  <el-button @click="setCurrentLayout('Column')">Column-{{CurrentLayout}}</el-button>
+  <el-button @click="setCurrentLayout('Default')">Default-{{CurrentLayout}}</el-button>
   </div>
 </template>
 
@@ -31,7 +33,7 @@
 import { onMounted } from 'vue'
 
 import selectDataRepo from '@/repository/select.js'
-console.log(selectDataRepo, 'selectDataReposelectDataRepo')
+import layoutRepository from '@/components/Layout/layoutRepository.js'
 
 export default {
   name: 'ProjectIndex',
@@ -45,6 +47,8 @@ export default {
   setup(prop, context) {
     const { select1Data, get_select1Data } = selectDataRepo('select1Data')
     const { select2Data, get_select2Data } = selectDataRepo('select2Data')
+    const { CurrentLayout, setCurrentLayout } = layoutRepository()
+
     // 暴露到template中
     onMounted(() => {
       // getSelect1Data()
@@ -53,7 +57,9 @@ export default {
     })
     return {
       select1Data, get_select1Data,
-      select2Data, get_select2Data
+      select2Data, get_select2Data,
+      CurrentLayout,
+      setCurrentLayout
     }
   },
 
