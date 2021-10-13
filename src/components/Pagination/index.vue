@@ -2,6 +2,7 @@
 <template>
   <div class="custom-pagination">
     <el-pagination
+      background
       :currentPage="currentPage"
       :page-sizes="[10, 20, 30, 40]"
       :page-size="pageSize"

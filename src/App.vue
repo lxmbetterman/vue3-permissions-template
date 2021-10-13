@@ -1,16 +1,32 @@
 <template>
-  <!-- <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>|
-    <router-link to="/aboutAsync">AboutAsync</router-link>
-  </div> -->
-  <router-view />
+  <el-config-provider :locale="locale">
+    <router-view />
+  </el-config-provider>
 </template>
 <script>
 import $http from './utils/aixosInstance'
 import $utils from '@/utils/utils'
 console.log($utils, 'testUtils')
+
+import { ElConfigProvider } from 'element-plus'
+
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 export default {
+  components: {
+    [ElConfigProvider.name]: ElConfigProvider
+  },
+  setup() {
+    // 刷新页面
+    const fn = () => {
+      location.reload()
+    }
+
+    // 切换为中文
+    const locale = zhCn
+    return {
+      locale
+    }
+  },
   provide() {
     return {
       $http, $utils
