@@ -3,7 +3,8 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: ["plugin:vue/vue3-essential", "eslint:recommended"],
+  // 安装后再去掉"eslint:recommended", "@vue/prettier" 也行
+  extends: ["plugin:vue/vue3-essential",],
   parserOptions: {
     parser: "babel-eslint",
   },
@@ -138,7 +139,7 @@ module.exports = {
     }],
     'no-unreachable': 2,
     'no-unsafe-finally': 2,
-    'no-unused-vars': [2, {
+    'no-unused-vars': [1, {
       'vars': 'all',
       'args': 'none'
     }],
