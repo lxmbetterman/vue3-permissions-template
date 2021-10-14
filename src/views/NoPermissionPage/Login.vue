@@ -14,6 +14,8 @@
 
 <script>
 // import axios from 'axios'
+import { LOADING } from '@/globalConfig'
+
 import store from '@/store'
 
 // @ is an alias to /src
@@ -60,7 +62,7 @@ export default {
       this.$http.get('/test/axios', {
         params: {
           doNotCancle: false, // 不能取消
-          markLoading: true
+          [LOADING]: true
         },
         data: {
         }

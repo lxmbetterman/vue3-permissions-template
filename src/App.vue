@@ -16,11 +16,6 @@ export default {
     [ElConfigProvider.name]: ElConfigProvider
   },
   setup() {
-    // 刷新页面
-    const fn = () => {
-      location.reload()
-    }
-
     // 切换为中文
     const locale = zhCn
     return {
@@ -36,5 +31,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+body{
+  overflow: hidden;
+}
 </style>
