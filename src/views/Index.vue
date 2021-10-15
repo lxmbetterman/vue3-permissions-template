@@ -47,7 +47,6 @@ import { onMounted, reactive } from 'vue'
 import dropListRepository from '@/repository/select.js'
 import layoutRepository from '@/components/Layout/layoutRepository.js'
 import paginationRepository from '@/repository/pagination.js'
-// import apiLoadingPool from '@/repository/apiLoadingPool'
 
 export default {
   name: 'ProjectIndex',
@@ -61,7 +60,6 @@ export default {
   setup(prop, context) {
     const { listData, loading, getListData } = dropListRepository()
     const { listData: listData2, loading: loading2, getListData: getListData2 } = dropListRepository()
-    // const { apiLoadingPools } = apiLoadingPool()
 
     const { CurrentLayout, setCurrentLayout } = layoutRepository()
 

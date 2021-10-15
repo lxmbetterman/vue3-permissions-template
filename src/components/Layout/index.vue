@@ -22,6 +22,7 @@ export default {
   },
 
   components: {
+    // 异步加载布局组件
     Default: defineAsyncComponent(() =>
       import('./Default/index.vue')
     ),

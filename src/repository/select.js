@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 
 import $http from '@/utils/aixosInstance'
-import { LOADING } from '@/globalConfig'
 
 export const urlKeys = {
   /**
@@ -31,17 +30,10 @@ export default function dropListRepository() {
 
   const getListData = async(urlKey, ...params) => {
     if (urlKey) {
-      //
-      // if (config.params[LOADING]) {
-      //   // apiLoadingPool会将key 设置在api状态池里。
-      //   const { toggleApiLoadingStatus } = apiLoadingPool(key)
-      //   toggleApiLoadingStatus(true) // 状态设置为加载中
-      // }
       loading.value = true
       $http.get(urlKeys[urlKey], {
         params: {
-          ...params,
-          [LOADING]: false // 下拉接口不加markLoading状态，每个getListData单独维护一个loading
+          ...params
         }
       }).then(res => {
         listData.value = (res.list) // 接口地址能否统一返回格式?。

@@ -7,8 +7,6 @@
 
     <el-button type="primary" @click="test">test Aixoscancel</el-button>
     <el-button type="primary" @click="cancel">取消cancel</el-button>
-    <el-button type="primary" @click="showLoading" :loading="$store.getters.apiLoadingPool['/test/axios#get']">showLoading</el-button>
-
   </div>
 </template>
 
@@ -73,11 +71,8 @@ export default {
     },
     cancel() {
       console.log('开始取消')
-      store.getters.apiCtrlPool['/test/axios#get']('/test/axios#get') // 手动取消传入key
     },
     showLoading() {
-      console.log(store.getters.apiLoadingPool)
-      console.log(store.getters.apiCtrlPool, 'apiCtrlPool')
     }
   }
 }
