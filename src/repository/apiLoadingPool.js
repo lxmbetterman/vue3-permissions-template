@@ -11,7 +11,8 @@ const apiLoadingPools = reactive({
 })
 
 export default function apiLoadingPool(urlKey) {
-  if (apiLoadingPools[urlKey] === undefined) { // 为api 状态池中初始化 URL对应的key
+  console.log(urlKey, 'urlKeyurlKey')
+  if (urlKey && apiLoadingPools[urlKey] === undefined) { // 为api 状态池中初始化 URL对应的key
     apiLoadingPools[urlKey] = false
   }
 

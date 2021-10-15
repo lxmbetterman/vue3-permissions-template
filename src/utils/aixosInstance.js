@@ -2,7 +2,7 @@ import { LOADING } from '@/globalConfig'
 import axios from 'axios'
 import store from '@/store'
 import { getToken } from '@/utils/cookieToken'
-import apiLoading from '@/repository/apiLoadingPool'
+import apiLoadingPool from '@/repository/apiLoadingPool'
 
 // create an axios instance
 export const aixosInstance = axios.create({
@@ -31,8 +31,8 @@ aixosInstance.interceptors.request.use(
 
     // markLoading：标记需要loading状态的Api
     if (config.params[LOADING]) {
-      // store.dispatch('apiPool/handle_apiLoadingPool', { key, value: true })// 设置为loading状态
-      const { toggleApiLoadingStatus } = apiLoading(key)
+      // apiLoadingPool会将key 设置在api状态池里。
+      const { toggleApiLoadingStatus } = apiLoadingPool(key)
       toggleApiLoadingStatus(true) // 状态设置为加载中
     }
 
@@ -52,8 +52,7 @@ aixosInstance.interceptors.response.use(
     const config = response.config
     if (config.params[LOADING]) {
       const key = `${config.url}#${config.method}`
-      // store.dispatch('apiPool/handle_apiLoadingPool', { key, value: false }) // 完成正常请求 设置为非loading状态
-      const { toggleApiLoadingStatus } = apiLoading(key)
+      const { toggleApiLoadingStatus } = apiLoadingPool(key)
       toggleApiLoadingStatus(false) // 状态设置为加载完成
     }
     return response.data
@@ -64,9 +63,8 @@ aixosInstance.interceptors.response.use(
     if (axios.isCancel(error)) {
       // 1 判断是否是手动cancle 造成的error，通过message传入key 来设置apiCtrlPool和apiLoadingPool中对于的key
       console.log('Request canceled！！！！', error.message) // 取消请求的处理，删除 piCtlPool中的key
-      // store.dispatch('apiPool/handle_apiLoadingPool', { key: error.message, value: false }) // 设置为非loading状态
 
-      const { toggleApiLoadingStatus } = apiLoading(error.message)
+      const { toggleApiLoadingStatus } = apiLoadingPool(error.message)
       toggleApiLoadingStatus(false) // 状态设置为加载完成
 
       return Promise.reject(error)
@@ -76,7 +74,7 @@ aixosInstance.interceptors.response.use(
         const config = error.response.config
         if (config.params[LOADING]) {
           const key = `${config.url}#${config.method}`
-          const { toggleApiLoadingStatus } = apiLoading(key)
+          const { toggleApiLoadingStatus } = apiLoadingPool(key)
           toggleApiLoadingStatus(false) // 状态设置为加载完成
         }
       } else if (error.request) { // 服务器无响应的情况

@@ -1,14 +1,14 @@
 <!--  -->
 <template>
   <div>
-    {{list}}
+    {{listData}}
     <p>this is Index page</p>
     <p>vue3 语法学习</p>
-    <el-button @click="getList" :loading="apiLoadingPools['/dev-api/list#get']" >getList</el-button>
+    <el-button @click="getList" :loading="loading" >getList</el-button>
     <el-button @click="showData" >showData</el-button>
     <el-select v-model="test" placeholder="Select">
       <el-option
-        v-for="item in list"
+        v-for="item in listData"
         :key="item"
         :label="item"
         :value="item"
@@ -44,10 +44,10 @@
 // import { ref, reactive, getCurrentInstance, watch } from 'vue'
 import { onMounted, reactive } from 'vue'
 
-import selectDataRepo, { urlKeys } from '@/repository/select.js'
+import dropListRepository from '@/repository/select.js'
 import layoutRepository from '@/components/Layout/layoutRepository.js'
 import paginationRepository from '@/repository/pagination.js'
-import apiLoadingPool from '@/repository/apiLoadingPool'
+// import apiLoadingPool from '@/repository/apiLoadingPool'
 
 export default {
   name: 'ProjectIndex',
@@ -59,10 +59,10 @@ export default {
     }
   },
   setup(prop, context) {
-    const { list, loading, listGetter } = selectDataRepo('list') // 随便去个名字
-    const { apiLoadingPools } = apiLoadingPool('/dev-api/list#get')
+    const { listData, loading, getListData } = dropListRepository()
+    const { listData: listData2, loading: loading2, getListData: getListData2 } = dropListRepository()
+    // const { apiLoadingPools } = apiLoadingPool()
 
-    const { select2Data, select2DataGetter } = selectDataRepo('select2Data')
     const { CurrentLayout, setCurrentLayout } = layoutRepository()
 
     // 分页相关
@@ -72,6 +72,7 @@ export default {
       setTotal(101)
       setPageSize(25)
       setCurrentPage(3)
+      console.log(listData2, loading2, getListData2, '22')
     })
 
     const obj = reactive({ a: 1 })
@@ -84,8 +85,7 @@ export default {
 
     return {
       // 下拉接口
-      list, loading, listGetter, apiLoadingPools,
-      select2Data, select2DataGetter,
+      listData, loading, getListData,
       // 布局切换
       CurrentLayout, setCurrentLayout,
       // 分页相关
@@ -105,7 +105,7 @@ export default {
 
   methods: {
     getList() {
-      this.listGetter('list')
+      this.getListData('list')
     },
     showData() {
       console.log(this.list, this.apiLoadingPools, 'listData')

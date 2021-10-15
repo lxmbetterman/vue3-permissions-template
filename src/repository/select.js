@@ -19,36 +19,45 @@ export const urlKeys = {
  * @param
  * @returns
  */
-export default function selectDataRepo(dataName) {
-  const ListData = ref([])
-  // const loading = ref(false)
+export default function dropListRepository() {
+  const listData = ref([])
+  const loading = ref(false)
+
   /**
    *
    * @param {*} urlKey 地址对应的key
    * @param  {...any} params 下拉接口需要的参数
    */
-  const getSelectOptionsData = async(urlKey, ...params) => {
+
+  const getListData = async(urlKey, ...params) => {
     if (urlKey) {
+      //
+      // if (config.params[LOADING]) {
+      //   // apiLoadingPool会将key 设置在api状态池里。
+      //   const { toggleApiLoadingStatus } = apiLoadingPool(key)
+      //   toggleApiLoadingStatus(true) // 状态设置为加载中
+      // }
+      loading.value = true
       $http.get(urlKeys[urlKey], {
         params: {
           ...params,
-          [LOADING]: true // 下拉接口统一加入markLoading 状态
+          [LOADING]: false // 下拉接口不加markLoading状态，每个getListData单独维护一个loading
         }
       }).then(res => {
-        console.log(res)
-        ListData.value = (res.list) // 接口地址能否统一返回格式?。
+        listData.value = (res.list) // 接口地址能否统一返回格式?。
+        loading.value = false
       }).catch(err => {
         console.log(err)
-        ListData.value = null
+        listData.value = null
+        loading.value = false
       })
     } else {
-      ListData.value = ['请传入接口url']
+      listData.value = ['请传入接口url']
     }
   }
-
   return {
-    [dataName]: ListData,
-    // loading,
-    [`${dataName}Getter`]: getSelectOptionsData
+    listData,
+    loading,
+    getListData
   }
 }
