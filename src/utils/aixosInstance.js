@@ -1,8 +1,6 @@
-import { LOADING } from '@/globalConfig'
 import axios from 'axios'
 import store from '@/store'
 import { getToken } from '@/utils/cookieToken'
-import apiLoadingPool from '@/repository/apiLoadingPool'
 
 // create an axios instance
 export const aixosInstance = axios.create({
@@ -29,13 +27,6 @@ aixosInstance.interceptors.request.use(
       })
     }
 
-    // markLoading：标记需要loading状态的Api
-    if (config.params[LOADING]) {
-      // apiLoadingPool会将key 设置在api状态池里。
-      const { toggleApiLoadingStatus } = apiLoadingPool(key)
-      toggleApiLoadingStatus(true) // 状态设置为加载中
-    }
-
     return config
   },
   error => {
@@ -48,13 +39,8 @@ aixosInstance.interceptors.response.use(
   // response包含{config,headers,data,status}
   // 正常结束的请求，重置apiLoadingPool中对应的key loading状态为false
   response => {
-    // console.log(response, 'responseresponseresponse')
-    const config = response.config
-    if (config.params[LOADING]) {
-      const key = `${config.url}#${config.method}`
-      const { toggleApiLoadingStatus } = apiLoadingPool(key)
-      toggleApiLoadingStatus(false) // 状态设置为加载完成
-    }
+    // const config = response.config
+
     return response.data
   },
   error => {
@@ -64,19 +50,11 @@ aixosInstance.interceptors.response.use(
       // 1 判断是否是手动cancle 造成的error，通过message传入key 来设置apiCtrlPool和apiLoadingPool中对于的key
       console.log('Request canceled！！！！', error.message) // 取消请求的处理，删除 piCtlPool中的key
 
-      const { toggleApiLoadingStatus } = apiLoadingPool(error.message)
-      toggleApiLoadingStatus(false) // 状态设置为加载完成
-
       return Promise.reject(error)
     } else {
       // 2 请求过程错误 error中包含config信息，需要设置apiCtrlPool和apiLoadingPool中对于的key
       if (error.response) { // 服务器出错的情况（有响应）error.response 有config数据
-        const config = error.response.config
-        if (config.params[LOADING]) {
-          const key = `${config.url}#${config.method}`
-          const { toggleApiLoadingStatus } = apiLoadingPool(key)
-          toggleApiLoadingStatus(false) // 状态设置为加载完成
-        }
+        // const config = error.response.config
       } else if (error.request) { // 服务器无响应的情况
         console.log(error.request)
       } else { // 其他

@@ -2,11 +2,6 @@ const state = {
   // 控制接口的cancle
   apiCtrlPool: {
     // [api-key]:[cancel function]
-  },
-
-  // 标记api的loading状态
-  apiLoadingPool: {
-    // [api-key]:[Boolean]
   }
 }
 
@@ -20,9 +15,6 @@ const mutations = {
         delete state.apiCtrlPool[source.key]
       }
     }
-  },
-  SET_apiLoadingPool: (state, apiObj) => { // {key,value}
-    state.apiLoadingPool = { ...state.apiCtrlPool, [apiObj.key]: apiObj.value }
   }
 
 }
@@ -41,13 +33,6 @@ const actions = {
     return new Promise((resolve) => {
       const theCancleFunc = state.apiCtrlPool[key]
       theCancleFunc && theCancleFunc(key) // key === message
-      resolve()
-    })
-  },
-  // 设置api的loading状态
-  handle_apiLoadingPool({ commit }, apiObj) {
-    return new Promise((resolve) => {
-      commit('SET_apiLoadingPool', apiObj) // 发起请求时添加
       resolve()
     })
   }

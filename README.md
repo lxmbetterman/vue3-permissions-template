@@ -23,6 +23,8 @@ yarn lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+### ssh -T git@github.com 
+
 
 * views 下文件夹和组件，用大写字母开头和驼峰形式命名。
 
