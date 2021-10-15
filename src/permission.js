@@ -1,4 +1,4 @@
-import router, { addAyscRoutes } from './router'
+import router from './router'
 import store from './store'
 // import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
@@ -6,6 +6,8 @@ import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/cookieToken' // get token from cookie
 // import getPageTitle from '@/utils/get-page-title'
 import { toRaw } from '@vue/reactivity'
+import userOperator from '@/repository/user.js'
+const { currentUser, user_getInfo } = userOperator()
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -17,13 +19,10 @@ router.beforeEach(async(to, from, next) => {
 
   if (hasToken) {
     if (to.path === '/login') {
-      // if is logged in, redirect to the home page
       next({ path: '/' })
-      NProgress.done() // hack: https://github.com/PanJiaChen/vue-element-admin/pull/2939
+      NProgress.done()
     } else {
-      // 判断是否根据token 获取了用户的登录信息 这里初步判断是否有用户名
-      const hasUserInfo = store.getters.name !== ''
-      if (hasUserInfo) {
+      if (currentUser.name) { // 这里是否有用户名初步判断是否已经登录
         // 取消上一个页面的axios请求
         for (var key in toRaw(store.getters.apiCtrlPool)) {
           store.getters.apiCtrlPool[key] && store.getters.apiCtrlPool[key](key) //
@@ -36,9 +35,8 @@ router.beforeEach(async(to, from, next) => {
         next()
       } else {
         try {
-          await store.dispatch('user/getInfo')
+          await user_getInfo()
           // router.addRoute(asyncRoutes[0])
-          addAyscRoutes()
           // 刷新之后动态路由是没有加载的
           next({ ...to, replace: true }) // 刷新页面后，确保异步页面不留白
         } catch (error) {

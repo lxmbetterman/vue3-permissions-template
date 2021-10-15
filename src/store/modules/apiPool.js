@@ -1,7 +1,6 @@
 const state = {
   // 控制接口的cancle
-  apiCtrlPool: {
-    // [api-key]:[cancel function]
+  apiCtrlPool: { // [api-key]:[cancel function]
   }
 }
 

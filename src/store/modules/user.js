@@ -43,6 +43,7 @@ const actions = {
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       commit('SET_NAME', 'lxm')
+      // 添加异步路由
       resolve()
     })
   },

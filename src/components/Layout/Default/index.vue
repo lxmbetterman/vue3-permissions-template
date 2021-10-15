@@ -72,15 +72,22 @@
 // @ is an alias to /src
 // import router from '@/router/index.js'
 // import { getAllRoutes, resetRouter } from '@/router/index.js' // asyncRoutes
+import userOperator from '@/repository/user.js'
+
 export default {
   name: 'LayoutDefaultIndex',
   components: {},
+  setup() {
+    const { user_logout } = userOperator()
+    return {
+      user_logout
+    }
+  },
   methods: {
-    addRoute() {
-    //   router.addRoute(asyncRoutes[0])
-    },
+
     loginOut() {
-      this.$store.dispatch('user/logout').then(() => {
+      this.user_logout().then((res) => {
+        console.log(res, 'reee')
         this.$router.replace({ path: '/login', replace: true })
       })
     }

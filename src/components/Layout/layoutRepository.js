@@ -6,7 +6,7 @@ import { ref } from 'vue'
  * @param CurrentLayout 是全局公共点
  * @returns
  */
-const CurrentLayout = ref('Column')
+const CurrentLayout = ref('Default')
 
 export default function layoutRepository() {
   const setCurrentLayout = async(layoutName) => {

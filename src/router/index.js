@@ -36,7 +36,7 @@ export const constantRoutes = [
     ]
   }
 ]
-
+// ['AsycDic','AsycAbout','AsycDic2','AsycAbout2','MenuList']
 export const asyncRoutes = [
   {
     path: '/asyc',
@@ -65,6 +65,20 @@ export const asyncRoutes = [
         meta: { title: '', icon: '' }
       }
     ]
+  },
+  {
+    path: '/system',
+    component: Layout,
+    redirect: '/system/menu',
+    name: 'SystemManage',
+    children: [
+      {
+        path: 'menu',
+        component: () => import('@/views/System/menuList.vue'),
+        name: 'MenuList',
+        meta: { title: '', icon: '' }
+      }
+    ]
   }
 ]
 
@@ -83,7 +97,7 @@ export function getAllRoutes() {
   return router.getRoutes()
 }
 
-export function addAyscRoutes() {
+export function addAyscRoutes(userAllowedPathName = []) {
   // resetRouter()
   // 所有的路有应该
   asyncRoutes.map(eachRoute => {

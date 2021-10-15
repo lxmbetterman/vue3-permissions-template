@@ -103,7 +103,7 @@ export default {
 
   methods: {
     getList() {
-      this.getListData('list')
+      this.getListData('/dev-api/list')
     },
     showData() {
       console.log(this.list, this.apiLoadingPools, 'listData')

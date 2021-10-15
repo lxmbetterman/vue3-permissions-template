@@ -2,7 +2,7 @@
   <div class="home">
     <p>Login page{{$utils.testUtils()}}</p>
     <!-- <el-button type="primary" @click="addRoute">动态添加路由</el-button> -->
-    <el-button type="primary" @click="handleLogin">点击登录</el-button>
+    <el-button type="primary" @click="handleLogin" :loading='userLoading'>点击登录</el-button>
     <el-button type="primary" @click="getAllRoutes">checkAllroutes</el-button>
 
     <el-button type="primary" @click="test">test Aixoscancel</el-button>
@@ -11,43 +11,34 @@
 </template>
 
 <script>
-// import axios from 'axios'
-import { LOADING } from '@/globalConfig'
 
-import store from '@/store'
-
-// @ is an alias to /src
-import router from '@/router/index.js'
-import { asyncRoutes, getAllRoutes, resetRouter, addAyscRoutes } from '@/router/index.js'
+import { getAllRoutes, resetRouter } from '@/router/index.js'
+import userOperator from '@/repository/user.js'
 
 export default {
   name: 'Home',
   components: {},
   inject: ['$http', '$utils'], // 依赖注入的方式使用axios对象
-  // computed: {
-  //   count() {
-  //     // return this.$store.state.count
-  //   }
-  // },
+
+  setup() {
+    const { userLoading, user_login, user_getInfo } = userOperator()
+    return {
+      // 用户登录相关
+      userLoading, user_login, user_getInfo
+    }
+  },
   mounted() {
 
   },
   methods: {
-    addRoute() {
-      router.addRoute(asyncRoutes[0])
-    },
-    handleLogin() {
-      // console.log(getAllRoutes(), 'all routes')
-      this.$store.dispatch('user/login')
-        .then(() => {
-          // 添加异步路由
-          // this.addRoute() // 测试简单数据
-          addAyscRoutes()
-          this.$router.push({ path: '/' })
-          // console.log(getAllRoutes(), 'logined all routes ')
-        })
-        .catch(() => {
-        })
+    async handleLogin() {
+      try {
+        await this.user_login()
+        await this.user_getInfo()
+        this.$router.push({ path: '/' })
+      } catch (e) {
+        console.log(e)
+      }
     },
     getAllRoutes() {
       console.log(getAllRoutes())
@@ -59,8 +50,7 @@ export default {
       // /dev-api/login   /test/axios
       this.$http.get('/test/axios', {
         params: {
-          doNotCancle: false, // 不能取消
-          [LOADING]: true
+          doNotCancle: false // 不能取消
         },
         data: {
         }

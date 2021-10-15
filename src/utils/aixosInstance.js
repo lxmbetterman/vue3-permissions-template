@@ -17,7 +17,7 @@ aixosInstance.interceptors.request.use(
     const key = config.url + '#' + config.method
 
     // doNotCancle:true(默认能取消请求) 标记需要能够手动取消异步请求的api
-    if (!config.params.doNotCancle) {
+    if (config.params && !config.params.doNotCancle) {
       config.cancelToken = new axios.CancelToken(async(cancel) => { // Cancellation 的第二种方式
         // 如果 apiCtrlPool 里有相同的key的cancel，先执行这个cancel
         await store.dispatch('apiPool/excute_RepeatedCancleFunc', key) // 取消连续点击的重复请求
