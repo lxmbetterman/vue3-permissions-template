@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, markRaw } from 'vue'
 import layoutRepository from '@/components/Layout/layoutRepository.js'
 export default {
   name: '',
@@ -22,13 +22,13 @@ export default {
   },
 
   components: {
-    // 异步加载布局组件
-    Default: defineAsyncComponent(() =>
+    // 异步加载布局组件 markRaw
+    Default: markRaw(defineAsyncComponent(() =>
       import('./Default/index.vue')
-    ),
-    Column: defineAsyncComponent(() =>
+    )),
+    Column: markRaw(defineAsyncComponent(() =>
       import('./Column/index.vue')
-    )
+    ))
   },
 
   mounted() {},

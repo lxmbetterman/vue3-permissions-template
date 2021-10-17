@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <p>Login page{{$utils.testUtils()}}</p>
-    <!-- <el-button type="primary" @click="addRoute">动态添加路由</el-button> -->
     <el-button type="primary" @click="handleLogin" :loading='userLoading'>点击登录</el-button>
     <el-button type="primary" @click="getAllRoutes">checkAllroutes</el-button>
 

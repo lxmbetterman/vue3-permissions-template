@@ -5,7 +5,6 @@
     <p>this is Index page</p>
     <p>vue3 语法学习</p>
     <el-button @click="getList" :loading="loading" >getList</el-button>
-    <el-button @click="showData" >showData</el-button>
     <el-select v-model="test" placeholder="Select">
       <el-option
         v-for="item in listData"
@@ -42,7 +41,7 @@
 // import { getAllRoutes } from '@/router/index.js' // watch
 // import { reactive } from 'vue'
 // import { ref, reactive, getCurrentInstance, watch } from 'vue'
-import { onMounted, reactive } from 'vue'
+import { onMounted } from 'vue'
 
 import dropListRepository from '@/repository/select.js'
 import layoutRepository from '@/components/Layout/layoutRepository.js'
@@ -59,7 +58,6 @@ export default {
   },
   setup(prop, context) {
     const { listData, loading, getListData } = dropListRepository()
-    const { listData: listData2, loading: loading2, getListData: getListData2 } = dropListRepository()
 
     const { CurrentLayout, setCurrentLayout } = layoutRepository()
 
@@ -70,16 +68,7 @@ export default {
       setTotal(101)
       setPageSize(25)
       setCurrentPage(3)
-      console.log(listData2, loading2, getListData2, '22')
     })
-
-    const obj = reactive({ a: 1 })
-    console.log(obj, obj.a)
-    setTimeout(() => {
-      obj.a = 2
-      obj.b = 3
-      console.log(obj, obj.a, obj.b)
-    }, 1000)
 
     return {
       // 下拉接口
@@ -105,15 +94,7 @@ export default {
     getList() {
       this.getListData('/dev-api/list')
     },
-    showData() {
-      console.log(this.list, this.apiLoadingPools, 'listData')
-    },
-    testM1() {
 
-    },
-    testM2() {
-
-    },
     handleSizeChange(pageSize) {
       this.setPageSize(pageSize)
     },

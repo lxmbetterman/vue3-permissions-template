@@ -1,7 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Layout from '@/components/Layout/index.vue'
+// import Layout from '@/components/Layout/index.vue'
+export const Layout = () => import('@/components/Layout/index.vue')
+import { ref } from 'vue'
 
-// import Home from '../views/Home.vue'
+export const userAllowedPath = ref([]) // 全局
+export const userAllowedAsyncPath = ref([]) // 全局
 
 export const constantRoutes = [
   // constantRoutes 固定路由
@@ -36,7 +39,7 @@ export const constantRoutes = [
     ]
   }
 ]
-// ['AsycDic','AsycAbout','AsycDic2','AsycAbout2','MenuList']
+
 export const asyncRoutes = [
   {
     path: '/asyc',
@@ -81,6 +84,12 @@ export const asyncRoutes = [
     ]
   }
 ]
+export const finalRoutes = [
+  // 将匹配所有内容并将其放在 `$route.params.pathMatch` 下
+  { path: '/:pathMatch(.*)*', name: 'NotFound', redirect: '/index' }
+  // 将匹配以 `/user-` 开头的所有内容，并将其放在 `$route.params.afterUser` 下
+  // { path: '/user-:afterUser(.*)', redirect: '/index' }
+]
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -88,7 +97,7 @@ const router = createRouter({
 })
 
 export function resetRouter() {
-  asyncRoutes.map(route => { // 把异步路由全部删了，相当于重置路由
+  userAllowedAsyncPath.value.map(route => { // 把异步路由全部删了，相当于重置路由
     router.removeRoute(route.name) // 删除父级路由，子路由同时删除
   })
 }
@@ -97,12 +106,45 @@ export function getAllRoutes() {
   return router.getRoutes()
 }
 
-export function addAyscRoutes(userAllowedPathName = []) {
+export function addAyscRoutes(userAllowedPathName = [], enableFilter = true) {
   // resetRouter()
   // 所有的路有应该
-  asyncRoutes.map(eachRoute => {
-    router.addRoute(eachRoute)
-  })
+
+  if (enableFilter) {
+    const filterMethod = (routes) => {
+      const filteredRoutes = []
+      routes.map(route => {
+        const currentRoute = { ...route }
+        if (userAllowedPathName.includes(currentRoute.name)) {
+          if (currentRoute.children) {
+            currentRoute.children = filterMethod(currentRoute.children)
+          }
+          filteredRoutes.push(currentRoute)
+        }
+      })
+      return filteredRoutes
+    }
+    const filteredAsyncPath = filterMethod(asyncRoutes)
+
+    // 全部的routes
+    userAllowedPath.value = constantRoutes.concat(filteredAsyncPath)
+    // 除开constant route
+    userAllowedAsyncPath.value = filteredAsyncPath
+
+    userAllowedPath.value.map(eachRoute => {
+      router.addRoute(eachRoute)
+    })
+    finalRoutes.map(eachRoute => {
+      router.addRoute(eachRoute)
+    })
+  } else {
+    asyncRoutes.map(eachRoute => {
+      router.addRoute(eachRoute)
+    })
+    finalRoutes.map(eachRoute => {
+      router.addRoute(eachRoute)
+    })
+  }
 }
 
 export default router
