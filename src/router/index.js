@@ -100,6 +100,9 @@ export function resetRouter() {
   userAllowedAsyncPath.value.map(route => { // 把异步路由全部删了，相当于重置路由
     router.removeRoute(route.name) // 删除父级路由，子路由同时删除
   })
+  finalRoutes.map(route => {
+    router.removeRoute(route.name)
+  })
 }
 
 export function getAllRoutes() {
@@ -111,6 +114,11 @@ export function addAyscRoutes(userAllowedPathName = [], enableFilter = true) {
   // 所有的路有应该
 
   if (enableFilter) {
+    /**
+     * 过滤函数关键点应该是传入一个[]，返回 []
+     * @param {*} routes[]
+     * @returns 过滤后的路由[]
+     */
     const filterMethod = (routes) => {
       const filteredRoutes = []
       routes.map(route => {
@@ -126,25 +134,22 @@ export function addAyscRoutes(userAllowedPathName = [], enableFilter = true) {
     }
     const filteredAsyncPath = filterMethod(asyncRoutes)
 
-    // 全部的routes
+    // allPath 和 AsyncPath
     userAllowedPath.value = constantRoutes.concat(filteredAsyncPath)
-    // 除开constant route
     userAllowedAsyncPath.value = filteredAsyncPath
-
-    userAllowedPath.value.map(eachRoute => {
-      router.addRoute(eachRoute)
-    })
-    finalRoutes.map(eachRoute => {
-      router.addRoute(eachRoute)
-    })
-  } else {
-    asyncRoutes.map(eachRoute => {
-      router.addRoute(eachRoute)
-    })
-    finalRoutes.map(eachRoute => {
-      router.addRoute(eachRoute)
-    })
+  } else { // 本地模式
+    // allPath 和 AsyncPath
+    userAllowedPath.value = constantRoutes.concat(asyncRoutes)
+    userAllowedAsyncPath.value = asyncRoutes
   }
+
+  // 公共部分
+  userAllowedAsyncPath.value.map(eachRoute => {
+    router.addRoute(eachRoute)
+  })
+  finalRoutes.map(eachRoute => {
+    router.addRoute(eachRoute)
+  })
 }
 
 export default router
