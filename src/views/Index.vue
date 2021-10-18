@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div>
+  <div >
     {{listData}}
     <p>this is Index page</p>
     <p>vue3 语法学习</p>
@@ -14,15 +14,7 @@
       >
       </el-option>
     </el-select>
-     <!--  <el-select v-model="test2" placeholder="Select">
-      <el-option
-        v-for="item in select2Data"
-        :key="item"
-        :label="item"
-        :value="item"
-      >
-    </el-option>
-  </el-select> -->
+
   <el-button @click="setCurrentLayout('Column')">Column-{{CurrentLayout}}</el-button>
   <el-button @click="setCurrentLayout('Default')">Default-{{CurrentLayout}}</el-button>
   <div>
@@ -33,6 +25,9 @@
       @changeSize="handleSizeChange"
       @currentChange="handleCurrentChange"
     />
+  </div>
+  <div>
+    <MyFormInline />
   </div>
   </div>
 </template>
@@ -47,13 +42,14 @@ import dropListRepository from '@/repository/select.js'
 import layoutRepository from '@/components/Layout/layoutRepository.js'
 import paginationRepository from '@/repository/pagination.js'
 
+import MyFormInline from '@/components/Form/FormInline.vue'
+
 export default {
   name: 'ProjectIndex',
+  components: { MyFormInline },
   data() {
     return {
-      aaa: 1,
-      test: 'bbb',
-      test2: 'ccc'
+      test: 'a'
     }
   },
   setup(prop, context) {
@@ -79,8 +75,6 @@ export default {
       currentPage1, pageSize, total, setCurrentPage, setPageSize, setTotal, resetPage
     }
   },
-
-  components: {},
 
   computed: {
 

@@ -10,6 +10,11 @@
         <div class="child-menu-container">菜单右侧</div>
       </div>
       <div class="layout-column-mainContainer">
+          <router-link to="/">Index</router-link> |
+            <router-link to="/about">About</router-link>|
+            <router-link to="/asyc/asycAbout">AsycAbout</router-link>|
+            <router-link to="/asyc2/asycAbout2">AsycAbout2</router-link>|
+            <el-button @click="loginOut">退出登录</el-button>
           <router-view />
       </div>
   </div>
@@ -17,6 +22,7 @@
 
 <script>
 import columnRepositrory from './columnRepositrory'
+import userOperator from '@/repository/user.js'
 export default {
   name: '',
   data() {
@@ -25,10 +31,11 @@ export default {
   },
   setup() {
     const { columnCollapse, toggleColumnCollapse } = columnRepositrory()
+    const { user_logout } = userOperator()
 
     return {
-      columnCollapse,
-      toggleColumnCollapse
+      columnCollapse, toggleColumnCollapse,
+      user_logout
     }
   },
 
@@ -36,9 +43,17 @@ export default {
 
   computed: {},
 
-  mounted() {},
+  mounted() {
 
-  methods: {}
+  },
+  methods: {
+    loginOut() {
+      this.user_logout().then((res) => {
+        console.log(res, 'reee')
+        this.$router.replace({ path: '/login', replace: true })
+      })
+    }
+  }
 }
 
 </script>

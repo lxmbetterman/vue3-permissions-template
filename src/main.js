@@ -4,17 +4,19 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import ElementPlus from 'element-plus'
-// import axiosPlugin from './utils/axiosPlugin.js'
+
 import 'element-plus/dist/index.css'
 import './permission'
 import '../Mock/index.js'
 
 import '@/repository/select.js'
 import Pagination from '@/components/Pagination/index.vue'
+import directives from '@/utils/directives'
 
 const app = createApp(App)
 app.use(ElementPlus)
-// app.use(axiosPlugin)
+app.use(directives)
+
 app.component('MyPagination', Pagination)
 app.use(store).use(router).mount('#app')
 // console.log(app, 'app')
