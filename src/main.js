@@ -6,6 +6,7 @@ import store from './store'
 import ElementPlus from 'element-plus'
 
 import 'element-plus/dist/index.css'
+import 'animate.css'
 import './permission'
 import '../Mock/index.js'
 
@@ -23,8 +24,8 @@ app.use(store).use(router).mount('#app')
 console.log(process.env, 'process.env')
 
 // 主题修改
-document.getElementsByTagName('body')[0].style.setProperty('--el-color-primary', '#41b584')
-document.getElementsByTagName('body')[0].style.setProperty('--el-border-radius-base', '3px')
+// document.getElementsByTagName('body')[0].style.setProperty('--el-color-primary', '#41b584')
+// document.getElementsByTagName('body')[0].style.setProperty('--el-border-radius-base', '3px')
 
 /**
  * 绿白

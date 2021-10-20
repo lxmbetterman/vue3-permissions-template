@@ -9,7 +9,7 @@ export const Resize = {
     const options = {
       // passive: !binding.modifiers?.active
     }
-    const debouncedResize = $utils.debounce(handler, 200) // 生成一个debounce函数
+    const debouncedResize = $utils.debounce(handler, 100) // 生成一个debounce函数
 
     window.addEventListener('resize', debouncedResize, options)
     el._onResize = {

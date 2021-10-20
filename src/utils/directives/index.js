@@ -1,8 +1,10 @@
 import { Resize } from './Resize'
+import { Animate } from './Animate'
 
 // 自定义指令集合
 const directives = {
-  Resize
+  Resize,
+  Animate
 }
 
 export default {
