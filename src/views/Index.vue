@@ -5,7 +5,7 @@
     <p>this is Index page</p>
     <p>vue3 语法学习</p>
     <el-button @click="getList" :loading="loading" >getList</el-button>
-    <el-select v-model="test" placeholder="Select">
+    <el-select v-model="myselect" placeholder="Select">
       <el-option
         v-for="item in listData"
         :key="item"
@@ -27,28 +27,28 @@
     />
   </div>
   <div>
-    <MyFormInline :formInline="formInline" :collapse='collapse' :toggleCollapse='toggleCollapse'>
-      <el-form-item label="adress">
+    <MyFormInline
+      :rule="rule"
+      :formInline="formInline"
+      :search='search'
+      :reset="resetFormInline">
+
+      <el-form-item label="adress" prop="adress">
         <el-select v-model="formInline.adress" placeholder="formInline.adress">
           <el-option label="Zone one" value="shanghai"></el-option>
           <el-option label="Zone two" value="beijing"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="name"   >
+      <el-form-item label="name" prop="name">
         <el-input v-model="formInline.name" placeholder="formInline.name"></el-input>
       </el-form-item>
-      <el-form-item label="age"  class="pack-up">
+      <el-form-item label="age" class="pack-up">
         <el-input v-model="formInline.age" placeholder="formInline.age"></el-input>
       </el-form-item>
-      <el-form-item label="sex"  class="pack-up">
+      <el-form-item label="sex" class="pack-up">
         <el-input v-model="formInline.sex" placeholder="formInline.sex"></el-input>
       </el-form-item>
-      <el-form-item label="sex"  class="pack-up">
-        <el-input v-model="formInline.sex" placeholder="formInline.sex"></el-input>
-      </el-form-item>
-      <el-form-item label="sex"  class="pack-up">
-        <el-input v-model="formInline.sex" placeholder="formInline.sex"></el-input>
-      </el-form-item>
+
     </MyFormInline>
   </div>
   </div>
@@ -65,23 +65,37 @@ import layoutRepository from '@/components/Layout/layoutRepository.js'
 import paginationRepository from '@/repository/pagination.js'
 
 import MyFormInline from '@/components/Form/FormInline.vue'
-import FormInlineRepository from '@/components/Form/FormInlineRepository.js'
+// import FormInlineRepository from '@/components/Form/FormInlineRepository.js'
 
 export default {
   name: 'ProjectIndex',
   components: { MyFormInline },
   data() {
     return {
-      test: 'a'
+      myselect: 'a',
+      formInline: { name: '', adress: '', age: '', sex: '' },
+      rule: {
+        name: [
+          {
+            required: true,
+            message: 'Please input name',
+            trigger: 'blur'
+          }
+        ],
+        adress: [
+          {
+            required: true,
+            message: 'Please select Adress',
+            trigger: 'change'
+          }
+        ]
+      }
     }
   },
   setup(prop, context) {
     const { listData, loading, getListData } = dropListRepository()
 
     const { CurrentLayout, setCurrentLayout } = layoutRepository()
-
-    // FormInline
-    const { formInline, collapse, toggleCollapse, initFormInline } = FormInlineRepository()
 
     // 分页相关
     const { currentPage: currentPage1, pageSize, total, setCurrentPage, setPageSize, setTotal, resetPage } = paginationRepository()
@@ -95,11 +109,13 @@ export default {
     return {
       // 下拉接口
       listData, loading, getListData,
+
       // 布局切换
       CurrentLayout, setCurrentLayout,
+
       // 分页相关
-      currentPage1, pageSize, total, setCurrentPage, setPageSize, setTotal, resetPage,
-      formInline, collapse, toggleCollapse, initFormInline
+      currentPage1, pageSize, total, setCurrentPage, setPageSize, setTotal, resetPage
+
     }
   },
 
@@ -108,20 +124,37 @@ export default {
   },
 
   mounted() {
-    this.initFormInline({ name: '111', adress: '', age: '', sex: '' })
+
   },
 
   methods: {
+    /**
+     * 下拉
+     */
     getList() {
       this.getListData('/dev-api/list')
     },
 
+    /**
+     * 分页
+     */
     handleSizeChange(pageSize) {
       this.setPageSize(pageSize)
     },
     handleCurrentChange(currentPage) {
       this.setCurrentPage(currentPage)
+    },
+
+    /**
+     * FormInline
+     */
+    resetFormInline() {
+      this.formInline = { name: '', adress: '', age: '', sex: '' }
+    },
+    search() {
+      console.log(this.formInline, 'do search')
     }
+
   }
 }
 

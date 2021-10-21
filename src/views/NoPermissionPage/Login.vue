@@ -4,8 +4,8 @@
     <el-button type="primary" @click="handleLogin" :loading='userLoading'>点击登录</el-button>
     <el-button type="primary" @click="getAllRoutes">checkAllroutes</el-button>
 
-    <el-button type="primary" @click="test">test Aixoscancel</el-button>
-    <el-button type="primary" @click="cancel">取消cancel</el-button>
+    <!-- <el-button type="primary" @click="test">test Aixoscancel</el-button>
+    <el-button type="primary" @click="cancel">取消cancel</el-button> -->
   </div>
 </template>
 

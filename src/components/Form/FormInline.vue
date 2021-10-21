@@ -3,18 +3,18 @@
   <div class="custom-form-inline" v-resize="onResize"  :class="{'collapse':collapse}">
     <el-form
       ref="formInline"
-      :rules="{}"
-      :inline="true"
+      :rules="rule"
       :model="formInline"
+      :inline="true"
       label-width="120px"
       :class="ResponsiveClass">
       <slot  />
       <!-- <slot name="more" ></slot> -->
 
       <el-form-item class="operator-form-item">
-        <el-button type="primary" @click="onSubmit">查询</el-button>
-        <el-button @click="resetForm">重置</el-button>
-        <el-button type="text" @click="toggleCollapse" v-if="collapsable">收起</el-button>
+        <el-button type="primary" @click="onSubmit_">查询</el-button>
+        <el-button @click="resetForm_">重置</el-button>
+        <el-button type="text" @click="collapse=!collapse" v-if="collapsable">收起</el-button>
       </el-form-item>
 
   </el-form>
@@ -25,30 +25,40 @@
 export default {
   name: 'MyFormInline',
   props: {
+    collapsable: { // 是否展示收起
+      default: true
+    },
     formInline: {
+      //  表单实体数据
       type: Object,
       default() {
         return { }
-      },
-      required: true
+      }
     },
-    collapse: {
-      type: Boolean,
+    rule: {
+      // 验证规则
+      type: Object,
       default() {
-        return false
-      },
-      required: true
+        return { }
+      }
     },
-    collapsable: {
-      default: true
-    },
-    toggleCollapse: {
+    reset: {
       type: Function,
+      default() {
+        return null
+      }
+    },
+    search: {
+      type: Function,
+      default() {
+        return null
+      },
       required: true
     }
   },
   data() {
     return {
+      collapse: false,
       ResponsiveClass: {
         xs: false,
         sm: false,
@@ -67,10 +77,7 @@ export default {
   },
 
   methods: {
-    resetForm() {
-      console.log(this.$refs['formInline'])
-      // this.$refs['formInline'].resetFields()
-    },
+
     Responsive(width) {
       // xs	<768px | sm	≥768px  ｜ md	≥992px ｜lg	≥1200px ｜ xl	≥1920px
       if (width < 800) { // xs
@@ -106,8 +113,21 @@ export default {
     onResize() {
       this.Responsive(this.$el.clientWidth)
     },
-    onSubmit(item) {
-      console.log(this.formInline, 'formInline')
+    resetForm_() { // prop 传入reset函数
+      this.reset()
+      setTimeout(() => {
+        this.$refs['formInline'].resetFields()
+      }, 0)
+    },
+    onSubmit_() { // prop 传入提交函数
+      this.$refs['formInline'].validate((valid) => {
+        if (valid) {
+          this.search()
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     }
   }
 }
