@@ -4,10 +4,15 @@
       <div class="layout-column-menuContainer" :class="{collapse:columnCollapse}">
         <!-- 菜单左侧 -->
         <div class="parent-menu-container">
-           <span @click="toggleColumnCollapse">a</span>
+           <span @click="toggleColumnCollapse">
+             <el-button type="primary">切换</el-button>
+           </span>
+           <MainColumnMenu />
         </div>
         <!-- 菜单右侧 -->
-        <div class="child-menu-container">菜单右侧</div>
+        <div class="child-menu-container">
+          <MinorColumnMenu />
+        </div>
       </div>
       <div class="layout-column-mainContainer">
           <router-link to="/">Index</router-link> |
@@ -23,6 +28,8 @@
 <script>
 import columnRepositrory from './columnRepositrory'
 import userOperator from '@/repository/user.js'
+import MainColumnMenu from '@/components/Menus/Main/Column.vue'
+import MinorColumnMenu from '@/components/Menus/Minor/Column.vue'
 export default {
   name: '',
   data() {
@@ -39,7 +46,7 @@ export default {
     }
   },
 
-  components: {},
+  components: { MainColumnMenu, MinorColumnMenu },
 
   computed: {},
 
@@ -80,8 +87,10 @@ export default {
         overflow: hidden;
         >.parent-menu-container{
           flex: 0 0 64px;
+          width: 64px;
           height: 100vh;
           background-color: azure;
+          // overflow: hidden;
         }
         >.child-menu-container{
           flex: 1 1 auto;

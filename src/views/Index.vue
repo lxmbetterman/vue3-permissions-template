@@ -15,8 +15,8 @@
       </el-option>
     </el-select>
 
-  <el-button @click="setCurrentLayout('Column')">Column-{{CurrentLayout}}</el-button>
-  <el-button @click="setCurrentLayout('Default')">Default-{{CurrentLayout}}</el-button>
+  <el-button @click="setCurrentLayout('Column')">Column布局切换</el-button>
+  <el-button @click="setCurrentLayout('Default')">Default布局切换</el-button>
   <div>
     <my-pagination
       :pageSize='pageSize'
@@ -65,7 +65,6 @@ import layoutRepository from '@/components/Layout/layoutRepository.js'
 import paginationRepository from '@/repository/pagination.js'
 
 import MyFormInline from '@/components/Form/FormInline.vue'
-// import FormInlineRepository from '@/components/Form/FormInlineRepository.js'
 
 export default {
   name: 'ProjectIndex',
@@ -124,7 +123,7 @@ export default {
   },
 
   mounted() {
-
+    // console.log(this.$route)
   },
 
   methods: {

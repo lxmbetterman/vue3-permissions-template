@@ -5,7 +5,6 @@ export const Animate = {
   },
   mounted(el, binding) {
     // const animateName = binding.value
-    console.log(el, '????')
     console.log(el.getAttribute('class'))
     const currentClass = el.getAttribute('class')
     // currentClass += `animate__animated animate__${binding.value}`

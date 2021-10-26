@@ -12,6 +12,7 @@ export const constantRoutes = [
   {
     path: '/login',
     name: 'Login',
+    hidden: true,
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -22,7 +23,8 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     redirect: '/index',
-    name: 'IndexDic',
+    // name: 'IndexDic',
+    meta: { title: '首页', icon: '' },
     children: [
       {
         path: 'index',
@@ -32,9 +34,17 @@ export const constantRoutes = [
       },
       {
         path: 'about',
-        component: () => import('@/views/About'),
+        component: () => import('@/views/About/About'),
         name: 'About',
-        meta: { title: '', icon: '' }
+        meta: { title: '关于', icon: '' },
+        children: [
+          {
+            path: 'aboutChild',
+            component: () => import('@/views/About/AboutChild'),
+            name: 'AboutChild',
+            meta: { title: 'child', icon: '' }
+          }
+        ]
       }
     ]
   }
@@ -46,12 +56,13 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/asyc/asycAbout',
     name: 'AsycDic',
+    meta: { title: '异步1', icon: '' },
     children: [
       {
         path: 'asycAbout',
-        component: () => import('@/views/AsycAbout'),
+        component: () => import('@/views/Asyc/AsycAbout'),
         name: 'AsycAbout',
-        meta: { title: '', icon: '' }
+        meta: { title: 'AsycAbout', icon: '' }
       }
     ]
   },
@@ -60,12 +71,13 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/asyc2/asycAbout2',
     name: 'AsycDic2',
+    meta: { title: '异步2', icon: '' },
     children: [
       {
         path: 'asycAbout2',
-        component: () => import('@/views/AsycAbout2'),
+        component: () => import('@/views/Asyc/AsycAbout2'),
         name: 'AsycAbout2',
-        meta: { title: '', icon: '' }
+        meta: { title: 'AsycAbout2', icon: '' }
       }
     ]
   },
@@ -74,6 +86,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/system/menu',
     name: 'SystemManage',
+    meta: { title: '系统', icon: '' },
     children: [
       {
         path: 'menu',
