@@ -23,7 +23,7 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     redirect: '/index',
-    // name: 'IndexDic',
+    name: 'IndexDic',
     meta: { title: '首页', icon: '' },
     children: [
       {

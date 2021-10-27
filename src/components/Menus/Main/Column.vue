@@ -1,35 +1,31 @@
 <!--  -->
 <template>
-    <div>
-      <!-- <el-button @click="test" size='mini'>all menu</el-button> -->
-      <div class="main-column-menu-list">
-        <div
-          v-for="item in mainMenuPath"
-          :key="item.name"
-          class="main-column-menu-list-item"
-          @click="ChangeMainMenu(item)"
-          >
-          {{item.meta.title}}
-        </div>
-      </div>
+  <div class="main-column-menu-list">
+    <div
+      v-for="item in mainMenu"
+      :key="item.name"
+      class="main-column-menu-list-item"
+      @click="ChangeMainMenu(item)"
+      >
+      {{item.meta.title}}
     </div>
+  </div>
 </template>
 
 <script>
-import { userAllowedPath } from '@/router/index.js'
-console.log((userAllowedPath.value), 'userAllowedPath')
 import menusRepositories from '@/repository/menus.js'
 
 export default {
   name: 'MainColumnMenu', // baba is a big pig and he is ugly and fat but i still love him
   data() {
     return {
+      mainMenuLists: []
     }
   },
   setup() {
-    const { mainMenuPath, setMainMenuPath } = menusRepositories()
+    const { mainMenu, setMainMenu, setMainActiveName, setMinorMenu, minorMenu } = menusRepositories()
     return {
-      mainMenuPath, setMainMenuPath
+      mainMenu, setMainMenu, setMainActiveName, setMinorMenu, minorMenu
     }
   },
 
@@ -38,16 +34,17 @@ export default {
   computed: {},
 
   mounted() {
-    this.setMainMenuPath()
+    this.setMainMenu()
+    // 获取当前页面的main menu的name
+    this.setMainActiveName(this.$route.matched[0].name)
+    this.setMinorMenu()
   },
 
   methods: {
     ChangeMainMenu(route) {
-      console.log(route)
+      this.setMainActiveName(route.name)
+      this.setMinorMenu() // 选中main menu 后 set minor menu
       this.$router.push(route.path)
-    },
-    test() {
-      console.log(this.mainMenuPath, 'mainMenuPath')
     }
   }
 }

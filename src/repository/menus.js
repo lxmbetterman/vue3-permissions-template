@@ -4,40 +4,55 @@
  *  mainActivePath 主菜单的 active path
  *  minorActivePath 子菜单的 active path
  */
-import { ref, computed, toRaw } from 'vue'
+import { ref } from 'vue'
 import { userAllowedPath } from '@/router/index.js'
 
-const mainMenuPath = ref([])
-const minorMenuPath = ref([])
+const mainMenu = ref([])
+const minorMenu = ref([])
 
-const mainActivePath = ref('')
-const minorActivePath = ref('')
+const mainActiveName = ref('')
+// const minorActivePath = ref('')
+
+const filterMenus = (allMenus) => { // 过滤被hidden的menu
+  const filteredMenus = []
+  allMenus.map(menu => {
+    const currentMenu = { ...menu }
+    if (!currentMenu.hidden) {
+      if (currentMenu.children) {
+        currentMenu.children = filterMenus(currentMenu.children)
+      }
+      filteredMenus.push(currentMenu)
+    }
+  })
+  return filteredMenus
+}
 
 export default function menusRepositories() {
-  // mainMenuPath.value = computed(() => {
-  //   return userAllowedPath.filter(item => {
-  //     return !item.hidden
-  //   })
-  // })
-
-  const setMainMenuPath = () => {
-    mainMenuPath.value = userAllowedPath.value.filter(item => {
-      return !item.hidden
-    })
+  /**
+   * 设置主菜单数据
+   */
+  const setMainMenu = () => {
+    const menus = filterMenus(userAllowedPath.value)
+    mainMenu.value = menus
   }
-  const setMinorMenuPath = (currentRoute) => {
-    mainActivePath.value = currentRoute.matched[0].path
-    minorActivePath.value = currentRoute.matched[currentRoute.matched.length - 1].path
-    setMainMenuPath()
-    minorMenuPath.value = (mainMenuPath.value).filter(i => i.path === mainActivePath.value)
+  /**
+   * 设置主菜单当前选中的路由name
+   */
+  const setMainActiveName = (name) => { // 设置选中的main menu的name
+    mainActiveName.value = name
+  }
+  /**
+   * 选择主菜单后，设置当前对应的副菜单
+   */
+  const setMinorMenu = () => {
+    minorMenu.value = (mainMenu.value).filter(i => i.name === mainActiveName.value)[0]?.children
   }
 
   return {
-    mainMenuPath,
-    mainActivePath,
-    minorMenuPath,
-    minorActivePath,
-    setMainMenuPath,
-    setMinorMenuPath
+    mainMenu,
+    minorMenu,
+    setMainMenu,
+    setMainActiveName,
+    setMinorMenu
   }
 }
