@@ -4,7 +4,7 @@
       <div class="label-brand-logo">Vue-Better-Admin</div>
       <div class="label-container">
         <div class="bar"></div>
-        <span class="main-name">{{mainMenuName}}</span>
+        <span class="main-name">{{mainMenuTitle}}</span>
         <div class="bar"></div>
       </div>
   </div>
@@ -19,14 +19,14 @@ export default {
     }
   },
   setup() {
-    const { mainMenu, mainActiveName, mainMenuName } = menusRepositories()
+    const { mainMenu, mainActiveName, mainMenuTitle } = menusRepositories()
     // const name = computed(() => {
     //   return mainMenu.value.filter((item) => {
     //     item.name = mainActiveName.value
     //   })[0].meta.title
     // })
     return {
-      mainMenuName
+      mainMenuTitle
     }
   },
 

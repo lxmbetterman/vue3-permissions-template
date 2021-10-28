@@ -8,7 +8,7 @@ import { ref } from 'vue'
 import { userAllowedPath } from '@/router/index.js'
 
 const mainMenu = ref([])
-const mainMenuName = ref('')
+const mainMenuTitle = ref('')
 const minorMenu = ref([])
 
 const mainActiveName = ref('')
@@ -47,13 +47,13 @@ export default function menusRepositories() {
    */
   const setMinorMenu = () => {
     const tempMenu = (mainMenu.value).filter(i => i.name === mainActiveName.value)[0]
-    mainMenuName.value = tempMenu?.meta.title
+    mainMenuTitle.value = tempMenu?.meta.title
     minorMenu.value = tempMenu?.children
   }
 
   return {
     mainMenu,
-    mainMenuName,
+    mainMenuTitle,
     minorMenu,
     mainActiveName,
     setMainMenu,
