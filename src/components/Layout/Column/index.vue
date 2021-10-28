@@ -11,7 +11,7 @@
         </div>
         <!-- 菜单右侧 -->
         <div class="child-menu-container">
-          <MinorColumnMenu />
+          <MinorColumnMenu  style="marginRight:-2px"/>
         </div>
       </div>
       <div class="layout-column-mainContainer">
@@ -76,8 +76,9 @@ export default {
     .layout-column-menuContainer{
         flex: 0 0 266px;
         height: 100vh;
-        background-color: aquamarine;
         transition: flex .2s;
+        box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
+
         // 折叠样式
         &.collapse{
           flex: 0 0 64px;
@@ -89,20 +90,20 @@ export default {
           flex: 0 0 64px;
           width: 64px;
           height: 100vh;
-          background-color: azure;
+          background-color: var(--my-color-bg);
           // overflow: hidden;
         }
         >.child-menu-container{
           flex: 1 1 auto;
           min-width: 120px;
           height: 100vh;
-          background-color: #ddd;
         }
 
     }
     .layout-column-mainContainer{
         flex: 1 1 auto;
         height: 100vh;
+        padding: 0 15px;
     }
 }
 </style>

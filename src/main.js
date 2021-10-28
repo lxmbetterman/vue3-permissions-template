@@ -5,21 +5,8 @@ import router from './router'
 import store from './store'
 
 import ElementPlus from 'element-plus'
-import changeThemeColor from '@/utils/themeColor'
-import { getThemeStyleName } from '@/utils/cookieTools.js'
 
-const themeName = getThemeStyleName()
-if (themeName === 'GreenWhite') {
-  import('@/styles/elementPlus/index-green-white.scss').then(() => {
-  })
-} else if (themeName === 'BlueBlack') {
-  import('@/styles/elementPlus/index-blue-black.scss').then(() => {
-  })
-} else {
-  import('@/styles/elementPlus/index-green-white.scss').then(() => {
-  })
-}
-changeThemeColor()
+// document.getElementsByTagName('body')[0].style.setProperty('--el-button-background-color', 'red')
 
 // import
 

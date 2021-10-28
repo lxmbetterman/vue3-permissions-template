@@ -10,7 +10,8 @@ import $utils from '@/utils/utils'
 import { ElConfigProvider } from 'element-plus'
 
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
-// import menusRepositories from '@/repository/menus.js'
+import initThemeColor from '@/utils/themeColor'
+initThemeColor()
 export default {
   components: {
     [ElConfigProvider.name]: ElConfigProvider
@@ -46,4 +47,14 @@ export default {
 body{
   overflow: hidden;
 }
+
+// .el-button--primary {
+//     --el-button-font-color: #ffffff;
+//     --el-button-background-color: #41b584;
+//     --el-button-border-color: #41b584;
+//     --el-button-hover-color: #67c49d;
+//     --el-button-active-font-color: #e6e6e6;
+//     --el-button-active-background-color: #348f69;
+//     --el-button-active-border-color: #348f69;
+// }
 </style>

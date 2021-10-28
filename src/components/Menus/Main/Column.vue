@@ -12,7 +12,7 @@
       <el-icon class="main-column-menu-icon">
         <iconAddLocation />
       </el-icon>
-      {{item.meta.title}}
+      <div class="main-title">{{item.meta.title}}</div>
     </div>
   </div>
 </template>
@@ -55,11 +55,17 @@ export default {
 
 </script>
 <style lang='scss' scoped>
+.main-column-menu-list{
+  height: 100%;
+  background-color: var(--my-color-background);
+  padding-top: 10px;
+}
 .logo{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     display: block;
-    margin: 5px auto;
+    margin: 0 auto;
+    margin-bottom: 5px;
   }
 .main-column-menu-list-item{
 
@@ -71,24 +77,27 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: var(--my-text-color-bg);
+  transition: background-color .4s;
+  font-size: 13px;
   &.active{
     font-weight: bold;
-    // color: #fff;
+    color: var(--my-color-text-active);
     cursor: pointer;
+    background-color: var(--el-color-primary);
     .main-column-menu-icon{
       font-weight: bold;
-      font-size: 16px;
-      color: $color-primary;
+      font-size: 14px;
+    }
+    .main-title{
     }
   }
   &:hover{
-    // background-color: #409eff;
-    font-weight: bold;
-    // color: #fff;
     cursor: pointer;
     .main-column-menu-icon{
       font-weight: bold;
-      font-size: 16px;
+    }
+    .main-title{
     }
   }
 }
