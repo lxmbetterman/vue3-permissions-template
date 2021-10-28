@@ -8,6 +8,7 @@ import { ref } from 'vue'
 import { userAllowedPath } from '@/router/index.js'
 
 const mainMenu = ref([])
+const mainMenuName = ref('')
 const minorMenu = ref([])
 
 const mainActiveName = ref('')
@@ -45,11 +46,14 @@ export default function menusRepositories() {
    * 选择主菜单后，设置当前对应的副菜单
    */
   const setMinorMenu = () => {
-    minorMenu.value = (mainMenu.value).filter(i => i.name === mainActiveName.value)[0]?.children
+    const tempMenu = (mainMenu.value).filter(i => i.name === mainActiveName.value)[0]
+    mainMenuName.value = tempMenu?.meta.title
+    minorMenu.value = tempMenu?.children
   }
 
   return {
     mainMenu,
+    mainMenuName,
     minorMenu,
     mainActiveName,
     setMainMenu,

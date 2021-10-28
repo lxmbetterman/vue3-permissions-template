@@ -4,13 +4,11 @@
       <div class="layout-column-menuContainer" :class="{collapse:columnCollapse}">
         <!-- 菜单左侧 -->
         <div class="parent-menu-container">
-           <!-- <span @click="toggleColumnCollapse">
-             <el-button type="primary">切换</el-button>
-           </span> -->
-           <MainColumnMenu />
+          <MainColumnMenu />
         </div>
         <!-- 菜单右侧 -->
         <div class="child-menu-container">
+          <LabelBrand />
           <MinorColumnMenu  style="marginRight:-2px"/>
         </div>
       </div>
@@ -30,6 +28,7 @@ import columnRepositrory from './columnRepositrory'
 import userOperator from '@/repository/user.js'
 import MainColumnMenu from '@/components/Menus/Main/Column.vue'
 import MinorColumnMenu from '@/components/Menus/Minor/Column.vue'
+import LabelBrand from '../../Menus/Components/LabelBrand.vue'
 export default {
   name: '',
   data() {
@@ -46,7 +45,7 @@ export default {
     }
   },
 
-  components: { MainColumnMenu, MinorColumnMenu },
+  components: { MainColumnMenu, MinorColumnMenu, LabelBrand },
 
   computed: {},
 

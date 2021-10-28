@@ -10,7 +10,7 @@ import $utils from '@/utils/utils'
 import { ElConfigProvider } from 'element-plus'
 
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
-import initThemeColor from '@/utils/themeColor'
+import initThemeColor from '@/styles/elementPlus/theme.js'
 initThemeColor()
 export default {
   components: {

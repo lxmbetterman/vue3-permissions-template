@@ -5,7 +5,7 @@
     @select="handleSelect"
     ref="elMenu"
   >
-  <MenuItem v-for="(item) in minorMenu" :key="item.name" :menuItem="item"/>
+    <MenuItem v-for="(item) in minorMenu" :key="item.name" :menuItem="item"/>
   </el-menu>
 
 </template>
@@ -13,6 +13,7 @@
 <script>
 import menusRepositories from '@/repository/menus.js'
 import MenuItem from '../Components/MenuItem.vue'
+
 export default {
   name: '',
   data() {
