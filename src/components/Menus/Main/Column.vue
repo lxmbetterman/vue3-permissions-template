@@ -1,12 +1,17 @@
 <!--  -->
 <template>
   <div class="main-column-menu-list">
+    <img class="logo" src="@/assets/logo.png" alt="lgon">
     <div
       v-for="item in mainMenu"
       :key="item.name"
       class="main-column-menu-list-item"
+      :class="{active:item.name===mainActiveName}"
       @click="ChangeMainMenu(item)"
       >
+      <el-icon class="main-column-menu-icon">
+        <iconAddLocation />
+      </el-icon>
       {{item.meta.title}}
     </div>
   </div>
@@ -23,9 +28,9 @@ export default {
     }
   },
   setup() {
-    const { mainMenu, setMainMenu, setMainActiveName, setMinorMenu, minorMenu } = menusRepositories()
+    const { mainMenu, mainActiveName, setMainMenu, setMainActiveName, setMinorMenu, minorMenu } = menusRepositories()
     return {
-      mainMenu, setMainMenu, setMainActiveName, setMinorMenu, minorMenu
+      mainMenu, mainActiveName, setMainMenu, setMainActiveName, setMinorMenu, minorMenu
     }
   },
 
@@ -35,8 +40,7 @@ export default {
 
   mounted() {
     this.setMainMenu()
-    // 获取当前页面的main menu的name
-    this.setMainActiveName(this.$route.matched[0].name)
+    this.setMainActiveName(this.$route.matched[0].name) // 获取当前页面的main menu的name
     this.setMinorMenu()
   },
 
@@ -51,21 +55,45 @@ export default {
 
 </script>
 <style lang='scss' scoped>
+.logo{
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 5px auto;
+  }
 .main-column-menu-list-item{
+
   width: 50px;
   height: 50px;
   margin: 2px auto;
   border-radius: 5px;
-  border: 1px solid #ddd;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  &:hover{
-    background-color: #409eff;
+  &.active{
     font-weight: bold;
-    color: #fff;
+    // color: #fff;
     cursor: pointer;
+    .main-column-menu-icon{
+      font-weight: bold;
+      font-size: 16px;
+      color: $color-primary;
+    }
   }
+  &:hover{
+    // background-color: #409eff;
+    font-weight: bold;
+    // color: #fff;
+    cursor: pointer;
+    .main-column-menu-icon{
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+}
+.main-column-menu-icon{
+  margin-bottom: 5px;
 }
 
 </style>

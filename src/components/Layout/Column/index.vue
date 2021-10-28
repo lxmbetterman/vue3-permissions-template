@@ -4,9 +4,9 @@
       <div class="layout-column-menuContainer" :class="{collapse:columnCollapse}">
         <!-- 菜单左侧 -->
         <div class="parent-menu-container">
-           <span @click="toggleColumnCollapse">
+           <!-- <span @click="toggleColumnCollapse">
              <el-button type="primary">切换</el-button>
-           </span>
+           </span> -->
            <MainColumnMenu />
         </div>
         <!-- 菜单右侧 -->

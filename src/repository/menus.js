@@ -51,6 +51,7 @@ export default function menusRepositories() {
   return {
     mainMenu,
     minorMenu,
+    mainActiveName,
     setMainMenu,
     setMainActiveName,
     setMinorMenu

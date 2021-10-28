@@ -42,7 +42,7 @@ export const constantRoutes = [
             path: 'aboutChild',
             component: () => import('@/views/About/AboutChild'),
             name: 'AboutChild',
-            meta: { title: 'child', icon: '' }
+            meta: { title: '子页面', icon: '' }
           }
         ]
       }
@@ -56,7 +56,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/asyc/asycAbout',
     name: 'AsycDic',
-    meta: { title: '异步1', icon: '' },
+    meta: { title: '异步', icon: '' },
     children: [
       {
         path: 'asycAbout',
@@ -71,13 +71,13 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/asyc2/asycAbout2',
     name: 'AsycDic2',
-    meta: { title: '异步2', icon: '' },
+    meta: { title: '异步', icon: '' },
     children: [
       {
         path: 'asycAbout2',
         component: () => import('@/views/Asyc/AsycAbout2'),
         name: 'AsycAbout2',
-        meta: { title: 'AsycAbout2', icon: '' }
+        meta: { title: '异步页面', icon: '' }
       }
     ]
   },
@@ -92,7 +92,7 @@ export const asyncRoutes = [
         path: 'menu',
         component: () => import('@/views/System/menuList.vue'),
         name: 'MenuList',
-        meta: { title: '', icon: '' }
+        meta: { title: '菜单管理', icon: '' }
       }
     ]
   }

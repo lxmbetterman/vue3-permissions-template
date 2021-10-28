@@ -51,6 +51,11 @@
 
     </MyFormInline>
   </div>
+  <div>
+    <p>主题切换</p>
+    <el-button @click="changeThemeCookie('GreenWhite')">绿白主题</el-button>
+    <el-button @click="changeThemeCookie('BlueBlack')">蓝黑主题</el-button>
+  </div>
   </div>
 </template>
 
@@ -65,6 +70,8 @@ import layoutRepository from '@/components/Layout/layoutRepository.js'
 import paginationRepository from '@/repository/pagination.js'
 
 import MyFormInline from '@/components/Form/FormInline.vue'
+// import { changeThemeColor } from '@/utils/themeColor'
+import { setThemeStyleName, getThemeStyleName } from '@/utils/cookieTools.js'
 
 export default {
   name: 'ProjectIndex',
@@ -152,6 +159,12 @@ export default {
     },
     search() {
       console.log(this.formInline, 'do search')
+    },
+    changeThemeCookie(themeStyleName) {
+      if (getThemeStyleName() !== themeStyleName) {
+        setThemeStyleName(themeStyleName)
+        this.$router.go(0)
+      }
     }
 
   }

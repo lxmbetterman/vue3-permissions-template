@@ -1,6 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
-import { getToken } from '@/utils/cookieToken'
+import { getToken } from '@/utils/cookieTools'
 
 // create an axios instance
 export const aixosInstance = axios.create({

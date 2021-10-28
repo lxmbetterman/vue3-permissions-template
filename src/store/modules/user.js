@@ -1,6 +1,6 @@
 // import { login, logout, getInfo } from "@/api/user";
-// import { getToken, setToken, removeToken } from '@/utils/cookieToken'
-import { getToken, setToken, TokenKey, removeToken } from '@/utils/cookieToken'
+// import { getToken, setToken, removeToken } from '@/utils/cookieTools'
+import { getToken, setToken, TokenKey, removeToken } from '@/utils/cookieTools'
 import { resetRouter } from '@/router'
 
 const state = {

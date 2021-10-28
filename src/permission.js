@@ -3,11 +3,11 @@ import store from './store'
 // import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import { getToken } from '@/utils/cookieToken' // get token from cookie
+import { getToken } from '@/utils/cookieTools' // get token from cookie
 // import getPageTitle from '@/utils/get-page-title'
 import { toRaw } from '@vue/reactivity'
 import userOperator from '@/repository/user.js'
-const { currentUser, user_getInfo } = userOperator()
+const { currentUser, user_getInfo, user_logout } = userOperator()
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -40,18 +40,13 @@ router.beforeEach(async(to, from, next) => {
           // 刷新之后动态路由是没有加载的
           next({ ...to, replace: true }) // 刷新页面后，确保异步页面不留白
         } catch (error) {
-          // remove token and go to login page to re-login
-          await store.dispatch('user/resetToken')
-          // Message.error(error || 'Has Error')
-          alert('error')
-          next(`/login`)
+          user_logout()
           NProgress.done()
         }
       }
     }
   } else {
     /* has no token*/
-
     if (whiteList.indexOf(to.path) !== -1) {
       // in the free login whitelist, go directly
       next()
