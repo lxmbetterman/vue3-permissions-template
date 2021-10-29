@@ -82,6 +82,21 @@ export const asyncRoutes = [
     ]
   },
   {
+    path: '/visualization',
+    component: Layout,
+    redirect: '/visualization/x6',
+    name: 'Visualization',
+    meta: { title: '可视化', icon: '' },
+    children: [
+      {
+        path: 'x6',
+        component: () => import('@/views/Visualization/X6/indexX6.vue'),
+        name: 'X6',
+        meta: { title: 'X6示例', icon: '' }
+      }
+    ]
+  },
+  {
     path: '/system',
     component: Layout,
     redirect: '/system/menu',

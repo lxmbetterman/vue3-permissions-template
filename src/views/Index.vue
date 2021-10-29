@@ -1,10 +1,9 @@
 <!--  -->
 <template>
   <div >
-    {{listData}}
-    <p>this is Index page</p>
-    <p>vue3 语法学习</p>
-    <el-button @click="getList" :loading="loading" >getList</el-button>
+    <hr>
+    <p>全局下拉接口的封装</p>
+    <el-button @click="getList" :loading="loading" >获取下拉数据</el-button>
     <el-select v-model="myselect" placeholder="Select">
       <el-option
         v-for="item in listData"
@@ -14,9 +13,13 @@
       >
       </el-option>
     </el-select>
-
+  <hr>
+  <p>布局切换的实现思路</p>
   <el-button @click="setCurrentLayout('Column')">Column布局切换</el-button>
   <el-button @click="setCurrentLayout('Default')">Default布局切换</el-button>
+
+  <hr>
+  <p>分页的封装思路</p>
   <div>
     <my-pagination
       :pageSize='pageSize'
@@ -26,6 +29,9 @@
       @currentChange="handleCurrentChange"
     />
   </div>
+
+  <hr>
+  <p>表格搜索条件表单的封装思路</p>
   <div>
     <MyFormInline
       :rule="rule"
@@ -51,8 +57,10 @@
 
     </MyFormInline>
   </div>
+
+  <hr>
+  <p>主题切换的实现</p>
   <div>
-    <p>主题切换</p>
     <el-button @click="changeThemeCookie('GreenWhite')">绿白主题</el-button>
     <el-button @click="changeThemeCookie('BlueBlack')">蓝黑主题</el-button>
   </div>
