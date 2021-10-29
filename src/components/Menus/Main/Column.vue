@@ -9,9 +9,7 @@
       :class="{active:item.name===mainActiveName}"
       @click="ChangeMainMenu(item)"
       >
-      <el-icon class="main-column-menu-icon">
-        <iconAddLocation />
-      </el-icon>
+      <my-icon :name="item.meta.icon"></my-icon>
       <div class="main-title">{{item.meta.title}}</div>
     </div>
   </div>
@@ -85,10 +83,10 @@ export default {
     color: var(--my-color-text-active);
     cursor: pointer;
     background-color: var(--el-color-primary);
-    .main-column-menu-icon{
-      font-weight: bold;
-      font-size: 14px;
-    }
+    // .main-column-menu-icon{
+    //   font-weight: bold;
+    //   font-size: 14px;
+    // }
     .main-title{
     }
   }

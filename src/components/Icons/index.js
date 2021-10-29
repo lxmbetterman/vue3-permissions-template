@@ -1,10 +1,15 @@
-import { Expand, Edit, AddLocation } from '@element-plus/icons'
-
+import { Expand, Edit, AddLocation, HomeFilled, House, Service } from '@element-plus/icons'
+import MyIcon from './index.vue'
 // 所有组件列表
 const components = {
+  MyIcon,
   iconExpand: Expand,
   iconEdit: Edit,
-  iconAddLocation: AddLocation
+  iconAddLocation: AddLocation,
+  iconHomeFilled: HomeFilled,
+  iconHouse: House,
+  iconService: Service
+
 }
 // 定义install方法，接收app作为参数
 const install = function(app) {
@@ -16,6 +21,10 @@ const install = function(app) {
   for (const key in components) {
     app.component(key, components[key])
   }
+
+  const req = require.context('./svg', false, /\.svg$/)
+  const requireAll = requireContext => requireContext.keys().map(requireContext)
+  requireAll(req)
 }
 
 export default {

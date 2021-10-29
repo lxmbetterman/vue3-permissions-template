@@ -17,6 +17,23 @@ module.exports = {
     }
 
   },
+  chainWebpack: config => {
+    config.module
+      .rule('svg') // 内置规则名称
+      .exclude.add(resolve('src'))
+      .end()
+    config.module
+      .rule('myIcons') // 自定义规则名称
+      .test(/\.svg$/)
+      .include.add(resolve('src/components/Icons'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'icon-[name]'
+      })
+      .end()
+  },
   devServer: {
     port: 4000
   },
@@ -37,14 +54,8 @@ module.exports = {
       scss: {
         data: `@use "@/styles/elementPlus/var.scss" as *;`
       }
-      // 给 less-loader 传递 Less.js 相关选项
-      // less: {
-      //   // http://lesscss.org/usage/#less-options-strict-units `Global Variables`
-      //   // `primary` is global variables fields name
-      //   globalVars: {
-      //     primary: '#fff'
-      //   }
-      // }
     }
   }
+  //   // set svg-sprite-loader
+
 }

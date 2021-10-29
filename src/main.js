@@ -19,12 +19,12 @@ import '../Mock/index.js'
 import '@/repository/select.js'
 import Pagination from '@/components/Pagination/index.vue'
 import directives from '@/utils/directives'
-import Icon from '@/utils/icon'
+import Icons from '@/components/Icons'
 
 const app = createApp(App)
 app.use(ElementPlus)
 app.use(directives)
-app.use(Icon)
+app.use(Icons)
 
 app.component('MyPagination', Pagination)
 

@@ -24,25 +24,25 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/index',
     name: 'IndexDic',
-    meta: { title: '首页', icon: '' },
+    meta: { title: '首页', icon: 'iconHomeFilled' },
     children: [
       {
         path: 'index',
         component: () => import('@/views/Index'),
         name: 'Index',
-        meta: { title: '首页', icon: '' }
+        meta: { title: '首页', icon: 'iconHouse' }
       },
       {
         path: 'about',
         component: () => import('@/views/About/About'),
         name: 'About',
-        meta: { title: '关于', icon: '' },
+        meta: { title: '关于', icon: 'iconService' },
         children: [
           {
             path: 'aboutChild',
             component: () => import('@/views/About/AboutChild'),
             name: 'AboutChild',
-            meta: { title: '子页面', icon: '' }
+            meta: { title: '子页面', icon: 'iconService' }
           }
         ]
       }
