@@ -55,7 +55,7 @@ module.exports = {
         data: `@use "@/styles/elementPlus/var.scss" as *;`
       }
     }
-  }
+  },
   //   // set svg-sprite-loader
-
+  runtimeCompiler: true // 针对antv x6 vue node 的运行时编译
 }

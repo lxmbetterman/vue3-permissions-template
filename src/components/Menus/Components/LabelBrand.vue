@@ -19,7 +19,7 @@ export default {
     }
   },
   setup() {
-    const { mainMenu, mainActiveName, mainMenuTitle } = menusRepositories()
+    const { mainMenuTitle } = menusRepositories()
     // const name = computed(() => {
     //   return mainMenu.value.filter((item) => {
     //     item.name = mainActiveName.value

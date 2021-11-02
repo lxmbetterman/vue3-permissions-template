@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@antv/x6-vue-shape@^1.2.10":
+  version "1.2.10"
+  resolved "https://registry.nlark.com/@antv/x6-vue-shape/download/@antv/x6-vue-shape-1.2.10.tgz#ec5b2d304a5cf468870fa93fbf3f96ddf63af640"
+  integrity sha1-7FstMEpc9GiHD6k/vz+W3fY69kA=
+  dependencies:
+    vue-demi "^0.7.4"
+
 "@antv/x6@^1.28.1":
   version "1.28.1"
   resolved "https://registry.npmmirror.com/@antv/x6/download/@antv/x6-1.28.1.tgz#67bb31ec45869e4e2c7a4d9c7492c08ea19aa2d2"
@@ -8815,6 +8822,11 @@ vue-demi@*:
   version "0.11.4"
   resolved "https://registry.nlark.com/vue-demi/download/vue-demi-0.11.4.tgz#6101992fe4724cf5634018a16e953f3052e94e2a"
   integrity sha1-YQGZL+RyTPVjQBihbpU/MFLpTio=
+
+vue-demi@^0.7.4:
+  version "0.7.5"
+  resolved "https://registry.npmmirror.com/vue-demi/download/vue-demi-0.7.5.tgz#88dee7492fc99a0f911ff03fc02c658fa2a79af8"
+  integrity sha1-iN7nSS/Jmg+RH/A/wCxlj6Knmvg=
 
 vue-eslint-parser@^7.10.0:
   version "7.11.0"

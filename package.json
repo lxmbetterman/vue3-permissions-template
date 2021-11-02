@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@antv/x6": "^1.28.1",
+    "@antv/x6-vue-shape": "^1.2.10",
     "@element-plus/icons": "^0.0.11",
     "animate.css": "^4.1.1",
     "axios": "^0.21.4",

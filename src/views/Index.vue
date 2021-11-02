@@ -71,6 +71,8 @@
       <component :is="'icon-edit'"></component>
     </el-icon>
     <my-icon custom name="eye"></my-icon>
+    <my-icon name="iconEdit"></my-icon>
+    <my-icon name="iconHomeFilled"></my-icon>
   </div>
 </template>
 

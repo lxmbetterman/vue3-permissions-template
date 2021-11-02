@@ -16,7 +16,7 @@ Mock.mock(RegExp('/dev-api/userinfo' + '.*'), {
   'userName': 'laixueming',
   'userAllowedPathName': ['AsycDic', 'AsycAbout', 'AsycDic2', 'AsycAbout2', 'SystemManage', 'MenuList',
     // 可视化部分
-    'Visualization', 'X6'
+    'Visualization', 'X6', 'x6Vue'
   ]
 })
 

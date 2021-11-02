@@ -86,13 +86,19 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/visualization/x6',
     name: 'Visualization',
-    meta: { title: '可视化', icon: '' },
+    meta: { title: '可视化', icon: 'iconTrendCharts' },
     children: [
       {
         path: 'x6',
         component: () => import('@/views/Visualization/X6/indexX6.vue'),
         name: 'X6',
-        meta: { title: 'X6示例', icon: '' }
+        meta: { title: 'X6示例', icon: 'iconTrendCharts' }
+      },
+      {
+        path: 'x6Vue',
+        component: () => import('@/views/Visualization/X6/index.vue'),
+        name: 'x6Vue',
+        meta: { title: 'X6示例Vue Node', icon: 'iconTrendCharts' }
       }
     ]
   },

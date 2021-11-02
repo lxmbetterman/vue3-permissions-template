@@ -4,6 +4,7 @@
     <button @click="centerfy">居中</button>
     <button @click="zoom(.2)">+</button>
     <button @click="zoom(-0.2)">-</button>
+    <div id="minimap"></div>
     <div id="demo1"></div>
   </div>
 </template>
@@ -75,7 +76,6 @@ export default {
   computed: {},
 
   mounted() {
-    console.log(111)
     const graph = new Graph({
       container: document.getElementById('demo1'),
       panning: true,
@@ -84,6 +84,14 @@ export default {
       background: {
         color: '#fffbe6' // 设置画布背景颜色
       },
+      minimap: {
+        enabled: true,
+        container: document.getElementById('minimap')
+      },
+      // Scroller 使画布具备滚动、平移、居中、缩放等能力，默认禁用。创建画布时，通过下面配置即可开启。
+      // scroller: {
+      //   enabled: true
+      // },
       mousewheel: {
         enabled: true,
         modifiers: ['ctrl', 'meta']
@@ -110,4 +118,5 @@ export default {
 
 </script>
 <style lang='scss' scoped>
+
 </style>
