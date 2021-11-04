@@ -2,11 +2,13 @@
  * 主题颜色切换工具函数
  */
 import { getThemeStyleName } from '@/utils/cookieTools.js'
+
+/**
+ * 这里很重要：设置不同主题下的重要特殊的全局颜色变量
+ * 比如：背景色中的文字color/背景色/激活下文字颜色
+ */
 const themeGreenWhite = {
   '--el-color-primary': '#41b584',
-  '--my-text-color-bg': '#414a5e', // 背景色中的文字color
-  '--my-color-bg': '#f7f9ff', // 背景色
-  '--my-color-text-active': '#fff', // 激活下文字颜色
 
   '--el-color-success': '#13ce66',
 
@@ -23,9 +25,6 @@ const themeGreenWhite = {
 }
 const themeBlueBlack = {
   '--el-color-primary': '#1890ff', // 主颜色
-  '--my-text-color-bg': '#fff', // 背景色中的文字color
-  '--my-color-background': '#282c34', // 通用背景色
-  '--my-color-text-active': '#fff', // 激活下文字颜色
 
   '--el-color-success': '#13ce66',
 

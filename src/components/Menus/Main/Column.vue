@@ -55,7 +55,7 @@ export default {
 <style lang='scss' scoped>
 .main-column-menu-list{
   height: 100%;
-  background-color: var(--my-color-background);
+  background-color: var(--myThemeBackgroundColor);
   padding-top: 10px;
 }
 .logo{
@@ -75,18 +75,14 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: var(--my-text-color-bg);
+  color: var(--myTextColorInBackgroundColor);
   transition: background-color .4s;
   font-size: 13px;
   &.active{
     font-weight: bold;
-    color: var(--my-color-text-active);
+    color: var(--myTextColorInPrimaryColor);
     cursor: pointer;
     background-color: var(--el-color-primary);
-    // .main-column-menu-icon{
-    //   font-weight: bold;
-    //   font-size: 14px;
-    // }
     .main-title{
     }
   }

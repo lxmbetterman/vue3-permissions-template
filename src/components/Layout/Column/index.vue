@@ -9,7 +9,7 @@
         <!-- 菜单右侧 -->
         <div class="child-menu-container">
           <LabelBrand />
-          <MinorColumnMenu  style="marginRight:-2px"/>
+          <MinorColumnMenu/>
         </div>
       </div>
       <div class="layout-column-mainContainer">
@@ -69,7 +69,7 @@ export default {
     display: flex;
 
     .layout-column-menuContainer{
-        flex: 0 0 266px;
+        flex: 0 0 288px;
         height: 100vh;
         transition: flex .2s;
         box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
@@ -85,7 +85,7 @@ export default {
           flex: 0 0 64px;
           width: 64px;
           height: 100vh;
-          background-color: var(--my-color-bg);
+          background-color: var(--myThemeBackgroundColor);
           // overflow: hidden;
         }
         >.child-menu-container{

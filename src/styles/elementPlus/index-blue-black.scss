@@ -1,22 +1,4 @@
 
-
-/*
-blueBlack
-'--el-color-primary': '#1890ff',
-      '--el-color-success': '#13ce66',
-
-  '--el-color-warning': '#ffba00',
-
-  '--el-color-danger': '#ff4d4f',
-
-  '--el-color-error': '#ff4d4f',
-  // --el-color-error-light: #ffdbdc;
-  // --el-color-error-lighter: #ffeded;
-  '--el-color-info': '#909399',
-  // --el-color-info-light: #e9e9eb;
-  // --el-color-info-lighter: #f4f4f5;
-  '--el-border-radius-base': '2.5px'
-*/
 @forward "element-plus/theme-chalk/src/common/var.scss" with (
     $font-path: '~element-plus/dist/fonts',
     $colors: (
@@ -46,6 +28,34 @@ blueBlack
     ),
 );
 
+
+
 @use "~element-plus/theme-chalk/src/index";
+
+
+// 需要定义那些主题颜色？
+// --myTextColorInPrimaryColor : 主题颜色里的字体颜色
+// --myTextColorInBackgroundColor :主题背景颜色里的字体颜色
+// --myThemeBackgroundColor: 主题背景颜色
+
+:root{
+    --myTextColorInPrimaryColor: #fff; // 主题颜色里的字体颜色
+    --myTextColorInBackgroundColor: #fff;// 背景色中的文字color
+
+    --myThemeBackgroundColor: #282c34; // 通用背景色
+
+    --el-color-primary-light-1: #2f9bff;
+    --el-color-primary-light-2: #46a6ff;
+    --el-color-primary-light-3: #5db1ff;
+    --el-color-primary-light-4: #74bcff;
+    --el-color-primary-light-5: #8cc8ff;
+    --el-color-primary-light-6: #a3d3ff;
+    --el-color-primary-light-7: #badeff;
+    --el-color-primary-light-8: #d1e9ff;
+    --el-color-primary-light-9: #e8f4ff;
+    
+}
+
+
 
 

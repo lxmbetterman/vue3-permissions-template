@@ -61,3 +61,11 @@
 @use "~element-plus/theme-chalk/src/index";
 
 
+:root{
+    // 设置 绿白主题特色 颜色变量
+    --myTextColorInPrimaryColor: #fff;
+    
+    --myTextColorInBackgroundColor:#414a5e;
+    --myThemeBackgroundColor: #f7f9ff;
+    
+}
