@@ -20,21 +20,21 @@ export default {
     }
   },
   mounted() {
-    const self = this
-    const node = this.getNode()
-    // 监听数据改变事件
-    node.on('change:data', ({ current }) => {
-      self.num = current.num
-    })
+    // const self = this
+    // const node = this.getNode()
+    // // 监听数据改变事件
+    // node.on('change:data', ({ current }) => {
+    //   self.num = current.num
+    // })
   },
   methods: {
-    add() {
-      const node = this.getNode()
-      const { num } = node.getData()
-      node.setData({
-        num: num + 1
-      })
-    }
+    // add() {
+    //   const node = this.getNode()
+    //   const { num } = node.getData()
+    //   node.setData({
+    //     num: num + 1
+    //   })
+    // }
   }
 }
 </script>

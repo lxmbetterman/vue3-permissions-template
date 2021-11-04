@@ -16,7 +16,7 @@ export const Resize = {
       handler: debouncedResize,
       options
     }
-    console.log(binding, 'argarg')
+
     if (binding.arg === 'delay') return
     handler() // 非delay模式：加载就执行一次
   },

@@ -1,40 +1,52 @@
 <template>
-  <div v-resize:delay="onResize">
+  <div class="flowX6Container" v-resize:delay="onResize" style="position:relative">
     <div id="vue-shape-container"></div>
-    <button @click="add">外部 Add</button>
+    <!-- <button @click="add">外部 Add</button> -->
     <button @click="getData">data</button>
+    <button @click="changedata">changedata</button>
+
+    <div id="menuContainer">菜单</div>
   </div>
 </template>
 
 <script>
+
+import dataJson from './data.json'
+console.log(dataJson)
 import { Graph } from '@antv/x6'
 import '@antv/x6-vue-shape'
-import Count from './components/Count'
+
 import Start from './components/Start'
 import Normal from './components/Normal'
-import { Platform } from '@antv/x6'
 
 let graph = null
 export default {
   name: 'App',
   data() {
     return {
-      graph: null
+      graph: null,
+      currentCell: null
     }
   },
   mounted() {
+    this.RegisterVueNodes() // 注册vue node
     const magnetAvailabilityHighlighter = {
       name: 'stroke',
       args: {
         attrs: {
           fill: '#fff',
-          stroke: 'red'
+          stroke: 'green'
         }
       }
     }
 
     graph = new Graph({
       container: document.getElementById('vue-shape-container'),
+      panning: true,
+      mousewheel: {
+        enabled: true,
+        modifiers: ['ctrl', 'meta']
+      },
       width: '100%',
       height: 800,
       autoResize: this.$el,
@@ -96,7 +108,6 @@ export default {
         validateMagnet({ magnet }) {
         // 点击 magnet 时 根据 validateMagnet 返回值来判断是否新增边，触发时机是 magnet
         // 被按下，如果返回 false，则没有任何反应，如果返回 true，会在当前 magnet 创建一条新的边。
-          console.log(magnet)
           return magnet.getAttribute('port-group') !== 'in'
         },
 
@@ -116,27 +127,10 @@ export default {
       }
 
     })
-
     this.graph = graph
 
-    // 定义边
-    // Graph.registerConnector(
-    //   'algo-edge',
-    //   (source, target) => {
-    //     const offset = 4
-    //     const control = 80
-    //     const v1 = { x: source.x, y: source.y + offset + control }
-    //     const v2 = { x: target.x, y: target.y - offset - control }
-
-    //     return `M ${source.x} ${source.y}
-    //       L ${source.x} ${source.y + offset}
-    //       C ${v1.x} ${v1.y} ${v2.x} ${v2.y} ${target.x} ${target.y - offset}
-    //       L ${target.x} ${target.y}
-    //   `
-    //   },
-    //   true
-    // )
-
+    // this.addNodes(graph)// 手动添加node节点
+    this.renderGraph(graph)
     graph.on('edge:connected', (args) => {
       const edge = args.edge
       const node = args.currentCell
@@ -150,242 +144,300 @@ export default {
       edge.attr({
         line: {
           strokeDasharray: '',
-          targetMarker: ''
+          targetMarker: {
+            name: 'block',
+            args: {
+              size: '4'
+            }
+          }
         }
       })
     })
-
-    // 注册 vue component
-    // 如果需要序列化/反序列化数据，必须使用该方式
-    Graph.registerVueComponent(
-      'count',
-      {
-        template: `<Count />`,
-        components: {
-          Count
+    graph.on('edge:mouseenter', ({ edge }) => {
+      edge.attr({
+        line: {
+          strokeDasharray: '',
+          stroke: 'blue' // stroke: '#808080',
         }
-      },
-      true
-    )
-    Graph.registerVueComponent(
-      'start',
-      {
-        template: `<Start />`,
-        components: {
-          Start
+      })
+    })
+    graph.on('edge:mouseleave', ({ edge }) => {
+      edge.attr({
+        line: {
+          strokeDasharray: '',
+          stroke: '#808080' // stroke: '#808080',
         }
-      },
-      true
-    )
-    Graph.registerVueComponent(
-      'normal',
-      {
-        template: `<Normal />`,
-        components: {
-          Normal
-        }
-      },
-      true
-    )
-
-    graph.addNode({
-      id: '1',
-      shape: 'vue-shape',
-      x: 200,
-      y: 150,
-      width: 150,
-      height: 100,
-      component: 'count',
-      data: {
-        num: 0
+      })
+    })
+    // 控制连接桩显示/隐藏
+    const showPorts = (ports, show) => {
+      for (let i = 0, len = ports.length; i < len; i = i + 1) {
+        ports[i].style.visibility = show ? 'visible' : 'hidden'
       }
+    }
+    graph.on('node:mouseenter', () => {
+      const container = document.getElementById('vue-shape-container')
+      const ports = container.querySelectorAll(
+        '.x6-port-body[port]'
+        // '.x6-port-body[port=out]'
+      )
+      showPorts(ports, true)
+    })
+    graph.on('node:mouseleave', () => {
+      const container = document.getElementById('vue-shape-container')
+      const ports = container.querySelectorAll(
+        '.x6-port-body'
+      )
+      showPorts(ports, false)
     })
 
-    const source = graph.addNode({
-      id: '2',
-      shape: 'vue-shape',
-      x: 300,
-      y: 250,
-      width: 150,
-      height: 100,
-      component: 'start',
-      ports: {
-        items: [
-          {
-            group: 'in',
-            id: 'in',
-            attrs: {
-              circle: {
-                r: 4,
-                magnet: true,
-                stroke: '#31d0c6',
-                strokeWidth: 2,
-                fill: '#fff'
-              }}
-          },
-          {
-            group: 'out',
-            id: 'out',
-            attrs: {
-              circle: {
-                r: 4,
-                magnet: true,
-                stroke: '#31d0c6',
-                strokeWidth: 2,
-                fill: '#fff'
-              }}
-          }
-        ],
-        groups: {
-          in: {
-            position: { name: 'left' }
-            // zIndex: 1
-          },
-          out: {
-            position: { name: 'right' }
-            // zIndex: 1
-          }
-        }
-      }
-    })
-    const target = graph.addNode({
-      id: '3',
-      shape: 'vue-shape',
-      x: 600,
-      y: 350,
-      width: 150,
-      height: 100,
-      component: 'normal',
-      ports: {
-        items: [
-          {
-            group: 'in',
-            id: 'in',
-            attrs: {
-              circle: {
-                r: 4,
-                magnet: true,
-                stroke: '#31d0c6',
-                strokeWidth: 2,
-                fill: '#fff'
-              }}
-          },
-          {
-            group: 'out',
-            id: 'out',
-            attrs: {
-              circle: {
-                r: 4,
-                magnet: true,
-                stroke: '#31d0c6',
-                strokeWidth: 2,
-                fill: '#fff'
-              }}
-          }
-        ],
-        groups: {
-          in: {
-            position: { name: 'left' }
-          },
-          out: {
-            position: { name: 'right' }
-          }
-        }
-      }
-    })
-    const target2 = graph.addNode({
-      id: '4',
-      shape: 'vue-shape',
-      x: 600,
-      y: 550,
-      width: 150,
-      height: 100,
-      component: 'normal',
-      ports: {
-        items: [
-          {
-            group: 'in',
-            id: 'in',
-            attrs: {
-              circle: {
-                r: 4,
-                magnet: true,
-                stroke: '#31d0c6',
-                strokeWidth: 2,
-                fill: '#fff'
-              }}
-          },
-          {
-            group: 'out',
-            id: 'out',
-            attrs: {
-              circle: {
-                r: 4,
-                magnet: true,
-                stroke: '#31d0c6',
-                strokeWidth: 2,
-                fill: '#fff'
-              }}
-          }
-        ],
-        groups: {
-          in: {
-            position: { name: 'left' }
-          },
-          out: {
-            position: { name: 'right' }
-          }
-        }
-      }
-    })
+    graph.on('edge:click', ({ e, x, y, edge, view }) => {
+      console.log(edge, 'edge')
 
-    // 连线
-    // graph.addEdge({
-    //   source,
-    //   target,
-    //   vertices: [
-
-    //   ],
-    //   connector: { name: 'smooth' },
-    //   attrs: {
-    //     line: {
-    //       stroke: '#722ed1'
-    //     }
-    //   }
-    // })
-
-    const sourceHtml = graph.addNode({
-      shape: 'html',
-      x: 120,
-      y: 220,
-      width: 120,
-      height: 50,
-      html: () => {
-        return `
-          <div class="x6htmlNode-node1">
-            <div class="item"></div>
-          
-          </div>
-        `
-      }
+      edge.setLabels([{
+        attrs: { label: {
+          text: '连线名称',
+          fill: 'pink',
+          fontSize: 12
+        }}
+      }])
+      const { offsetX, offsetY } = e
+      this.showEdgeMenu(offsetX, offsetY)
+    })
+    graph.on('blank:click', () => {
+      console.log('hidden')
+      this.hideEdgeMenu()
+    })
+    graph.on('cell:click', ({ e, x, y, cell, view }) => {
+      this.currentCell = cell
     })
   },
   methods: {
     onResize() {
       // 重新设置画布
     },
-    add() {
-      const node = graph.getCellById('1')
-      if (node) {
-        const { num } = node.getData()
-        node.setData({
-          num: num + 1
-        })
-      }
+    // add() {
+    //   const node = graph.getCellById('1')
+    //   if (node) {
+    //     const { num } = node.getData()
+    //     node.setData({
+    //       num: num + 1
+    //     })
+    //   }
+    // },
+    renderGraph(graph) {
+      graph.fromJSON(dataJson)
+    },
+    addNodes(graph) {
+      const source = graph.addNode({
+        id: '2',
+        shape: 'vue-shape',
+        x: 300,
+        y: 250,
+        width: 150,
+        height: 100,
+        component: 'start',
+        data: {
+          params: {
+            skillList: [],
+            NLUList: [],
+            qaList: [
+            // 开始话术00/兜底话术02/结束话术01
+              {
+                nodeId: '',
+                replyId: '',
+                replyScope: '',
+                replyValue: '开始话术..'
+              }],
+            nodeTimeOut: 3, //
+            inputType: false
+          },
+          label: '开始'
+        },
+        ports: {
+          items: [
+            {
+              group: 'in',
+              id: 'in',
+              attrs: {
+                circle: {
+                  r: 4,
+                  magnet: true,
+                  stroke: '#31d0c6',
+                  strokeWidth: 2,
+                  fill: '#fff'
+                }}
+            },
+            {
+              group: 'out',
+              id: 'out',
+              attrs: {
+                circle: {
+                  r: 4,
+                  magnet: true,
+                  stroke: '#31d0c6',
+                  strokeWidth: 2,
+                  fill: '#fff'
+                }}
+            }
+          ],
+          groups: {
+            in: {
+              position: { name: 'left' }
+            // zIndex: 1
+            },
+            out: {
+              position: { name: 'right' }
+            // zIndex: 1
+            }
+          }
+        }
+      })
+
+      const target = graph.addNode({
+        id: '3',
+        shape: 'vue-shape',
+        x: 600,
+        y: 350,
+        width: 150,
+        height: 100,
+        component: 'normal',
+        ports: {
+          items: [
+            {
+              group: 'in',
+              id: 'in',
+              attrs: {
+                circle: {
+                  r: 4,
+                  magnet: true,
+                  stroke: '#31d0c6',
+                  strokeWidth: 2,
+                  fill: '#fff'
+                }}
+            },
+            {
+              group: 'out',
+              id: 'out',
+              attrs: {
+                circle: {
+                  r: 4,
+                  magnet: true,
+                  stroke: '#31d0c6',
+                  strokeWidth: 2,
+                  fill: '#fff'
+                }}
+            }
+          ],
+          groups: {
+            in: {
+              position: { name: 'left' }
+            },
+            out: {
+              position: { name: 'right' }
+            }
+          }
+        }
+      })
+
+      const target2 = graph.addNode({
+        id: '4',
+        shape: 'vue-shape',
+        x: 600,
+        y: 550,
+        width: 150,
+        height: 100,
+        component: 'normal',
+        ports: {
+          items: [
+            {
+              group: 'in',
+              id: 'in',
+              attrs: {
+                circle: {
+                  r: 4,
+                  magnet: true,
+                  stroke: '#31d0c6',
+                  strokeWidth: 2,
+                  fill: '#fff'
+                }}
+            },
+            {
+              group: 'out',
+              id: 'out',
+              attrs: {
+                circle: {
+                  r: 4,
+                  magnet: true,
+                  stroke: '#31d0c6',
+                  strokeWidth: 2,
+                  fill: '#fff'
+                }}
+            }
+          ],
+          groups: {
+            in: {
+              position: { name: 'left' }
+            },
+            out: {
+              position: { name: 'right' }
+            }
+          }
+        }
+      })
+    },
+    RegisterVueNodes() {
+      Graph.registerVueComponent(
+        'start',
+        {
+          template: `<Start />`,
+          components: {
+            Start
+          }
+        },
+        true
+      )
+      Graph.registerVueComponent(
+        'normal',
+        {
+          template: `<Normal />`,
+          components: {
+            Normal
+          }
+        },
+        true
+      )
     },
     getData() {
-      console.log(this.graph.toJSON(), 'this.graph.toJson()')
+      console.log(JSON.stringify(this.graph.toJSON()))
+    },
+    showEdgeMenu(left, top) {
+      const menuContainer = document.getElementById('menuContainer')
+      // menuContainer.style.visibility = 'visible'
+      menuContainer.style.display = 'block'
+      menuContainer.style.left = left + 'px'
+      menuContainer.style.top = top + 'px'
+    },
+    hideEdgeMenu() {
+      const menuContainer = document.getElementById('menuContainer')
+      // menuContainer.style.visibility = 'visible'
+      menuContainer.style.display = 'none'
+      menuContainer.style.left = 0
+      menuContainer.style.top = 0
+    },
+    // 修改数据
+    changedata() {
+      this.currentCell.setData(
+        {
+          qaList: [
+            {
+              replyValue: 'testtt'
+            }
+          ]
+        }
+      )
     }
+
   }
 }
 </script>
@@ -396,27 +448,21 @@ export default {
 }
 </style>
 <style lang="scss">
-.x6htmlNode-node1{
-  display: flex;
-  min-height: 40px;
-  width: 100px;
-  background-color: aliceblue;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  color:#666;
-  font-weight: bold;
-  .item{
+.flowX6Container{
+  #menuContainer{
+    position: absolute;
     display: none;
-  }
-  &:hover{
-    >.item{
-      display: block!important;
-      width: 30px;
-      height: 100px;
-      background-color: blue;
-      border-radius: 15px;
-    }
+    width: 50px;
+    height: 40px;
+    background-color: rgba(255,255,255,.8);
+    box-shadow: 0 0 4px rgb(0,0,0,0.3);
+    left: 0;
+    top: 0;
+    text-align: center;
+    line-height: 40px;
+    color:#999;
+    font-size: 12px;
+    cursor: pointer;
   }
 }
 </style>

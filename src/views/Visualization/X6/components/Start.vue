@@ -2,10 +2,10 @@
   <div class="x6-start-node">
     <div class="x6-start-node-header">
       <img class="icon" src="@/components/Icons/images/start.png" alt="" srcset="">
-      <div class="title">开始</div>
+      <div class="title">{{Title}}</div>
     </div>
     <div class="content">
-      开始话术
+      {{startWords}}
     </div>
   </div>
 </template>
@@ -16,25 +16,27 @@ export default {
   inject: ['getGraph', 'getNode'],
   data() {
     return {
-      num: 0
+      Title: '开始',
+      startWords: ''
     }
   },
   mounted() {
-    const self = this
     const node = this.getNode()
+    const data = node.getData()
+    this.startWords = data.qaList[0].replyValue
+    console.log(data, 'datadatadata')
     // 监听数据改变事件
     node.on('change:data', ({ current }) => {
-      self.num = current.num
+      const data = current
+      this.startWords = data.qaList[0].replyValue
     })
   },
   methods: {
-    add() {
-      const node = this.getNode()
-      const { num } = node.getData()
-      node.setData({
-        num: num + 1
-      })
-    }
+    // add() {
+    //   const node = this.getNode()
+    //   const data = node.getData()
+    //   console.log(data)
+    // }
   }
 }
 </script>
