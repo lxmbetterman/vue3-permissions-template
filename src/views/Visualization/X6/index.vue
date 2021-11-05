@@ -4,6 +4,8 @@
     <!-- <button @click="add">外部 Add</button> -->
     <button @click="getData">data</button>
     <button @click="changedata">changedata</button>
+    <!-- {{currentModel?.qaList[0].replyValue}}?? -->
+    <el-input v-if="currentModel" v-model="currentModel.qaList[0].replyValue"></el-input>
 
     <div id="menuContainer">菜单</div>
   </div>
@@ -25,7 +27,19 @@ export default {
   data() {
     return {
       graph: null,
-      currentCell: null
+      currentCell: null,
+      currentModel: null
+
+    }
+  },
+  watch: {
+    currentModel: {
+      handler(newVal) {
+        console.log(newVal)
+        // 更新cell
+        this.updateCell()
+      },
+      deep: true
     }
   },
   mounted() {
@@ -210,6 +224,9 @@ export default {
     })
     graph.on('cell:click', ({ e, x, y, cell, view }) => {
       this.currentCell = cell
+      console.log(cell, '(newVal)(newVal)')
+      this.currentModel = cell.data
+      console.log(cell.data, 'dattt')
     })
   },
   methods: {
@@ -436,6 +453,9 @@ export default {
           ]
         }
       )
+    },
+    updateCell() {
+      this.currentCell.setData(this.currentModel)
     }
 
   }
@@ -466,3 +486,4 @@ export default {
   }
 }
 </style>
+

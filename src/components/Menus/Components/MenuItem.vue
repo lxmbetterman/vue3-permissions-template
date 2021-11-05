@@ -12,7 +12,7 @@
           <!-- <el-icon :size="16" class="menuIcon">
             <component :is="menuItem.meta.icon"></component>
           </el-icon> -->
-          <my-icon :name="menuItem.meta.icon" />
+          <my-icon :name="menuItem.meta.icon" :custom="menuItem.meta.custom" style="marginRight:8px"/>
           <span>{{menuItem.meta.title||'-'}}</span>
         </template>
         <MenuItem v-for="(item, index) in menuItem.children" :key="index" :menuItem="item"/>
@@ -23,7 +23,7 @@
           <!-- <el-icon :size="16" class="menuIcon">
             <component :is="menuItem.meta.icon"></component>
           </el-icon> -->
-          <my-icon :name="menuItem.meta.icon" />
+          <my-icon :name="menuItem.meta.icon" :custom="menuItem.meta.custom" style="marginRight:8px"/>
           <span>{{menuItem.meta.title||'-'}}</span>
         </template>
     </el-menu-item>

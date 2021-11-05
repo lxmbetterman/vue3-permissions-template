@@ -67,7 +67,7 @@ export default {
     overflow: hidden;
     background-color: #fff;
     display: flex;
-
+    user-select: none;
     .layout-column-menuContainer{
         flex: 0 0 288px;
         height: 100vh;

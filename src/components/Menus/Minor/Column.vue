@@ -53,22 +53,36 @@ export default {
   width: 200px;
   margin: 0 auto;
   border-right: none;
+  font-weight: bold;
   // 设置菜单的全局样式
   .el-menu-item{
     // margin: 20px;
     border-radius: 8px;
+    font-size: 12px;
+    height: 50px;
+    line-height: 50px;
+    margin: 2px 0;
   }
   .el-sub-menu__title{
     // margin: 20px;
     border-radius: 8px;
+    font-size: 12px;
+    height: 50px;
+    line-height: 50px;
+    margin: 2px 0;
   }
   .el-menu-item:hover{
-    background-color: var(--el-color-primary);
-    color: var(--myTextColorInPrimaryColor);
+    background-color: var(--el-color-primary-light-9);
+    color: var(--el-color-primary);
+  }
+  .el-menu-item.is-active{
+    background-color: var(--el-color-primary-light-9);
+    color: var(--el-color-primary);
+    font-weight: bold;
   }
   .el-sub-menu__title:hover{
-    background-color: var(--el-color-primary);
-    color: var(--myTextColorInPrimaryColor);
+    background-color: var(--el-color-primary-light-9);
+    color: var(--el-color-primary);
 
   }
 }

@@ -9,7 +9,7 @@
       :class="{active:item.name===mainActiveName}"
       @click="ChangeMainMenu(item)"
       >
-      <my-icon :name="item.meta.icon"></my-icon>
+      <my-icon :name="item.meta.icon" :custom="item.meta.custom" ></my-icon>
       <div class="main-title">{{item.meta.title}}</div>
     </div>
   </div>
@@ -78,6 +78,7 @@ export default {
   color: var(--myTextColorInBackgroundColor);
   transition: background-color .4s;
   font-size: 13px;
+  font-weight: bold;
   &.active{
     font-weight: bold;
     color: var(--myTextColorInPrimaryColor);

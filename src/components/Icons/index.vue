@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-    <el-icon v-if="!custom">
+    <el-icon v-if="!custom" style="marginTop:-4px">
         <!-- elementPlus-icon 提供的图标 -->
         <component v-if="name" :is="name"></component>
     </el-icon>

@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@antv/layout": "^0.1.19-beta.3",
     "@antv/x6": "^1.28.1",
     "@antv/x6-vue-shape": "^1.2.10",
     "@element-plus/icons": "^0.0.11",

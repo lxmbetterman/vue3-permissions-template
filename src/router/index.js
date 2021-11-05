@@ -56,13 +56,13 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/asyc/asycAbout',
     name: 'AsycDic',
-    meta: { title: '异步', icon: '' },
+    meta: { title: '异步', icon: 'eye', custom: true },
     children: [
       {
         path: 'asycAbout',
         component: () => import('@/views/Asyc/AsycAbout'),
         name: 'AsycAbout',
-        meta: { title: 'AsycAbout', icon: '' }
+        meta: { title: 'AsycAbout', icon: 'eye', custom: true }
       }
     ]
   },
@@ -71,13 +71,13 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/asyc2/asycAbout2',
     name: 'AsycDic2',
-    meta: { title: '异步', icon: '' },
+    meta: { title: '异步', icon: 'iconService' },
     children: [
       {
         path: 'asycAbout2',
         component: () => import('@/views/Asyc/AsycAbout2'),
         name: 'AsycAbout2',
-        meta: { title: '异步页面', icon: '' }
+        meta: { title: '异步页面', icon: 'iconService' }
       }
     ]
   },
@@ -99,6 +99,12 @@ export const asyncRoutes = [
         component: () => import('@/views/Visualization/X6/index.vue'),
         name: 'x6Vue',
         meta: { title: 'X6示例Vue Node', icon: 'iconTrendCharts' }
+      },
+      {
+        path: 'treeLayout',
+        component: () => import('@/views/Visualization/X6/TreeLayout/index.vue'),
+        name: 'treeLayout',
+        meta: { title: '固定布局关系图', icon: 'iconTrendCharts' }
       }
     ]
   },
@@ -107,13 +113,13 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/system/menu',
     name: 'SystemManage',
-    meta: { title: '系统', icon: '' },
+    meta: { title: '系统', icon: 'iconTrendCharts' },
     children: [
       {
         path: 'menu',
         component: () => import('@/views/System/menuList.vue'),
         name: 'MenuList',
-        meta: { title: '菜单管理', icon: '' }
+        meta: { title: '菜单管理', icon: 'iconTrendCharts' }
       }
     ]
   }
