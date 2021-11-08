@@ -81,7 +81,9 @@ export default {
       },
 
       connecting: {
-        snap: true,
+        snap: {
+          radius: 16
+        },
         allowBlank: false,
         allowLoop: false,
         highlight: true,

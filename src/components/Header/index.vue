@@ -1,7 +1,7 @@
 <!--  -->
 <template>
-    <div class="admin-layout">
-      <component :is="CurrentLayout"></component>
+    <div class="admin-header">
+        <component :is="CurrentLayout"></component>
     </div>
 </template>
 
@@ -9,7 +9,7 @@
 import { defineAsyncComponent, markRaw } from 'vue'
 import layoutRepository from '@/components/Layout/layoutRepository.js'
 export default {
-  name: 'AdminLayout',
+  name: 'AdminHeader',
   data() {
     return {
     //   currentTabComponent: 'Default'
@@ -40,4 +40,9 @@ export default {
 
 </script>
 <style lang='scss' scoped>
+.admin-header{
+  height: 50px;
+  padding: 5px;
+  background-color: beige;
+}
 </style>

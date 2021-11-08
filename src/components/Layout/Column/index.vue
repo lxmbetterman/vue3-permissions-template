@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="layout-column">
-      <div class="layout-column-menuContainer" :class="{collapse:columnCollapse}">
+      <div class="column-menu-container" :class="{collapse:columnCollapse}">
         <!-- 菜单左侧 -->
         <div class="parent-menu-container">
           <MainColumnMenu />
@@ -12,19 +12,22 @@
           <MinorColumnMenu/>
         </div>
       </div>
-      <div class="layout-column-mainContainer">
-          <el-button @click="loginOut">退出登录</el-button>
-          <router-view />
+      <div class="column-container"  v-resize="calculateSize">
+          <AdminHeader ref="header" />
+          <div class="column-content">
+            <router-view />
+          </div>
       </div>
   </div>
 </template>
 
 <script>
 import columnRepositrory from './columnRepositrory'
-import userOperator from '@/repository/user.js'
+
 import MainColumnMenu from '@/components/Menus/Main/Column.vue'
 import MinorColumnMenu from '@/components/Menus/Minor/Column.vue'
 import LabelBrand from '../../Menus/Components/LabelBrand.vue'
+import AdminHeader from '@/components/Header'
 export default {
   name: '',
   data() {
@@ -33,15 +36,14 @@ export default {
   },
   setup() {
     const { columnCollapse, toggleColumnCollapse } = columnRepositrory()
-    const { user_logout } = userOperator()
 
     return {
-      columnCollapse, toggleColumnCollapse,
-      user_logout
+      columnCollapse, toggleColumnCollapse
+
     }
   },
 
-  components: { MainColumnMenu, MinorColumnMenu, LabelBrand },
+  components: { MainColumnMenu, MinorColumnMenu, LabelBrand, AdminHeader },
 
   computed: {},
 
@@ -49,12 +51,13 @@ export default {
 
   },
   methods: {
-    loginOut() {
-      this.user_logout().then((res) => {
-        console.log(res, 'reee')
-        this.$router.replace({ path: '/login', replace: true })
-      })
+    calculateSize() {
+      //
+      console.log(this.$refs.header.$el.offsetHeight, 'this.$refs.header')
+      console.log(this.$el.offsetHeight, 'this.$refs.layout')
+      console.log(this.$el.offsetHeight - this.$refs.header.$el.offsetHeight)
     }
+
   }
 }
 
@@ -68,7 +71,7 @@ export default {
     background-color: #fff;
     display: flex;
     user-select: none;
-    .layout-column-menuContainer{
+    .column-menu-container{
         flex: 0 0 288px;
         height: 100vh;
         transition: flex .2s;
@@ -95,11 +98,14 @@ export default {
         }
 
     }
-    .layout-column-mainContainer{
+    .column-container{
         flex: 1 1 auto;
         height: 100vh;
         padding: 0 15px;
         overflow: auto;
+        .column-content{
+
+        }
     }
 }
 </style>

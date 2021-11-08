@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 /**
  * 管理layout布局的 repository
- * @param CurrentLayout 是全局公共点
+ * @param CurrentLayout 是全局公共点： [Column] [Default]
  * @returns
  */
 const CurrentLayout = ref('Column') // Default
