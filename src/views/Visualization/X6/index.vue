@@ -99,8 +99,7 @@ export default {
             dx: 0
           }
         },
-        // connectionPoint: 'anchor',
-        // connector: 'algo-edge',
+
         connector: 'smooth',
         createEdge() {
           return graph.createEdge({
@@ -117,6 +116,16 @@ export default {
                 }
               }
             }
+            // tools: {
+            //   name: 'segments',
+            //   args: {
+            //     snapRadius: 10,
+            //     threshold: 20,
+            //     attrs: {
+            //       fill: '#444'
+            //     }
+            //   }
+            // }
           })
         },
         validateMagnet({ magnet }) {
@@ -138,13 +147,24 @@ export default {
           }
           return true
         }
+      },
+
+      onToolItemCreated({ tool }) {
+        const handle = tool
+        const options = handle.options
+        // if (options && options.index % 2 === 1) {
+        //   tool.setAttrs({ fill: 'red' })
+        // }
+      },
+      router: {
+        name: 'orth'
       }
 
     })
     this.graph = graph
 
-    // this.addNodes(graph)// 手动添加node节点
-    this.renderGraph(graph)
+    this.addNodes(graph)// 手动添加node节点
+    // this.renderGraph(graph)
     graph.on('edge:connected', (args) => {
       const edge = args.edge
       const node = args.currentCell
@@ -166,6 +186,19 @@ export default {
           }
         }
       })
+
+      const tar = edge.getTargetPoint()
+      const sor = edge.getSourcePoint()
+      const xLength = (tar.x - sor.x)
+      const yLength = (tar.y - sor.y)
+      edge.setVertices([
+        { x: (sor.x + tar.x) / 2 - xLength / 5, y: (sor.y + tar.y) / 2 - yLength / 5 },
+        { x: (sor.x + tar.x) / 2 + xLength / 5, y: (sor.y + tar.y) / 2 + yLength / 5 }
+      ])
+
+      edge.addTools([
+        { name: 'vertices' }
+      ])
     })
     graph.on('edge:mouseenter', ({ edge }) => {
       edge.attr({
@@ -174,6 +207,7 @@ export default {
           stroke: 'blue' // stroke: '#808080',
         }
       })
+      edge.addTools('vertices', 'onhover')
     })
     graph.on('edge:mouseleave', ({ edge }) => {
       edge.attr({
@@ -182,6 +216,7 @@ export default {
           stroke: '#808080' // stroke: '#808080',
         }
       })
+      edge.removeTools()
     })
     // 控制连接桩显示/隐藏
     const showPorts = (ports, show) => {
@@ -278,7 +313,7 @@ export default {
               id: 'in',
               attrs: {
                 circle: {
-                  r: 4,
+                  r: 6,
                   magnet: true,
                   stroke: '#31d0c6',
                   strokeWidth: 2,
@@ -290,7 +325,7 @@ export default {
               id: 'out',
               attrs: {
                 circle: {
-                  r: 4,
+                  r: 6,
                   magnet: true,
                   stroke: '#31d0c6',
                   strokeWidth: 2,
@@ -370,6 +405,30 @@ export default {
             {
               group: 'in',
               id: 'in',
+              attrs: {
+                circle: {
+                  r: 4,
+                  magnet: true,
+                  stroke: '#31d0c6',
+                  strokeWidth: 2,
+                  fill: '#fff'
+                }}
+            },
+            {
+              group: 'in',
+              id: 'in2',
+              attrs: {
+                circle: {
+                  r: 4,
+                  magnet: true,
+                  stroke: '#31d0c6',
+                  strokeWidth: 2,
+                  fill: '#fff'
+                }}
+            },
+            {
+              group: 'in',
+              id: 'in3',
               attrs: {
                 circle: {
                   r: 4,

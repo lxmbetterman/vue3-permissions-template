@@ -101,6 +101,12 @@ export const asyncRoutes = [
         meta: { title: 'X6示例Vue Node', icon: 'iconTrendCharts' }
       },
       {
+        path: 'x6VueV2',
+        component: () => import('@/views/Visualization/X6/indexV2.vue'),
+        name: 'x6VueV2',
+        meta: { title: 'X6示例Vue Node V2', icon: 'iconTrendCharts' }
+      },
+      {
         path: 'treeLayout',
         component: () => import('@/views/Visualization/X6/TreeLayout/index.vue'),
         name: 'treeLayout',

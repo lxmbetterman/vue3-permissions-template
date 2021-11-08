@@ -23,12 +23,12 @@ export default {
   mounted() {
     const node = this.getNode()
     const data = node.getData()
-    this.startWords = data.qaList[0].replyValue
+    // this.startWords = data.qaList[0].replyValue
     console.log(data, 'datadatadata')
     // 监听数据改变事件
     node.on('change:data', ({ current }) => {
       const data = current
-      this.startWords = data.qaList[0].replyValue
+      // this.startWords = data.qaList[0].replyValue
     })
   },
   methods: {
