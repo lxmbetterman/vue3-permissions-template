@@ -42,7 +42,7 @@ export default {
 <style lang='scss' scoped>
 .admin-header{
   height: 50px;
-  padding: 5px;
-  background-color: beige;
+  margin-bottom: 3px;
+  box-shadow:0 3px 3px #eee ;
 }
 </style>

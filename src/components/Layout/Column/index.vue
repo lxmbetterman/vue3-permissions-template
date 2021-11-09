@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="layout-column">
-      <div class="column-menu-container" :class="{collapse:columnCollapse}">
+      <div class="column-menu-container" :class="{collapse: menusCollapse}">
         <!-- 菜单左侧 -->
         <div class="parent-menu-container">
           <MainColumnMenu />
@@ -14,36 +14,39 @@
       </div>
       <div class="column-container"  v-resize="calculateSize">
           <AdminHeader ref="header" />
-          <div class="column-content">
-            <router-view />
-          </div>
+          <el-scrollbar :style="{height:contentHeight-31+'px'}" class="content-scroller" ref="scroller">
+            <router-view class="column-content-page" />
+          </el-scrollbar>
+          <CopyRight />
       </div>
   </div>
 </template>
 
 <script>
-import columnRepositrory from './columnRepositrory'
+import layoutRepository from '@/components/Layout/layoutRepository.js'
 
 import MainColumnMenu from '@/components/Menus/Main/Column.vue'
 import MinorColumnMenu from '@/components/Menus/Minor/Column.vue'
 import LabelBrand from '../../Menus/Components/LabelBrand.vue'
 import AdminHeader from '@/components/Header'
+import CopyRight from '@/components/Layout/components/CopyRight.vue'
 export default {
   name: '',
   data() {
     return {
+      contentHeight: 0
     }
   },
   setup() {
-    const { columnCollapse, toggleColumnCollapse } = columnRepositrory()
+    const { menusCollapse } = layoutRepository()
 
     return {
-      columnCollapse, toggleColumnCollapse
+      menusCollapse
 
     }
   },
 
-  components: { MainColumnMenu, MinorColumnMenu, LabelBrand, AdminHeader },
+  components: { MainColumnMenu, MinorColumnMenu, LabelBrand, AdminHeader, CopyRight },
 
   computed: {},
 
@@ -52,10 +55,11 @@ export default {
   },
   methods: {
     calculateSize() {
-      //
-      console.log(this.$refs.header.$el.offsetHeight, 'this.$refs.header')
-      console.log(this.$el.offsetHeight, 'this.$refs.layout')
-      console.log(this.$el.offsetHeight - this.$refs.header.$el.offsetHeight)
+      this.contentHeight = this.$el.offsetHeight - this.$refs.header.$el.offsetHeight - 3
+      // console.log(this.contentHeight)
+      setTimeout(() => {
+        this.$refs.scroller.update()
+      }, 0)
     }
 
   }
@@ -101,10 +105,15 @@ export default {
     .column-container{
         flex: 1 1 auto;
         height: 100vh;
-        padding: 0 15px;
-        overflow: auto;
-        .column-content{
-
+        overflow: hidden;
+        .content-scroller{
+          padding: 5px 15px;
+          padding-left: 10px;
+          background-color: #f9f9f9;
+          // overflow: auto;
+          .column-content-page{
+            background-color: #fff;
+          }
         }
     }
 }

@@ -1,7 +1,7 @@
 <!-- -->
 <template>
   <div>
-      <p>X6</p>
+      <div>X6</div>
       <i>基础例子/按住ctrl或alt缩放</i>
       <demo />
 

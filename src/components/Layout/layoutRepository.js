@@ -7,14 +7,19 @@ import { ref } from 'vue'
  * @returns
  */
 const CurrentLayout = ref('Column') // Default
+const menusCollapse = ref(false) // 菜单是否折叠/收起
 
 export default function layoutRepository() {
   const setCurrentLayout = async(layoutName) => {
     CurrentLayout.value = layoutName
   }
 
+  const toggleMenuCollapse = async() => {
+    menusCollapse.value = !menusCollapse.value
+  }
+
   return {
-    CurrentLayout,
-    setCurrentLayout
+    CurrentLayout, setCurrentLayout,
+    menusCollapse, toggleMenuCollapse
   }
 }

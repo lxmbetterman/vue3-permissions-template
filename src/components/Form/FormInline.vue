@@ -73,7 +73,6 @@ export default {
   computed: {},
 
   mounted() {
-    console.log(this.$el, '$el')
   },
 
   methods: {

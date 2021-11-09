@@ -1,19 +1,24 @@
 import {
   Expand, Edit, AddLocation, HomeFilled, House, Service,
-  TrendCharts
+  TrendCharts, ArrowDownBold, Fold
 } from '@element-plus/icons'
 import MyIcon from './index.vue'
+/**
+<el-icon><fold /></el-icon>
+<el-icon><expand /></el-icon>
+ */
 // 所有组件列表
 const components = {
   MyIcon,
   iconExpand: Expand,
+  iconFold: Fold,
   iconEdit: Edit,
   iconAddLocation: AddLocation,
   iconHomeFilled: HomeFilled,
   iconHouse: House,
   iconService: Service,
-  iconTrendCharts: TrendCharts
-
+  iconTrendCharts: TrendCharts,
+  iconArrowDownBold: ArrowDownBold
 }
 // 定义install方法，接收app作为参数
 const install = function(app) {
