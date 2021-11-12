@@ -36,6 +36,7 @@ export const constantRoutes = [
         path: 'about',
         component: () => import('@/views/About/About'),
         name: 'About',
+        redirect: '/about/aboutChild',
         meta: { title: '关于', icon: 'iconService' },
         children: [
           {
