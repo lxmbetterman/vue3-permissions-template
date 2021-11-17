@@ -48,7 +48,6 @@ export default {
     },
     loginOut() {
       this.user_logout().then((res) => {
-        console.log(res, 'reee')
         this.$router.replace({ path: '/login', replace: true })
       })
     }

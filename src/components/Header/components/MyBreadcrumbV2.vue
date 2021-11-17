@@ -28,12 +28,10 @@ export default {
   },
 
   mounted() {
-    console.log(this.$route)
     this.handleMyBreadcrumbData(this.$route.matched)
   },
   watch: {
     $route(newRoute) {
-      console.log(newRoute, 'newRoute')
       this.handleMyBreadcrumbData(newRoute.matched)
     }
   },
@@ -43,7 +41,6 @@ export default {
       this.MyBreadcrumbList = matched.slice(1).map(item => {
         return { meta: item.meta, path: item.path }
       })
-      console.log(this.MyBreadcrumbList)
     }
   }
 }

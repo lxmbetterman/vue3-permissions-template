@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div>
+  <div id="svgIconsDisplay">
       <p>SvgIcon点击复制</p>
       <div class="svgIconsList">
         <div class="item" v-for="item in allIcons" :key="item" :aria-label="item" >
@@ -29,12 +29,13 @@ export default {
 
   computed: {},
   unmounted() {
+    this.clipboard.destroy()
     this.clipboard = null
   },
   mounted() {
     this.getAllSvgIconsList()
 
-    this.clipboard = new ClipboardJS('.svgIconsList .item', {
+    this.clipboard = new ClipboardJS('#svgIconsDisplay .svgIconsList .item', {
       text: function(trigger) {
         // 自定义复制内容
         return `<my-icon custom name="${trigger.getAttribute('aria-label')}" :size="12" color="red"></my-icon>`
@@ -52,7 +53,6 @@ export default {
   methods: {
     getAllSvgIconsList() {
       this.allIcons = Icons.svgNames
-      console.log(this.allIcons, 'this.allIcons')
     }
   }
 }

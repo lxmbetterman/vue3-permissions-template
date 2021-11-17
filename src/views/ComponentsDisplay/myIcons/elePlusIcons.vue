@@ -29,6 +29,7 @@ export default {
 
   computed: {},
   unmounted() {
+    this.clipboard.destroy()
     this.clipboard = null
   },
   mounted() {

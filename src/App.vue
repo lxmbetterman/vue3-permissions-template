@@ -19,7 +19,6 @@ export default {
   watch: {
     // whenever question changes, this function will run
     // $route(newQuestion) {
-    //   console.log(newQuestion, 'newQuestion')
     //   this.setMainActivePath(newQuestion.matched[0])
     // }
   },

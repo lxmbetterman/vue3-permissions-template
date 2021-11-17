@@ -29,7 +29,6 @@ app.use(Icons)
 app.component('MyPagination', Pagination)
 
 app.use(store).use(router).mount('#app')
-// console.log(app, 'app')
 console.log(process.env, 'process.env')
 
 // 主题修改
