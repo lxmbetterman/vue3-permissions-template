@@ -74,12 +74,12 @@ export default {
     overflow: hidden;
     background-color: #fff;
     display: flex;
-    user-select: none;
     .column-menu-container{
         flex: 0 0 288px;
         height: 100vh;
         transition: flex .2s;
         box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
+        user-select: none;
 
         // 折叠样式
         &.collapse{

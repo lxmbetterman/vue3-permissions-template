@@ -66,10 +66,12 @@ export default {
   .el-sub-menu__title{
     // margin: 20px;
     border-radius: 8px;
-    font-size: 12px;
+    font-size: 13px;
     height: 50px;
     line-height: 50px;
     margin: 2px 0;
+    display: flex;
+    align-items: center;
   }
   .el-menu-item:hover{
     background-color: var(--el-color-primary-light-9);

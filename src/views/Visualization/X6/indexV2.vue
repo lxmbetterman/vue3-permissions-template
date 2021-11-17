@@ -14,7 +14,7 @@
 <script>
 
 import dataJson from './data.json'
-import { Graph, edgeView } from '@antv/x6'
+import { Graph } from '@antv/x6'
 import '@antv/x6-vue-shape'
 
 import Start from './components/Start'

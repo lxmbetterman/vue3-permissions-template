@@ -152,8 +152,8 @@ export default {
       },
 
       onToolItemCreated({ tool }) {
-        const handle = tool
-        const options = handle.options
+        // const handle = tool
+        // const options = handle.options
         // if (options && options.index % 2 === 1) {
         //   tool.setAttrs({ fill: 'red' })
         // }
@@ -283,7 +283,7 @@ export default {
       graph.fromJSON(dataJson)
     },
     addNodes(graph) {
-      const source = graph.addNode({
+      graph.addNode({
         id: '2',
         shape: 'vue-shape',
         x: 300,
@@ -348,7 +348,7 @@ export default {
         }
       })
 
-      const target = graph.addNode({
+      graph.addNode({
         id: '3',
         shape: 'vue-shape',
         x: 600,
@@ -394,7 +394,7 @@ export default {
         }
       })
 
-      const target2 = graph.addNode({
+      graph.addNode({
         id: '4',
         shape: 'vue-shape',
         x: 600,

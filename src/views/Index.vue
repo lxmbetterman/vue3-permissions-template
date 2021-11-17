@@ -70,9 +70,9 @@
       <!-- <icon-edit></icon-edit> -->
       <component :is="'icon-edit'"></component>
     </el-icon>
-    <my-icon custom name="eye"></my-icon>
+    <my-icon custom name="eye" :size="30" color="red"></my-icon>
     <my-icon name="iconEdit"></my-icon>
-    <my-icon name="iconHomeFilled"></my-icon>
+    <my-icon name="iconHomeFilled" :size="16" color="green"></my-icon>
   </div>
 </template>
 

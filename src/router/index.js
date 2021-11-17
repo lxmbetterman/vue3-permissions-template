@@ -53,6 +53,41 @@ export const constantRoutes = [
 
 export const asyncRoutes = [
   {
+    path: '/components',
+    component: Layout,
+    redirect: '/components/iconIndex',
+    name: 'Components',
+    meta: { title: '组件', icon: 'eye', custom: true },
+    children: [
+      {
+        path: 'iconIndex',
+        // /Users/laixueming/BN/my-npm/vue3-permissions-template/src/views/ComponentsDisplay/myIcons
+        component: () => import('@/views/ComponentsDisplay/myIcons/index'),
+        name: 'IconIndex',
+        meta: { title: '图标', icon: 'icons', custom: true },
+        redirect: '/components/iconIndex/elePlusIcons',
+        children: [
+          {
+            path: 'elePlusIcons',
+            // /Users/laixueming/BN/my-npm/vue3-permissions-template/src/views/ComponentsDisplay/myIcons
+            component: () => import('@/views/ComponentsDisplay/myIcons/elePlusIcons'),
+            name: 'ElePlusIcons',
+            meta: { title: 'Ele内置图标', icon: 'eye', custom: true }
+          },
+
+          {
+            path: 'svgIcon',
+            // /Users/laixueming/BN/my-npm/vue3-permissions-template/src/views/ComponentsDisplay/myIcons
+            component: () => import('@/views/ComponentsDisplay/myIcons/svgIcon'),
+            name: 'SvgIcon',
+            meta: { title: 'svg自定义图标', icon: 'eye', custom: true }
+          }
+        ]
+      }
+    ]
+
+  },
+  {
     path: '/asyc',
     component: Layout,
     redirect: '/asyc/asycAbout',

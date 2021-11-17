@@ -1,11 +1,11 @@
 <!--  -->
 <template>
-    <el-icon v-if="!custom">
+    <el-icon v-if="!custom" :size="size" :color="color">
         <!-- elementPlus-icon 提供的图标 -->
         <component v-if="name" :is="name"></component>
     </el-icon>
     <!-- 自定义的svg图标 -->
-    <svg-icon v-else :iconClass="name" />
+    <svg-icon v-else :iconClass="name" :size="size" :color="color" />
 </template>
 
 <script>
@@ -20,7 +20,15 @@ export default {
     custom: {
       type: Boolean,
       default: false
+    },
+    size: {
+      type: Number,
+      default: 12
+    },
+    color: {
+      type: String
     }
+
   },
   data() {
     return {

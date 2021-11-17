@@ -9,7 +9,7 @@
       :class="{active:item.name===mainActiveName}"
       @click="ChangeMainMenu(item)"
       >
-      <my-icon :name="item.meta.icon" :custom="item.meta.custom" ></my-icon>
+      <my-icon :name="item.meta.icon" :custom="item.meta.custom" :size='14'></my-icon>
       <div class="main-title">{{item.meta.title}}</div>
     </div>
   </div>
