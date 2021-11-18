@@ -14,6 +14,7 @@
       </div>
       <div class="column-container"  v-resize="calculateSize">
           <AdminHeader ref="header" />
+          <TabSmooth ref="tabSmooth" />
           <el-scrollbar :style="{height:contentHeight-31+'px'}" class="content-scroller" ref="scroller">
             <router-view class="column-content-page" />
           </el-scrollbar>
@@ -29,6 +30,7 @@ import MainColumnMenu from '@/components/Menus/Main/Column.vue'
 import MinorColumnMenu from '@/components/Menus/Minor/Column.vue'
 import LabelBrand from '../../Menus/Components/LabelBrand.vue'
 import AdminHeader from '@/components/Header'
+import TabSmooth from '@/components/Tabs/TabSmooth.vue'
 import CopyRight from '@/components/Layout/components/CopyRight.vue'
 export default {
   name: '',
@@ -46,7 +48,7 @@ export default {
     }
   },
 
-  components: { MainColumnMenu, MinorColumnMenu, LabelBrand, AdminHeader, CopyRight },
+  components: { MainColumnMenu, MinorColumnMenu, LabelBrand, AdminHeader, TabSmooth, CopyRight },
 
   computed: {},
 
@@ -55,7 +57,7 @@ export default {
   },
   methods: {
     calculateSize() {
-      this.contentHeight = this.$el.offsetHeight - this.$refs.header.$el.offsetHeight - 3
+      this.contentHeight = this.$el.offsetHeight - this.$refs.header.$el.offsetHeight - this.$refs.tabSmooth.$el.offsetHeight - 3
       // console.log(this.contentHeight)
       setTimeout(() => {
         this.$refs.scroller.update()
