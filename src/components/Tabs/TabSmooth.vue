@@ -2,11 +2,17 @@
 <template>
   <div class="tabSmooth">
       <!-- v-for="index in 20" :key="index" -->
-      <div class="tabSmoothItem active" >
+      <div class="tabSmoothItem" >
         页面标1
       </div>
-      <div class="tabSmoothItem " >
+      <div class="tabSmoothItem active" >
         页面标
+      </div>
+      <div class="tabSmoothItem" >
+        页面标2
+      </div>
+      <div class="tabSmoothItem" >
+        页面标2
       </div>
       <div class="tabSmoothItem" >
         页面标2
