@@ -4,6 +4,7 @@
     <!-- <button @click="add">外部 Add</button> -->
     <button @click="getData">data</button>
     <button @click="changedata">changedata</button>
+    <button @click="getNodes">getNodesToggoleVisible</button>
     <!-- {{currentModel?.qaList[0].replyValue}}?? -->
     <el-input v-if="currentModel" v-model="currentModel.qaList[0].replyValue"></el-input>
 
@@ -517,6 +518,19 @@ export default {
     },
     updateCell() {
       this.currentCell.setData(this.currentModel)
+    },
+    getNodes() {
+      console.log(this.graph.getNodes(), 'this.graph.getNodes()')
+      const nodes = this.graph.getNodes()
+      // nodes.map(node => {
+      //   node.toggleVisible()
+      // })
+      // setTimeout(() => {
+      //   nodes.map(node => {
+      //     node.toggleVisible()
+      //   })
+      // }, 2000)
+      nodes[0].toggleVisible()
     }
 
   }

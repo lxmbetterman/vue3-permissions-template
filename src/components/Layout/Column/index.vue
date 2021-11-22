@@ -14,8 +14,8 @@
       </div>
       <div class="column-container"  v-resize="calculateSize">
           <AdminHeader ref="header" />
-          <TabSmooth ref="tabSmooth" />
-          <el-scrollbar :style="{height:contentHeight-31+'px'}" class="content-scroller" ref="scroller">
+          <TabLabels ref="tabSmooth" />
+          <el-scrollbar :style="{height:contentHeight-41+'px'}" class="content-scroller" ref="scroller">
             <router-view class="column-content-page" />
           </el-scrollbar>
           <CopyRight />
@@ -30,7 +30,7 @@ import MainColumnMenu from '@/components/Menus/Main/Column.vue'
 import MinorColumnMenu from '@/components/Menus/Minor/Column.vue'
 import LabelBrand from '../../Menus/Components/LabelBrand.vue'
 import AdminHeader from '@/components/Header'
-import TabSmooth from '@/components/Tabs/TabSmooth.vue'
+import TabLabels from '@/components/Tabs/index.vue'
 import CopyRight from '@/components/Layout/components/CopyRight.vue'
 export default {
   name: '',
@@ -48,12 +48,14 @@ export default {
     }
   },
 
-  components: { MainColumnMenu, MinorColumnMenu, LabelBrand, AdminHeader, TabSmooth, CopyRight },
+  components: { MainColumnMenu, MinorColumnMenu, LabelBrand, AdminHeader, TabLabels, CopyRight },
 
   computed: {},
 
   mounted() {
-
+    setTimeout(() => {
+      this.calculateSize()
+    }, 500)
   },
   methods: {
     calculateSize() {
@@ -109,12 +111,12 @@ export default {
         height: 100vh;
         overflow: hidden;
         .content-scroller{
-          padding: 5px 15px;
-          padding-left: 10px;
+          padding:10px 15px;
           background-color: #f9f9f9;
           // overflow: auto;
           .column-content-page{
             background-color: #fff;
+            // padding: 5px;
           }
         }
     }
