@@ -18,7 +18,7 @@
           <div class="padding"></div>
           <my-icon class="icon" :custom="route.meta.custom" :name="route.meta.icon" :size="10" ></my-icon>
           <div class="title">{{route.meta.title}}</div>
-          <div class="close">X</div>
+          <my-icon v-if="route.name!=='Index'" @click.stop="closeTab(route)" class="close" name="iconCircleCloseFilled" :size="12"></my-icon>
           <div class="padding"></div>
       </div>
       <!-- <button @click="test">test</button> -->
@@ -35,11 +35,11 @@ export default {
     }
   },
   setup() {
-    const { tabLables, tabActive } = tabLablesRepository()
+    const { tabLables, tabActive, removeTab } = tabLablesRepository()
 
     return {
       tabLables,
-      tabActive
+      tabActive, removeTab
     }
   },
 
@@ -53,6 +53,9 @@ export default {
   methods: {
     test() {
       console.log(this.tabLables, 'tabLables')
+    },
+    closeTab(route) {
+      this.removeTab(route)
     },
     doClickTab(route) {
       this.tabActive(route)
@@ -136,9 +139,11 @@ export default {
         }
         .close{
           display: none;
+
         }
         &:hover .close{
           display: block;
+          font-size: 14px;
         }
 
     }

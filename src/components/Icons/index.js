@@ -1,6 +1,6 @@
 import {
   Expand, Edit, AddLocation, HomeFilled, House, Service,
-  TrendCharts, ArrowDownBold, Fold
+  TrendCharts, ArrowDownBold, Fold, CircleCloseFilled
 } from '@element-plus/icons'
 import MyIcon from './index.vue'
 /**
@@ -18,7 +18,8 @@ const components = {
   iconHouse: House,
   iconService: Service,
   iconTrendCharts: TrendCharts,
-  iconArrowDownBold: ArrowDownBold
+  iconArrowDownBold: ArrowDownBold,
+  iconCircleCloseFilled: CircleCloseFilled
 }
 const svgNames = []
 // 定义install方法，接收app作为参数

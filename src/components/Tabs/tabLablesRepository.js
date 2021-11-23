@@ -1,4 +1,5 @@
-import { ref, reactive } from 'vue-demi'
+import { reactive } from 'vue'
+import router from '@/router'
 
 const tabLables = reactive({
   /**
@@ -42,8 +43,26 @@ export default function tabLablesRepository() {
   /**
    * 根据name移除
    */
-  const removeTab = () => {
-
+  const removeTab = (closeRoute) => {
+    let flag = false
+    tabLables.normalTabs = tabLables.normalTabs.filter(item => {
+      if (item.name === closeRoute.name && item.active) {
+        flag = true
+      }
+      return item.name !== closeRoute.name
+    })
+    tabLables.constTabs = tabLables.constTabs.filter(item => {
+      if (item.name === closeRoute.name && item.active) {
+        flag = true
+      }
+      return item.name !== closeRoute.name
+    })
+    if ([...tabLables.normalTabs, ...tabLables.constTabs].length === 0) {
+      router.push({ name: 'IndexDic' })
+    } else if (flag) {
+      // const route = [...tabLables.constTabs, ...tabLables.normalTabs].slice(-1)[0]
+      // router.push({ name: route.name })
+    }
   }
   // eslint-disable-next-line no-unused-vars
   const removeNormalTabs = () => {
