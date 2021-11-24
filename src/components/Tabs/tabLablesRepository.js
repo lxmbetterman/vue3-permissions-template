@@ -34,8 +34,8 @@ export default function tabLablesRepository() {
      */
     if (!tabLables.normalTabs.some(normalTab => normalTab.name === route.name)) {
       tabLables.normalTabs.push(route)
-      tabActive(route)
     }
+    tabActive(route) // 添加需要active
   }
   const addConstTab = () => {
 
@@ -47,6 +47,8 @@ export default function tabLablesRepository() {
     let flag = false
     tabLables.normalTabs = tabLables.normalTabs.filter(item => {
       if (item.name === closeRoute.name && item.active) {
+        console.log(item, '????')
+
         flag = true
       }
       return item.name !== closeRoute.name
@@ -60,8 +62,10 @@ export default function tabLablesRepository() {
     if ([...tabLables.normalTabs, ...tabLables.constTabs].length === 0) {
       router.push({ name: 'IndexDic' })
     } else if (flag) {
-      // const route = [...tabLables.constTabs, ...tabLables.normalTabs].slice(-1)[0]
-      // router.push({ name: route.name })
+      console.log(flag, '???')
+      const route = [...tabLables.constTabs, ...tabLables.normalTabs].slice(-1)
+      console.log(route, route[0].name, 'lll')
+      router.push({ name: route[0].name })
     }
   }
   // eslint-disable-next-line no-unused-vars

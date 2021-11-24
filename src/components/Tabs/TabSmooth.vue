@@ -9,18 +9,20 @@
       <div class="tabSmoothItem active" >
         页面标
       </div> -->
-      <div
-        class="tabSmoothItem"
-        v-for="(route) in tabLables.normalTabs"
-        :key="route.name"
-        :class="{active:route.active}"
-        @click="doClickTab(route)">
-          <div class="padding"></div>
-          <my-icon class="icon" :custom="route.meta.custom" :name="route.meta.icon" :size="10" ></my-icon>
-          <div class="title">{{route.meta.title}}</div>
-          <my-icon v-if="route.name!=='Index'" @click.stop="closeTab(route)" class="close" name="iconCircleCloseFilled" :size="12"></my-icon>
-          <div class="padding"></div>
-      </div>
+      <template v-for="(route) in tabLables.normalTabs" :key="route.name">
+        <div
+          class="tabSmoothItem"
+          :class="{active:route.active}"
+          @click="doClickTab(route)">
+            <div class="padding"></div>
+            <my-icon class="icon" :custom="route.meta.custom" :name="route.meta.icon" :size="10" ></my-icon>
+            <div class="title">{{route.meta.title}}</div>
+            <my-icon v-if="route.name!=='Index'" @click.stop="closeTab(route)" class="close" name="iconCircleCloseFilled" :size="12"></my-icon>
+            <div class="padding"></div>
+        </div>
+        <!-- <div class="labelDivider">|</div> -->
+      </template>
+
       <!-- <button @click="test">test</button> -->
   </div>
 </template>
@@ -99,6 +101,7 @@ export default {
         cursor: pointer;
         margin: 0 -6px;
         transition: all .3s;
+        padding-left: 5px;
 
         &:hover{
           background-color: #eee;
@@ -132,7 +135,7 @@ export default {
           margin-right: 5px;
         }
         .title{
-          flex: 1 1 78px;
+          flex: 1 1 70px;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
@@ -146,6 +149,12 @@ export default {
           font-size: 14px;
         }
 
+    }
+    .labelDivider{
+      height: 100%;
+      width: 1;
+      line-height: 40px;
+      color: #ddd;
     }
 }
 </style>
