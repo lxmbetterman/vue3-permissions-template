@@ -1031,6 +1031,35 @@
     cssnano-preset-default "^4.0.0"
     postcss "^7.0.0"
 
+"@mapbox/jsonlint-lines-primitives@~2.0.2":
+  version "2.0.2"
+  resolved "https://registry.nlark.com/@mapbox/jsonlint-lines-primitives/download/@mapbox/jsonlint-lines-primitives-2.0.2.tgz#ce56e539f83552b58d10d672ea4d6fc9adc7b234"
+  integrity sha1-zlblOfg1UrWNENZy6k1vya3HsjQ=
+
+"@mapbox/mapbox-gl-style-spec@^13.20.1":
+  version "13.23.0"
+  resolved "https://registry.npmmirror.com/@mapbox/mapbox-gl-style-spec/download/@mapbox/mapbox-gl-style-spec-13.23.0.tgz#dca481f78e6affd173c9c76fd9fde013b3cde41b"
+  integrity sha512-zI26XoK0UjGOvOEUUAoKlmFKHrSD8qIMCaoQBsFxNPzGIluryT32Z1m4aq7NtxEsrfE+qc2mPPXQg+iRllqbqA==
+  dependencies:
+    "@mapbox/jsonlint-lines-primitives" "~2.0.2"
+    "@mapbox/point-geometry" "^0.1.0"
+    "@mapbox/unitbezier" "^0.0.0"
+    csscolorparser "~1.0.2"
+    json-stringify-pretty-compact "^2.0.0"
+    minimist "^1.2.5"
+    rw "^1.3.3"
+    sort-object "^0.3.2"
+
+"@mapbox/point-geometry@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.nlark.com/@mapbox/point-geometry/download/@mapbox/point-geometry-0.1.0.tgz#8a83f9335c7860effa2eeeca254332aa0aeed8f2"
+  integrity sha1-ioP5M1x4YO/6Lu7KJUMyqgru2PI=
+
+"@mapbox/unitbezier@^0.0.0":
+  version "0.0.0"
+  resolved "https://registry.npmmirror.com/@mapbox/unitbezier/download/@mapbox/unitbezier-0.0.0.tgz?cache=0&sync_timestamp=1635154914922&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40mapbox%2Funitbezier%2Fdownload%2F%40mapbox%2Funitbezier-0.0.0.tgz#15651bd553a67b8581fb398810c98ad86a34524e"
+  integrity sha1-FWUb1VOme4WB+zmIEMmK2Go0Uk4=
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.nlark.com/@mrmlnc/readdir-enhanced/download/@mrmlnc/readdir-enhanced-2.2.1.tgz"
@@ -1043,6 +1072,11 @@
   version "1.1.3"
   resolved "https://registry.nlark.com/@nodelib/fs.stat/download/@nodelib/fs.stat-1.1.3.tgz?cache=0&sync_timestamp=1622792655362&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40nodelib%2Ffs.stat%2Fdownload%2F%40nodelib%2Ffs.stat-1.1.3.tgz"
   integrity sha1-K1o6s/kYzKSKjHVMCBaOPwPrphs=
+
+"@petamoriken/float16@^3.4.7":
+  version "3.6.0"
+  resolved "https://registry.npmmirror.com/@petamoriken/float16/download/@petamoriken/float16-3.6.0.tgz#42f59ff89619dc4a378a99797aab692e4d188159"
+  integrity sha512-FTMbOb9BQcfIBLx7uanCXieFEb9iWJpjLkqV5QhXo/YYArBq/4G73txEoh4Nm9jw6Z2+p55KKx7UKo48QjyG5Q==
 
 "@popperjs/core@^2.10.2":
   version "2.10.2"
@@ -2489,7 +2523,7 @@ callsites@^2.0.0:
   resolved "https://registry.nlark.com/callsites/download/callsites-2.0.0.tgz?cache=0&sync_timestamp=1628465506045&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcallsites%2Fdownload%2Fcallsites-2.0.0.tgz"
   integrity sha1-BuuE8A7qQT2oav/vrL/7Ngk7PFA=
 
-callsites@^3.0.0:
+callsites@^3.0.0, callsites@^3.1.0:
   version "3.1.0"
   resolved "https://registry.nlark.com/callsites/download/callsites-3.1.0.tgz?cache=0&sync_timestamp=1628465506045&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcallsites%2Fdownload%2Fcallsites-3.1.0.tgz"
   integrity sha1-s2MKvYlDQy9Us/BRkjjjPNffL3M=
@@ -3161,6 +3195,11 @@ css-what@^5.0.0:
   resolved "https://registry.nlark.com/css-what/download/css-what-5.0.1.tgz"
   integrity sha1-PvqCATH0ZpqKwkCPnDLnx96fTK0=
 
+csscolorparser@~1.0.2:
+  version "1.0.3"
+  resolved "https://registry.nlark.com/csscolorparser/download/csscolorparser-1.0.3.tgz#b34f391eea4da8f3e98231e2ccd8df9c041f171b"
+  integrity sha1-s085HupNqPPpgjHizNjfnAQfFxs=
+
 cssesc@^3.0.0:
   version "3.0.0"
   resolved "https://registry.nlark.com/cssesc/download/cssesc-3.0.0.tgz"
@@ -3318,6 +3357,13 @@ debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
   version "4.3.2"
   resolved "https://registry.nlark.com/debug/download/debug-4.3.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fdebug%2Fdownload%2Fdebug-4.3.2.tgz"
   integrity sha1-8KScGKyHeeMdSgxgKd+3aHPHQos=
+  dependencies:
+    ms "2.1.2"
+
+debug@^4.2.0:
+  version "4.3.3"
+  resolved "https://registry.npmmirror.com/debug/download/debug-4.3.3.tgz#04266e0b70a98d4462e6e288e38259213332b664"
+  integrity sha512-/zxw5+vh1Tfv+4Qn7a5nsbcJKPaSvCDhojn6FEl9vupwK2VCSDtEiEtqr8DFtzYFOdz63LBkxec7DYuc2jon6Q==
   dependencies:
     ms "2.1.2"
 
@@ -3894,6 +3940,11 @@ eslint@^6.7.2:
     text-table "^0.2.0"
     v8-compile-cache "^2.0.3"
 
+esm@^3.2.25:
+  version "3.2.25"
+  resolved "https://registry.nlark.com/esm/download/esm-3.2.25.tgz#342c18c29d56157688ba5ce31f8431fbb795cc10"
+  integrity sha1-NCwYwp1WFXaIulzjH4Qx+7eVzBA=
+
 espree@^6.1.2, espree@^6.2.1:
   version "6.2.1"
   resolved "https://registry.nlark.com/espree/download/espree-6.2.1.tgz"
@@ -4411,6 +4462,19 @@ gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
   resolved "https://registry.nlark.com/gensync/download/gensync-1.0.0-beta.2.tgz"
   integrity sha1-MqbudsPX9S1GsrGuXZP+qFgKJeA=
+
+geotiff@^1.0.8:
+  version "1.0.9"
+  resolved "https://registry.npmmirror.com/geotiff/download/geotiff-1.0.9.tgz#a2037c1f672c0a11bfbac8b46bbc56f901e32198"
+  integrity sha512-PY+q1OP8RtQZkx1630pVfC3hEkxFnGW9LwIF/glSzcalyShkrH+W8uM/M4RVY12j4QkDQvRXVKOpU65hq6t0iQ==
+  dependencies:
+    "@petamoriken/float16" "^3.4.7"
+    lerc "^3.0.0"
+    lru-cache "^6.0.0"
+    pako "^2.0.4"
+    parse-headers "^2.0.2"
+    threads "^1.7.0"
+    xml-utils "^1.0.2"
 
 get-caller-file@^2.0.1, get-caller-file@^2.0.5:
   version "2.0.5"
@@ -4937,7 +5001,7 @@ icss-utils@^4.0.0, icss-utils@^4.1.1:
   dependencies:
     postcss "^7.0.14"
 
-ieee754@^1.1.4:
+ieee754@^1.1.12, ieee754@^1.1.4:
   version "1.2.1"
   resolved "https://registry.nlark.com/ieee754/download/ieee754-1.2.1.tgz"
   integrity sha1-jrehCmP/8l0VpXsAFYbRd9Gw01I=
@@ -5330,6 +5394,11 @@ is-obj@^2.0.0:
   resolved "https://registry.nlark.com/is-obj/download/is-obj-2.0.0.tgz"
   integrity sha1-Rz+wXZc3BeP9liBUUBjKjiLvSYI=
 
+is-observable@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.nlark.com/is-observable/download/is-observable-2.1.0.tgz#5c8d733a0b201c80dff7bb7c0df58c6a255c7c69"
+  integrity sha1-XI1zOgsgHIDf97t8DfWMaiVcfGk=
+
 is-path-cwd@^2.0.0:
   version "2.2.0"
   resolved "https://registry.nlark.com/is-path-cwd/download/is-path-cwd-2.2.0.tgz?cache=0&sync_timestamp=1628686525430&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fis-path-cwd%2Fdownload%2Fis-path-cwd-2.2.0.tgz"
@@ -5542,6 +5611,11 @@ json-stable-stringify-without-jsonify@^1.0.1:
   resolved "https://registry.nlark.com/json-stable-stringify-without-jsonify/download/json-stable-stringify-without-jsonify-1.0.1.tgz"
   integrity sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=
 
+json-stringify-pretty-compact@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.nlark.com/json-stringify-pretty-compact/download/json-stringify-pretty-compact-2.0.0.tgz#e77c419f52ff00c45a31f07f4c820c2433143885"
+  integrity sha1-53xBn1L/AMRaMfB/TIIMJDMUOIU=
+
 json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "https://registry.nlark.com/json-stringify-safe/download/json-stringify-safe-5.0.1.tgz"
@@ -5631,6 +5705,11 @@ launch-editor@^2.2.1:
   dependencies:
     chalk "^2.3.0"
     shell-quote "^1.6.1"
+
+lerc@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.nlark.com/lerc/download/lerc-3.0.0.tgz#36f36fbd4ba46f0abf4833799fff2e7d6865f5cb"
+  integrity sha1-NvNvvUukbwq/SDN5n/8ufWhl9cs=
 
 levn@^0.3.0, levn@~0.3.0:
   version "0.3.0"
@@ -5783,6 +5862,13 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
+lru-cache@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.nlark.com/lru-cache/download/lru-cache-6.0.0.tgz#6d6fe6570ebd96aaf90fcad1dafa3b2566db3a94"
+  integrity sha1-bW/mVw69lqr5D8rR2vo7JWbbOpQ=
+  dependencies:
+    yallist "^4.0.0"
+
 magic-string@^0.25.7:
   version "0.25.7"
   resolved "https://registry.nlark.com/magic-string/download/magic-string-0.25.7.tgz"
@@ -5816,6 +5902,11 @@ map-visit@^1.0.0:
   integrity sha1-7Nyo8TFE5mDxtb1B8S80edmN+48=
   dependencies:
     object-visit "^1.0.0"
+
+mapbox-to-css-font@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.nlark.com/mapbox-to-css-font/download/mapbox-to-css-font-2.4.0.tgz#a23b51664a1ee839beaefade013f2655bee9a390"
+  integrity sha1-ojtRZkoe6Dm+rvreAT8mVb7po5A=
 
 md5.js@^1.3.4:
   version "1.3.5"
@@ -6469,10 +6560,34 @@ object.values@^1.1.0:
     define-properties "^1.1.3"
     es-abstract "^1.18.2"
 
+observable-fns@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.nlark.com/observable-fns/download/observable-fns-0.6.1.tgz#636eae4fdd1132e88c0faf38d33658cc79d87e37"
+  integrity sha1-Y26uT90RMuiMD6840zZYzHnYfjc=
+
 obuf@^1.0.0, obuf@^1.1.2:
   version "1.1.2"
   resolved "https://registry.nlark.com/obuf/download/obuf-1.1.2.tgz"
   integrity sha1-Cb6jND1BhZ69RGKS0RydTbYZCE4=
+
+ol-mapbox-style@^6.7.0:
+  version "6.8.1"
+  resolved "https://registry.npmmirror.com/ol-mapbox-style/download/ol-mapbox-style-6.8.1.tgz#12accc9aef73ba975aac54e0b7fd64e6a62ce589"
+  integrity sha512-HD3FNFzFiBptEwiLIVna7H/WSpv/cN99xMmIErcvqv/r4XLwWS/8VKti8w6moVPV28Fg2QmitXvaG3okedMU7w==
+  dependencies:
+    "@mapbox/mapbox-gl-style-spec" "^13.20.1"
+    mapbox-to-css-font "^2.4.0"
+    webfont-matcher "^1.1.0"
+
+ol@^6.10.0:
+  version "6.10.0"
+  resolved "https://registry.npmmirror.com/ol/download/ol-6.10.0.tgz#4f3efbb3cc6571962149666de807f11e91015b62"
+  integrity sha512-XBU0IzeCU50MUOmCoBH5ThimGUt6oiNf8LL3iRVeLckpg7Q/0i4jernuJTpg8OLVzcgxG+ex/0iXf9mgHSzM6Q==
+  dependencies:
+    geotiff "^1.0.8"
+    ol-mapbox-style "^6.7.0"
+    pbf "3.2.1"
+    rbush "^3.0.1"
 
 on-finished@~2.3.0:
   version "2.3.0"
@@ -6615,6 +6730,11 @@ p-try@^2.0.0:
   resolved "https://registry.nlark.com/p-try/download/p-try-2.2.0.tgz"
   integrity sha1-yyhoVA4xPWHeWPr741zpAE1VQOY=
 
+pako@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.nlark.com/pako/download/pako-2.0.4.tgz?cache=0&sync_timestamp=1627560187062&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fpako%2Fdownload%2Fpako-2.0.4.tgz#6cebc4bbb0b6c73b0d5b8d7e8476e2b2fbea576d"
+  integrity sha1-bOvEu7C2xzsNW41+hHbisvvqV20=
+
 pako@~1.0.5:
   version "1.0.11"
   resolved "https://registry.nlark.com/pako/download/pako-1.0.11.tgz?cache=0&sync_timestamp=1627560187062&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fpako%2Fdownload%2Fpako-1.0.11.tgz"
@@ -6653,6 +6773,11 @@ parse-asn1@^5.0.0, parse-asn1@^5.1.5:
     evp_bytestokey "^1.0.0"
     pbkdf2 "^3.0.3"
     safe-buffer "^5.1.1"
+
+parse-headers@^2.0.2:
+  version "2.0.4"
+  resolved "https://registry.nlark.com/parse-headers/download/parse-headers-2.0.4.tgz?cache=0&sync_timestamp=1628090544806&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fparse-headers%2Fdownload%2Fparse-headers-2.0.4.tgz#9eaf2d02bed2d1eff494331ce3df36d7924760bf"
+  integrity sha1-nq8tAr7S0e/0lDMc498215JHYL8=
 
 parse-json@^4.0.0:
   version "4.0.0"
@@ -6770,6 +6895,14 @@ path@^0.12.7:
   dependencies:
     process "^0.11.1"
     util "^0.10.3"
+
+pbf@3.2.1:
+  version "3.2.1"
+  resolved "https://registry.nlark.com/pbf/download/pbf-3.2.1.tgz#b4c1b9e72af966cd82c6531691115cc0409ffe2a"
+  integrity sha1-tMG55yr5Zs2CxlMWkRFcwECf/io=
+  dependencies:
+    ieee754 "^1.1.12"
+    resolve-protobuf-schema "^2.1.0"
 
 pbkdf2@^3.0.3:
   version "3.1.2"
@@ -7349,6 +7482,11 @@ promise-inflight@^1.0.1:
   resolved "https://registry.nlark.com/promise-inflight/download/promise-inflight-1.0.1.tgz"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
+protocol-buffers-schema@^3.3.1:
+  version "3.6.0"
+  resolved "https://registry.nlark.com/protocol-buffers-schema/download/protocol-buffers-schema-3.6.0.tgz?cache=0&sync_timestamp=1631215317148&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fprotocol-buffers-schema%2Fdownload%2Fprotocol-buffers-schema-3.6.0.tgz#77bc75a48b2ff142c1ad5b5b90c94cd0fa2efd03"
+  integrity sha1-d7x1pIsv8ULBrVtbkMlM0Pou/QM=
+
 proxy-addr@~2.0.5:
   version "2.0.7"
   resolved "https://registry.nlark.com/proxy-addr/download/proxy-addr-2.0.7.tgz"
@@ -7462,6 +7600,11 @@ querystringify@^2.1.1:
   resolved "https://registry.nlark.com/querystringify/download/querystringify-2.2.0.tgz"
   integrity sha1-M0WUG0FTy50ILY7uTNogFqmu9/Y=
 
+quickselect@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.nlark.com/quickselect/download/quickselect-2.0.0.tgz#f19680a486a5eefb581303e023e98faaf25dd018"
+  integrity sha1-8ZaApIal7vtYEwPgI+mPqvJd0Bg=
+
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5, randombytes@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npm.taobao.org/randombytes/download/randombytes-2.1.0.tgz"
@@ -7491,6 +7634,13 @@ raw-body@2.4.0:
     http-errors "1.7.2"
     iconv-lite "0.4.24"
     unpipe "1.0.0"
+
+rbush@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.nlark.com/rbush/download/rbush-3.0.1.tgz#5fafa8a79b3b9afdfe5008403a720cc1de882ecf"
+  integrity sha1-X6+op5s7mv3+UAhAOnIMwd6ILs8=
+  dependencies:
+    quickselect "^2.0.0"
 
 read-pkg@^5.1.1:
   version "5.2.0"
@@ -7713,6 +7863,13 @@ resolve-from@^4.0.0:
   resolved "https://registry.nlark.com/resolve-from/download/resolve-from-4.0.0.tgz"
   integrity sha1-SrzYUq0y3Xuqv+m0DgCjbbXzkuY=
 
+resolve-protobuf-schema@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.nlark.com/resolve-protobuf-schema/download/resolve-protobuf-schema-2.1.0.tgz#9ca9a9e69cf192bbdaf1006ec1973948aa4a3758"
+  integrity sha1-nKmp5pzxkrva8QBuwZc5SKpKN1g=
+  dependencies:
+    protocol-buffers-schema "^3.3.1"
+
 resolve-url@^0.2.1:
   version "0.2.1"
   resolved "https://registry.nlark.com/resolve-url/download/resolve-url-0.2.1.tgz"
@@ -7795,6 +7952,11 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   integrity sha1-6Eg5bwV9Ij8kOGkkYY4laUFh7Ec=
   dependencies:
     aproba "^1.1.1"
+
+rw@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.npmmirror.com/rw/download/rw-1.3.3.tgz#3f862dfa91ab766b14885ef4d01124bfda074fb4"
+  integrity sha1-P4Yt+pGrdmsUiF700BEkv9oHT7Q=
 
 rxjs@^6.6.0:
   version "6.6.7"
@@ -8124,12 +8286,30 @@ sockjs@^0.3.21:
     uuid "^3.4.0"
     websocket-driver "^0.7.4"
 
+sort-asc@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.nlark.com/sort-asc/download/sort-asc-0.1.0.tgz#ab799df61fc73ea0956c79c4b531ed1e9e7727e9"
+  integrity sha1-q3md9h/HPqCVbHnEtTHtHp53J+k=
+
+sort-desc@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.nlark.com/sort-desc/download/sort-desc-0.1.1.tgz#198b8c0cdeb095c463341861e3925d4ee359a9ee"
+  integrity sha1-GYuMDN6wlcRjNBhh45JdTuNZqe4=
+
 sort-keys@^1.0.0:
   version "1.1.2"
   resolved "https://registry.nlark.com/sort-keys/download/sort-keys-1.1.2.tgz"
   integrity sha1-RBttTTRnmPG05J6JIK37oOVD+a0=
   dependencies:
     is-plain-obj "^1.0.0"
+
+sort-object@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.nlark.com/sort-object/download/sort-object-0.3.2.tgz#98e0d199ede40e07c61a84403c61d6c3b290f9e2"
+  integrity sha1-mODRme3kDgfGGoRAPGHWw7KQ+eI=
+  dependencies:
+    sort-asc "^0.1.0"
+    sort-desc "^0.1.1"
 
 source-list-map@^2.0.0:
   version "2.0.1"
@@ -8614,6 +8794,18 @@ thread-loader@^2.1.3:
     loader-utils "^1.1.0"
     neo-async "^2.6.0"
 
+threads@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.npmmirror.com/threads/download/threads-1.7.0.tgz#d9e9627bfc1ef22ada3b733c2e7558bbe78e589c"
+  integrity sha1-2elie/we8iraO3M8LnVYu+eOWJw=
+  dependencies:
+    callsites "^3.1.0"
+    debug "^4.2.0"
+    is-observable "^2.1.0"
+    observable-fns "^0.6.1"
+  optionalDependencies:
+    tiny-worker ">= 2"
+
 through2@^2.0.0:
   version "2.0.5"
   resolved "https://registry.nlark.com/through2/download/through2-2.0.5.tgz"
@@ -8648,6 +8840,13 @@ tiny-emitter@^2.0.0:
   version "2.1.0"
   resolved "https://registry.nlark.com/tiny-emitter/download/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
   integrity sha1-HRpW7fxRxD6GPLtTgqcjMONVVCM=
+
+"tiny-worker@>= 2":
+  version "2.3.0"
+  resolved "https://registry.nlark.com/tiny-worker/download/tiny-worker-2.3.0.tgz#715ae34304c757a9af573ae9a8e3967177e6011e"
+  integrity sha1-cVrjQwTHV6mvVzrpqOOWcXfmAR4=
+  dependencies:
+    esm "^3.2.25"
 
 tmp@^0.0.33:
   version "0.0.33"
@@ -9178,6 +9377,11 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
+webfont-matcher@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmmirror.com/webfont-matcher/download/webfont-matcher-1.1.0.tgz#98ce95097b29e31fbe733053e10e571642d1c6c7"
+  integrity sha1-mM6VCXsp4x++czBT4Q5XFkLRxsc=
+
 webpack-bundle-analyzer@^3.8.0:
   version "3.9.0"
   resolved "https://registry.nlark.com/webpack-bundle-analyzer/download/webpack-bundle-analyzer-3.9.0.tgz"
@@ -9408,6 +9612,11 @@ ws@^6.0.0, ws@^6.2.1:
   integrity sha1-3Vzb1XqZeZFgl2UtePHMX66gwy4=
   dependencies:
     async-limiter "~1.0.0"
+
+xml-utils@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmmirror.com/xml-utils/download/xml-utils-1.0.2.tgz#8081bfefb87b72e03e4adbabdd217ccbbc395eeb"
+  integrity sha1-gIG/77h7cuA+Stur3SF8y7w5Xus=
 
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.2"

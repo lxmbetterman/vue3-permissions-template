@@ -21,6 +21,9 @@ import Pagination from '@/components/Pagination/index.vue'
 import directives from '@/utils/directives'
 import Icons from '@/components/Icons'
 
+// ol
+import 'ol/ol.css'
+
 const app = createApp(App)
 app.use(ElementPlus)
 app.use(directives)

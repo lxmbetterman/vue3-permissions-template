@@ -28,7 +28,7 @@ export default function userOperator() {
     return new Promise((resolve, reject) => {
       $http.get('/userinfo').then((res) => {
         currentUser.name = res.userName
-        addAyscRoutes(res.userAllowedPathName)
+        addAyscRoutes(res.userAllowedPathName, false) // false 不开启过滤
         resolve()
         userLoading.value = false
       }).catch((err) => {

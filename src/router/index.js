@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 // import Layout from '@/components/Layout/index.vue'
 export const Layout = () => import('@/components/Layout/index.vue')
+export const Blank = () => import('@/components/Layout/Blank.vue')
 import { ref } from 'vue'
 
 export const userAllowedPath = ref([]) // 全局
@@ -162,6 +163,36 @@ export const asyncRoutes = [
         component: () => import('@/views/System/menuList.vue'),
         name: 'MenuList',
         meta: { title: '菜单管理', icon: 'iconTrendCharts' }
+      }
+    ]
+  },
+  {
+    path: '/webgis',
+    component: Layout,
+    redirect: '/webgis/openLayers',
+    name: 'webgis',
+    meta: { title: 'WebGis', icon: 'iconTrendCharts' },
+    children: [
+      {
+        path: 'openLayers',
+        component: Blank,
+        redirect: '/webgis/openLayers/index',
+        name: 'openLayers',
+        meta: { title: 'openLayers例子', icon: 'iconTrendCharts' },
+        children: [
+          {
+            path: 'index',
+            component: () => import('@/views/Webgis/OpenLayers/index.vue'),
+            name: 'openLayersIndex',
+            meta: { title: 'openLayers首页', icon: 'iconTrendCharts' }
+          },
+          {
+            path: 'accessibleMap',
+            component: () => import('@/views/Webgis/OpenLayers/AccessibleMap.vue'),
+            name: 'AccessibleMap',
+            meta: { title: 'AccessibleMap例一', icon: 'iconTrendCharts' }
+          }
+        ]
       }
     ]
   }
