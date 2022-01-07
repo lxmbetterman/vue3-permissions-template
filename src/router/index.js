@@ -191,6 +191,30 @@ export const asyncRoutes = [
             component: () => import('@/views/Webgis/OpenLayers/AccessibleMap.vue'),
             name: 'AccessibleMap',
             meta: { title: 'AccessibleMap例一', icon: 'iconTrendCharts' }
+          },
+          {
+            path: 'AdvancedViewPositioning',
+            component: () => import('@/views/Webgis/OpenLayers/AdvancedViewPositioning.vue'),
+            name: 'AdvancedViewPositioning',
+            meta: { title: '高级视图定位例二', icon: 'iconTrendCharts' }
+          },
+          {
+            path: 'AnimatedGIF',
+            component: () => import('@/views/Webgis/OpenLayers/AnimatedGIF.vue'),
+            name: 'AnimatedGIF',
+            meta: { title: 'GIF图表基本操作', icon: 'iconTrendCharts' }
+          },
+          {
+            path: 'ArcGISMapServer',
+            component: () => import('@/views/Webgis/OpenLayers/ArcGISMapServer.vue'),
+            name: 'ArcGISMapServer',
+            meta: { title: 'ArcGISMapServer图层', icon: 'iconTrendCharts' }
+          },
+          {
+            path: 'GaoDeMap',
+            component: () => import('@/views/Webgis/OpenLayers/GaoDeMap.vue'),
+            name: 'GaoDeMap',
+            meta: { title: '高德图层', icon: 'iconTrendCharts' }
           }
         ]
       }
