@@ -51,3 +51,68 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
         next()
         })
     ```
+
+    * async/await 结合异步请求的使用
+    - 要点 
+    ```javascript
+    const user_login = async(userInfo) => { // const { username, password } = userInfo
+        userLoading.value = true
+        return new Promise((resolve, reject) => {
+        $http.get('/login').then(() => {
+            currentUser.token = TokenKey
+            setToken(TokenKey)
+            resolve()
+        }).catch((err) => {
+            userLoading.value = false
+            reject(err)
+        })
+        })
+    }
+    ```
+    - 关于循环发起异步请求（一个请求响应结束后发起另一个）的测试
+    ```javascript
+    // 这是FOR AWAIT OF 的用法 ，并不满足要求
+        function getTime(seconds){
+            return new Promise(resolve=>{
+                setTimeout(() => {
+                    resolve(seconds)
+                }, seconds);
+            })
+        }
+
+        async function test(){
+            let arr = [getTime(2000),getTime(300),getTime(1000)]
+            for await (let x of arr){
+                console.log(x); // 2000  300 1000 按顺序的
+            }
+         }
+
+        test()
+
+        //Promise 对象被reject，for await...of就会报错，要用try...catch捕捉。
+        async function () {
+            try {
+                for await (const x of createRejectingIterable()) {
+                console.log(x);
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+    ```
+    - for循环中使用async/await（满足要求）
+    ```javascript
+        async aboutAsyncAwait() {
+            const docs = [1, 2, 3, 4, 5, 6, 7]
+
+            for (const number of docs) {
+                await new Promise((solve, reject) => {
+                setTimeout(() => {
+                    console.log(number, '???')
+                    solve(number)
+                }, 2000 * Math.random())
+                })
+            }
+        }
+    ```

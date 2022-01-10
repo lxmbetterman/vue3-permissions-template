@@ -89,6 +89,7 @@ import paginationRepository from '@/repository/pagination.js'
 import MyFormInline from '@/components/Form/FormInline.vue'
 
 import { setThemeStyleName, getThemeStyleName } from '@/utils/cookieTools.js'
+import { random } from '@antv/x6/lib/util/number/number'
 
 export default {
   name: 'ProjectIndex',
@@ -148,6 +149,7 @@ export default {
 
   mounted() {
     // console.log(this.$route)
+    this.aboutAsyncAwait()
   },
 
   methods: {
@@ -182,6 +184,19 @@ export default {
       if (getThemeStyleName() !== themeStyleName) {
         setThemeStyleName(themeStyleName)
         this.$router.go(0)
+      }
+    },
+    // 测试用
+    async aboutAsyncAwait() {
+      const docs = [1, 2, 3, 4, 5, 6, 7]
+
+      for (const number of docs) {
+        await new Promise((solve, reject) => {
+          setTimeout(() => {
+            console.log(number, '???')
+            solve(number)
+          }, 2000 * Math.random())
+        })
       }
     }
 
