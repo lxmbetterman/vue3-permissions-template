@@ -14,13 +14,13 @@
 
 <script>
 
-import dataJson from './data.json'
-console.log(dataJson)
+// import dataJson from './data.json'
+// console.log(dataJson)
 import { Graph } from '@antv/x6'
 import '@antv/x6-vue-shape'
 
-import Start from './components/Start'
-import Normal from './components/Normal'
+import Start from '../components/Start'
+import Normal from '../components/Normal'
 
 let graph = null
 export default {
@@ -167,7 +167,7 @@ export default {
     this.graph = graph
 
     this.addNodes(graph)// 手动添加node节点
-    // this.renderGraph(graph)
+
     graph.on('edge:connected', (args) => {
       const edge = args.edge
       const node = args.currentCell
@@ -271,18 +271,7 @@ export default {
     onResize() {
       // 重新设置画布
     },
-    // add() {
-    //   const node = graph.getCellById('1')
-    //   if (node) {
-    //     const { num } = node.getData()
-    //     node.setData({
-    //       num: num + 1
-    //     })
-    //   }
-    // },
-    renderGraph(graph) {
-      graph.fromJSON(dataJson)
-    },
+
     addNodes(graph) {
       graph.addNode({
         id: '2',

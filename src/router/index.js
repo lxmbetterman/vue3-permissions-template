@@ -126,28 +126,25 @@ export const asyncRoutes = [
     meta: { title: '可视化', icon: 'iconTrendCharts' },
     children: [
       {
-        path: 'x6',
-        component: () => import('@/views/Visualization/X6/indexX6.vue'),
-        name: 'X6',
-        meta: { title: 'X6示例', icon: 'iconTrendCharts' }
-      },
-      {
-        path: 'x6Vue',
-        component: () => import('@/views/Visualization/X6/index.vue'),
-        name: 'x6Vue',
-        meta: { title: 'X6示例Vue Node', icon: 'iconTrendCharts' }
-      },
-      {
-        path: 'x6VueV2',
-        component: () => import('@/views/Visualization/X6/indexV2.vue'),
-        name: 'x6VueV2',
-        meta: { title: 'X6示例Vue Node V2', icon: 'iconTrendCharts' }
-      },
-      {
-        path: 'treeLayout',
-        component: () => import('@/views/Visualization/X6/TreeLayout/index.vue'),
-        name: 'treeLayout',
-        meta: { title: '固定布局关系图', icon: 'iconTrendCharts' }
+        path: '/x6',
+        component: Blank,
+        redirect: '/visualization/x6/x6Vue',
+        name: 'Visualization',
+        meta: { title: 'X6示例集合', icon: 'iconTrendCharts' },
+        children: [
+          {
+            path: 'vueNode',
+            component: () => import('@/views/Visualization/X6/page/regisVueComponent.vue'),
+            name: 'vueNode',
+            meta: { title: '自定义Vue组件节点', icon: 'iconTrendCharts' }
+          },
+          {
+            path: 'basicClassCell',
+            component: () => import('@/views/Visualization/X6/page/basicClassCell.vue'),
+            name: 'BasicClassCell',
+            meta: { title: 'Cell基类', icon: 'iconTrendCharts' }
+          }
+        ]
       }
     ]
   },
