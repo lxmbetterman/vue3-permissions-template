@@ -126,9 +126,9 @@ export const asyncRoutes = [
     meta: { title: '可视化', icon: 'iconTrendCharts' },
     children: [
       {
-        path: '/x6',
+        path: 'x6',
         component: Blank,
-        redirect: '/visualization/x6/x6Vue',
+        redirect: '/visualization/x6/vueNode',
         name: 'Visualization',
         meta: { title: 'X6示例集合', icon: 'iconTrendCharts' },
         children: [

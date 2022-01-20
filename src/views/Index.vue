@@ -89,7 +89,7 @@ import paginationRepository from '@/repository/pagination.js'
 import MyFormInline from '@/components/Form/FormInline.vue'
 
 import { setThemeStyleName, getThemeStyleName } from '@/utils/cookieTools.js'
-import { random } from '@antv/x6/lib/util/number/number'
+// import { random } from '@antv/x6/lib/util/number/number'
 
 export default {
   name: 'ProjectIndex',
