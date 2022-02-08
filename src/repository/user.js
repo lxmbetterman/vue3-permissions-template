@@ -1,7 +1,7 @@
 
 import { getToken, setToken, TokenKey, removeToken } from '@/utils/cookieTools'
 import { resetRouter, addAyscRoutes } from '@/router/index.js'
-import $http from '@/utils/aixosInstance'
+// import $http from '@/utils/aixosInstance'
 import { reactive, ref } from 'vue'
 
 const currentUser = reactive({

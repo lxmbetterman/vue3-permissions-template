@@ -29,6 +29,10 @@
                                      └──────────────────┘
                                -->
 
+<!--
+
+-->
+
     <div id="basicClassCell">
 
     </div>
@@ -103,12 +107,24 @@ export default {
         }
       ]
     })
+
+    const edge = new Shape.Edge({
+      id: 'edge1',
+      source: rect,
+      target: circle,
+      zIndex: 1
+    })
+
+    graph.addNode(rect)
+    graph.addNode(circle)
+    graph.addEdge(edge)
+
     graph.addNode({
       shape: 'path',
-      x: 0,
+      x: 420,
       y: 0,
-      width: 200,
-      height: 160,
+      width: 100,
+      height: 80,
       label: 'path',
       // 相当于指定路径的 refD 属性!!
       // 使用 path 属性指定路径的 pathData，
@@ -124,7 +140,7 @@ export default {
 
     graph.addNode({
       shape: 'path',
-      x: 0,
+      x: 210,
       y: 0,
       width: 200,
       height: 160,
@@ -140,19 +156,77 @@ export default {
       }
     })
 
-    const edge = new Shape.Edge({
-      id: 'edge1',
-      source: rect,
-      target: circle,
-      zIndex: 1
-    })
-
-    graph.addNode(rect)
-    graph.addNode(circle)
-    graph.addEdge(edge)
+    this.addCustomNode()
   },
 
-  methods: {}
+  methods: {
+    addCustomNode() {
+      Graph.registerNode(
+        'custom-node',
+        {
+          width: 200,
+          height: 60,
+          attrs: {
+            body: {
+              stroke: 'red',
+              strokeWidth: 1,
+              fill: 'rgba(95,149,255,1)',
+              width: 200,
+              height: 60
+            },
+            image: {
+              'xlink:href':
+          'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png',
+              width: 16,
+              height: 16,
+              x: 12,
+              y: 12
+            },
+            title: {
+              text: 'Node',
+              refX: 40,
+              refY: 14,
+              fill: 'rgba(0,0,0,0.85)',
+              fontSize: 12,
+              'text-anchor': 'start'
+            },
+            text: {
+              text: 'this is content text',
+              refX: 40,
+              refY: 38,
+              fontSize: 12,
+              fill: 'rgba(0,0,0,0.6)',
+              'text-anchor': 'start'
+            }
+          },
+          markup: [
+            {
+              tagName: 'rect',
+              selector: 'body'
+            },
+            {
+              tagName: 'image',
+              selector: 'image'
+            },
+            {
+              tagName: 'text',
+              selector: 'title'
+            },
+            {
+              tagName: 'text',
+              selector: 'text'
+            }
+          ]
+        },
+        true
+      )
+      this.graph.addNode({
+        x: 200,
+        y: 160,
+        shape: 'custom-node'
+      })
+    }
+  }
 }
 
 </script>
