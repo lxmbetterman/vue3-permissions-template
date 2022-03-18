@@ -149,17 +149,17 @@ export const asyncRoutes = [
     ]
   },
   {
-    path: '/system',
+    path: '/study',
     component: Layout,
-    redirect: '/system/menu',
-    name: 'SystemManage',
-    meta: { title: '系统', icon: 'iconTrendCharts' },
+    redirect: '/study/lodash',
+    name: 'Study',
+    meta: { title: '学习', icon: 'iconTrendCharts' },
     children: [
       {
-        path: 'menu',
-        component: () => import('@/views/System/menuList.vue'),
-        name: 'MenuList',
-        meta: { title: '菜单管理', icon: 'iconTrendCharts' }
+        path: 'lodash',
+        component: () => import('@/views/Study/lodash.vue'),
+        name: 'Lodash',
+        meta: { title: 'lodash学习', icon: 'iconTrendCharts' }
       }
     ]
   },
