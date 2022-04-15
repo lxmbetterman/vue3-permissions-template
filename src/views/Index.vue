@@ -1,19 +1,6 @@
 <!--  -->
 <template>
   <div >
-    <hr>
-    <p>全局下拉接口的封装</p>
-    <el-button @click="getList" :loading="loading" >获取下拉数据</el-button>
-    <el-select v-model="myselect" placeholder="Select">
-      <el-option
-        v-for="item in listData"
-        :key="item"
-        :label="item"
-        :value="item"
-      >
-      </el-option>
-    </el-select>
-    <hr>
     <p>布局切换的实现思路</p>
     <el-button @click="setCurrentLayout('Column')">Column布局切换</el-button>
     <el-button @click="setCurrentLayout('Default')">Default布局切换</el-button>
@@ -82,7 +69,6 @@
 // import { ref, reactive, getCurrentInstance, watch } from 'vue'
 import { onMounted } from 'vue'
 
-import dropListRepository from '@/repository/select.js'
 import layoutRepository from '@/components/Layout/layoutRepository.js'
 import paginationRepository from '@/repository/pagination.js'
 
@@ -117,8 +103,6 @@ export default {
     }
   },
   setup(prop, context) {
-    const { listData, loading, getListData } = dropListRepository()
-
     const { CurrentLayout, setCurrentLayout } = layoutRepository()
 
     // 分页相关
@@ -132,14 +116,13 @@ export default {
 
     return {
       // 下拉接口
-      listData, loading, getListData,
+      // listData, loading, getListData,
 
       // 布局切换
       CurrentLayout, setCurrentLayout,
 
       // 分页相关
       currentPage1, pageSize, total, setCurrentPage, setPageSize, setTotal, resetPage
-
     }
   },
 
@@ -149,16 +132,10 @@ export default {
 
   mounted() {
     // console.log(this.$route)
-    this.aboutAsyncAwait()
+    // this.aboutAsyncAwait()
   },
 
   methods: {
-    /**
-     * 下拉
-     */
-    getList() {
-      this.getListData('/dev-api/list')
-    },
 
     /**
      * 分页

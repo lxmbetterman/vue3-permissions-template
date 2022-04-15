@@ -14,6 +14,8 @@ export default function userOperator() {
   const user_login = async(userInfo) => { // const { username, password } = userInfo
     userLoading.value = true
     return new Promise((resolve, reject) => {
+      /** 登陆获取token */
+
       // $http.get('/login').then(() => {
       //   currentUser.token = TokenKey
       //   setToken(TokenKey)
