@@ -38,3 +38,18 @@ console.log(process.env, 'process.env')
 // document.getElementsByTagName('body')[0].style.setProperty('--el-color-primary', '#41b584')
 // document.getElementsByTagName('body')[0].style.setProperty('--el-border-radius-base', '3px')
 
+import { registerMicroApps, start, runAfterFirstMounted } from 'qiankun'
+
+registerMicroApps([
+  {
+    name: 'vue app',
+    entry: '//localhost:7100',
+    container: '#yourContainer',
+    activeRule: '/index'
+  }
+])
+
+start()
+runAfterFirstMounted(() => {
+  console.log('[MainApp] first app mounted')
+})

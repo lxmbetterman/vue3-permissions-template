@@ -1,6 +1,7 @@
 <!--  -->
 <template>
   <div >
+    <div id="yourContainer">yourContainer</div>
     <hr>
     <p>全局下拉接口的封装</p>
     <el-button @click="getList" :loading="loading" >获取下拉数据</el-button>
